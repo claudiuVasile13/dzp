@@ -14,18 +14,23 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('user_id');
             $table->integer('group_id')->unsigned();
             $table->tinyInteger('admin');
+            $table->string('email')->unique();
             $table->string('username');
             $table->text('password');
-            $table->string('email')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('country');
             $table->string('picture');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->foreign('group_id')->references('group_id')->on('groups');
         });
     }
 

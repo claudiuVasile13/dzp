@@ -13,11 +13,17 @@ class CreateTopicMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('topic_messages', function (Blueprint $table) {
+        Schema::create('topic_messages', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('topic_message_id');
+            $table->integer('topic_id')->unsigned();
             $table->text('topic_message_body');
             $table->integer('topic_message_author')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('topic_messages', function($table) {
+            $table->foreign('topic_id')->references('topic_id')->on('topics');
+            $table->foreign('topic_message_author')->references('user_id')->on('users');
         });
     }
 

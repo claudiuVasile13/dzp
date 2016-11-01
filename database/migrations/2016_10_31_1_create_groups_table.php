@@ -13,7 +13,8 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::table('groups', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('group_id');
             $table->string('group_name')->unique();
             $table->string('group_logo');

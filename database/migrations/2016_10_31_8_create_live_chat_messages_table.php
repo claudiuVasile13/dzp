@@ -13,11 +13,16 @@ class CreateLiveChatMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('live_chat_messages', function (Blueprint $table) {
+        Schema::create('live_chat_messages', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('live_chat_message_id');
+            $table->integer('live_chat_message_author')->unsigned();
             $table->text('live_chat_message_body');
-            $table->integer('live_chat_message_author')->unique();
             $table->timestamps();
+        });
+
+        Schema::table('live_chat_messages', function($table) {
+            $table->foreign('live_chat_message_author')->references('user_id')->on('users');
         });
     }
 
