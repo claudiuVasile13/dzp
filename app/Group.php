@@ -4,14 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Groups extends Model
+class Group extends Model
 {
     public $table = 'groups';
     protected $primaryKey = 'group_id';
-//    protected $fillable = ['userID', 'sessionID', 'purchased'];
+    protected $fillable = [
+        'group_name', 'group_logo'
+    ];
 
-    public function getUsers()
+    public function users()
     {
-        return $this->hasMany('App\Users','group_id');
+        return $this->hasMany('App\User', 'groupID');
     }
 }

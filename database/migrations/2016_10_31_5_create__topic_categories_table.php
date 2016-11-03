@@ -16,6 +16,7 @@ class CreateTopicCategoriesTable extends Migration
         Schema::create('topic_categories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('topic_category_id');
+            $table->integer('parentID')->unsigned();
             $table->string('topic_category_name');
             $table->text('topic_category_description');
             $table->timestamps();

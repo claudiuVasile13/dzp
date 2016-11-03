@@ -16,7 +16,7 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('topic_id');
-            $table->integer('topic_category_id')->unsigned();
+            $table->integer('topicCategoryID')->unsigned();
             $table->integer('topic_author')->unsigned();
             $table->string('topic_name');
             $table->text('topic_description');
@@ -24,7 +24,7 @@ class CreateTopicsTable extends Migration
         });
 
         Schema::table('topics', function($table) {
-            $table->foreign('topic_category_id')->references('topic_category_id')->on('topic_categories');
+            $table->foreign('topicCategoryID')->references('topic_category_id')->on('topic_categories');
             $table->foreign('topic_author')->references('user_id')->on('users');
         });
     }

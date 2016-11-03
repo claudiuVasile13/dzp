@@ -19,6 +19,7 @@ class CreateMatchesTable extends Migration
             $table->string('opponent');
             $table->string('result');
             $table->string('score');
+            $table->text('screenshots');
             $table->timestamps();
         });
     }
