@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Top Menu Bar */
+#top-bar-div {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    height: 35px;
+    padding: 0;
+    background: #0288D1;
+}
+
+#menu-button {
+    height: 100%;
+    /*padding: 1px 0px 0px 0px;*/
+    /*border: 1px solid red;*/
+    width: 90px;
+
+    padding: 0;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#toggle-menu-button {
+    width: 30px;
+    /*height: 30px;*/
+    /*background: red;*/
+    float: right;
+    margin-top: 9px;
+}
+
+#toggle-menu-button > div {
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    background: #fff;
+    margin: 0px 0px 3px 0px;
+}
+
+#toggle-menu-button > div:last-child {
+    margin: 0px;
+}
+
+/* Side Menu Bar */
+#side-bar-div {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0px;
+    background: #2e3436;
+    text-align: center;
+    overflow: auto;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.show-side-bar {
+    right: 0px;
+    /*display: block;*/
+}
+
+.hide-side-bar {
+    right: -300px;
+    /*display: none;*/
+}
+
+#side-bar-div > img {
+    margin: 5px 0px 0px 0px;
+    height: 150px;
+}
+
+hr {
+    height: 1px;
+    margin: 5px 0;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0)), color-stop(0.5, #fff), to(rgba(255, 255, 255, 0)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
+    background: linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
+    border: 0;
+}
+
+#menu-ul {
+    list-style-type: none;
+    /*border: 1px solid red;*/
+    width: 100%;
+    padding: 0;
+    margin: 15px 0px 0px 0px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: left;
+}
+
+#menu-ul > li {
+    width: 100%;
+    box-sizing: border-box;
+    /*border: 1px solid blue;*/
+    font-family: 'Roboto Condensed';
+    color: #fff;
+}
+
+#menu-ul > li > a {
+    /*border: 1px solid red;*/
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 10px;
+}
+
+#menu-ul > li > a > i {
+    color: #0288D1;
+    margin: 0px 3px 0px 0px;
+    /*border: 1px solid red;*/
+    width: 20px;
+}
+
+#menu-ul > li:hover {
+    background: #262626;
+}
+
+/* Content */
+#frontend-container {
+    display:inline-block;
+    padding: 0;
+    /*border: 1px solid red;*/
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    min-height: calc(100% - 180px - 42px);
+    height: auto;
+    margin: 0;
+    background-image: url('../../img/frontend.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Footer */
+#footer-div {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /*-webkit-align-items: center;*/
+    /*align-items: center;*/
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* You can set flex-wrap and flex-direction individually */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+    /*border: 1px solid red;*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: #0288D1;
+}
+
+.flex-item {
+    width: 80px;
+    height: 80px;
+    /*border: 1px solid red;*/
+    margin: 50px;
+    background: #fff;
+    border-radius: 15%;
+}
+
+.flex-item > a {
+    display: block;
+    /*border: 1px solid red;*/
+    height: inherit;
+    border-radius: inherit;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    padding: 0;
+}
+
+.flex-item > a > i {
+    font-size: 50px;
+    margin: 15px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#facebook {
+    color: #3b5998;
+}
+
+#youtube {
+    color: #cc181e;
+}
+
+#twitch {
+    color: #6441A5;
+}
+
+.flex-item > a:hover i{
+    margin: 5px;
+    font-size: 70px;
+}
+
+#copyright-div {
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: #2e333b;
+    color: #fff;
+    text-align: center;
+    font-family: 'Roboto Condensed';
+}
+
+#copyright-div > p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 560px) {
+    /* Footer */
+    .flex-item {
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .flex-item > a > i {
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .flex-item > a:hover i{
+        margin: 5px;
+        font-size: 40px;
+    }
+
+    /* Content */
+    #frontend-container {
+        margin: 0;
+        padding: 0;
+        /*border: 1px solid red;*/
+        width: 100%;
+        min-height: calc(100% - 70px - 42px);
+    }
+}

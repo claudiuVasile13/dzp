@@ -17,8 +17,8 @@ class CreateTopicMessagesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('topic_message_id');
             $table->integer('topicID')->unsigned();
-            $table->text('topic_message_body');
             $table->integer('topic_message_author')->unsigned();
+            $table->text('topic_message_body');
             $table->timestamps();
         });
         Schema::table('topic_messages', function($table) {

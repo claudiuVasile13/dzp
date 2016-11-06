@@ -37,4 +37,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\LiveChatMessage', 'live_chat_message_author');
     }
+
+    public function privateMessages()
+    {
+        return $this->hasMany('App\PrivateMessage', 'pm_author');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country', 'countryID');
+    }
 }

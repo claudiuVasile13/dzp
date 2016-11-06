@@ -1,0 +1,164 @@
+#auth-div {
+    width: 500px;
+    display: block;
+    box-sizing: border-box;
+    margin: 100px auto;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
+    transition: box-shadow .2s;
+    position: relative;
+}
+
+#auth-div:hover {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
+}
+
+#auth-div > h2 {
+    margin: 10px 0 10px 0;
+    /*font-family: 'Roboto Condensed';*/
+}
+
+.nav > li > a{
+    font-family: 'Roboto Condensed';
+}
+
+.nav > .active > a {
+    background: #fff !important;
+}
+
+.nav > li > a:hover {
+    background: #0288D1;
+    color: #fff;
+}
+
+#dzp-logo {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 120px;
+}
+
+/* Login Form */
+.auth-form {
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-group {
+    position: relative;
+    text-align: left;
+    /*border: 1px solid red;*/
+}
+
+.form-group > i {
+    color: #0288D1;
+}
+
+.dropdown-label {
+    color: #0288D1;
+}
+
+.fields-group {
+    border: 1px solid #0288D1;
+    padding: 0;
+    margin-bottom: 30px;
+    border-radius: 2px;
+}
+
+.fields-group> i {
+    font-size: 20px;
+    color: #0288D1;
+    padding: 0;
+    /*float: left;*/
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 3px;
+    /*top:5px;*/
+}
+
+.fields {
+    /*float: left;*/
+    width: calc(100% - 27px);
+    height: 30px;
+    border: none;
+    padding: 5px;
+    text-align: left;
+    font-family: 'Roboto Condensed';
+    font-weight: 300;
+    color: #0288D1;
+    outline: none;
+    margin: 0;
+    border-left: 1px solid #0288D1;
+}
+
+input:focus {
+    outline: none;
+}
+
+.float-label {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    /*border: 1px solid red;*/
+    /*width: 100%;*/
+    /*text-align: left;*/
+    font-family: 'Roboto Condensed';
+    font-weight: 300;
+    color: #0288D1;
+    font-size: 16px;
+    position: absolute;
+    left: 40px;
+    top: 5px;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ .float-label, .used ~ .float-label {
+    top: -20px;
+    transform: scale(.75);
+    left: 30px;
+    /* font-size: 14px; */
+}
+
+.auth-button {
+    background: #0288D1;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    font-family: 'Roboto Condensed';
+    font-size: 20px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#login-button {
+    width: 50%;
+    float: left;
+}
+
+#register-button {
+    width: 100%;
+}
+
+.auth-button:hover {
+    background: #2e3436;
+}
+
+#forgot-pass-link {
+    margin-top: 10px;
+    float: right;
+    color: #0288D1;
+    font-family: 'Roboto Condensed';
+}
+
+#forgot-pass-link:hover {
+    color: #2e3436;
+}
+
+#clear {
+    clear: both;
+}
