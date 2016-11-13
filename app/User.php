@@ -9,8 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'groupID', 'admin', 'email', 'username', 'password', 'gameranger_id',
-        'gender', 'skype', 'facebook', 'twitter', 'country', 'picture', 'signature'
+        'groupID', 'countryID', 'admin', 'email', 'username', 'password', 'activated', 'registration_token', 'password_reset_token', 'status', 'gameranger_id',
+        'gender', 'skype', 'facebook', 'twitter', 'picture', 'signature', 'user_ip'
     ];
     protected $hidden = [
         'password', 'remember_token',

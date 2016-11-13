@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->text('password');
+            $table->tinyInteger('activated');
+            $table->text('registration_token');
+            $table->text('password_reset_token')->nullable();
             $table->tinyInteger('status');
             $table->string('gameranger_id')->nullable();
             $table->string('gender');
@@ -30,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('picture');
             $table->string('signature')->nullable();
+            $table->string('user_ip');
             $table->rememberToken();
             $table->timestamps();
         });

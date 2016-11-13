@@ -1,8 +1,29 @@
+.div-alert {
+    margin: 20px auto;
+    width: 100%;
+}
+
+.div-alert > ul {
+    list-style-type: none;
+}
+
+.div-alert > ul > li {
+    margin: 10px;
+}
+
+.div-alert > ul > li > a {
+    color: #2e3436;
+}
+
+.div-alert > ul > li > a:hover {
+    text-decoration: underline;
+}
+
 #auth-div {
     width: 500px;
     display: block;
     box-sizing: border-box;
-    margin: 100px auto;
+    margin: 70px auto;
     background: #fff;
     padding: 10px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
@@ -68,7 +89,7 @@
     border-radius: 2px;
 }
 
-.fields-group> i {
+.fields-group > i {
     font-size: 20px;
     color: #0288D1;
     padding: 0;
@@ -91,7 +112,7 @@
     color: #0288D1;
     outline: none;
     margin: 0;
-    border-left: 1px solid #0288D1;
+    /*border-left: 1px solid #0288D1;*/
 }
 
 input:focus {
@@ -109,8 +130,8 @@ input:focus {
     color: #0288D1;
     font-size: 16px;
     position: absolute;
-    left: 40px;
-    top: 5px;
+    left: 30px;
+    top: 3px;
     transition: all 0.2s ease;
     pointer-events: none;
 }
@@ -140,7 +161,7 @@ input:focus {
     float: left;
 }
 
-#register-button {
+#register-button, #reset-password-button, #new-password-button, #resend-activation-button {
     width: 100%;
 }
 
@@ -161,4 +182,19 @@ input:focus {
 
 #clear {
     clear: both;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 550px) {
+    #auth-div {
+       width: 100%;
+    }
+
+    #dzp-logo {
+        width: 100px;
+    }
+
+    #auth-div > h2 {
+        font-size: 25px;
+    }
 }

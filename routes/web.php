@@ -12,5 +12,22 @@
 */
 
 Route::group(['namespace' => 'Authentication'], function() {
-    Route::get('/auth', 'Auth@loadAuthPage');
+    // Register
+    Route::get('/auth', 'AuthController@AuthPage');
+    Route::post('/register', 'AuthController@register');
+    Route::get('/activate/{token}', 'AuthController@activateAccount');
+    Route::get('/resend-activation', 'AuthController@resendActivationMailPage');
+    Route::post('/resend-activation', 'AuthController@resendActivationMail');
+
+    // Login
+    Route::post('/login', 'AuthController@login');
+    Route::get('/reset-password', 'AuthController@resetPasswordPage');
+    Route::post('/reset-password', 'AuthController@resetPassword');
+    Route::get('/new-password/{token}', 'AuthController@newPasswordPage');
+    Route::post('/new-password', 'AuthController@newPassword');
+    Route::get('/logout', 'AuthController@logout');
+});
+
+Route::group(['namespace' => 'Frontend'], function() {
+    Route::get('/', 'HomeController@index');
 });

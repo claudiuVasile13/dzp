@@ -9,27 +9,38 @@
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Roboto Condensed">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Courgette">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
     <body>
         {{-- Top Menu Bar --}}
         <div id="top-bar-div">
-            <div id="menu-button">Menu
-                {{--<div id="toggle-menu-button">--}}
-                    {{--<div></div>--}}
-                    {{--<div></div>--}}
-                    {{--<div></div>--}}
-                {{--</div>--}}
+            <div id="menu-button">
+                <div id="toggle-menu-button">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
 
         {{-- Side Menu Bar --}}
         <div id="side-bar-div" class="hide-side-bar">
-            <img src="/img/dzp.png" alt="Logo">
+            @if(Auth::check())
+                <div id="avatar">
+                    <img src="/img/users/{{ Auth::user()->picture }}" alt="Logo">
+                </div>
+                <p>{{ Auth::user()->username }}</p>
+                <a href="/profile/{{ Auth::user()->username }}" class="profile-login" id="profile-btn">Profile</a>
+                <a href="/logout" class="profile-login" id="logout-btn">Logout</a>
+            @else
+                <a href="/auth" class="profile-login" id="login-btn">Login / Register</a>
+            @endif
             <hr>
             <ul id="menu-ul">
-                <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                 <li><a href=""><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>
                 <li><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> About Us</a></li>
                 <li><a href=""><i class="fa fa-list" aria-hidden="true"></i> Roster</a></li>
@@ -37,10 +48,13 @@
                 <li><a href=""><i class="fa fa-server" aria-hidden="true"></i> Servers</a></li>
                 <li><a href=""><i class="fa fa-trophy" aria-hidden="true"></i> Matches</a></li>
                 <li><a href=""><i class="fa fa-hand-o-right" aria-hidden="true"></i> Join Us</a></li>
-                <li><a href=""><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-                <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
                 <li><a href=""><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></li>
-                <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
+                {{-- Login Required --}}
+                @if(Auth::check())
+                    <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
+                    {{-- Membership Required --}}
+                    <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
+                @endif
             </ul>
         </div>
 
@@ -65,6 +79,7 @@
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/app.js"></script>
         <script src="/js/frontend/template.js"></script>
+
         @yield('footer')
     </body>
 </html>

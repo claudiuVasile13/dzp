@@ -18,7 +18,6 @@ class CreateCountriesTable extends Migration
             $table->increments('country_id');
             $table->string('country_name')->unique();
             $table->string('country_flag');
-            $table->timestamps();
         });
     }
 

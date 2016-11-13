@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    fieldsValue();
     labelAnimation();
 });
 
@@ -11,6 +12,14 @@ function labelAnimation() {
         }
         else {
             $this.removeClass('used');
+        }
+    });
+}
+
+function fieldsValue() {
+    $('.fields').each(function(index) {
+        if($(this).val().length > 0) {
+            $(this).addClass('used');
         }
     });
 }
