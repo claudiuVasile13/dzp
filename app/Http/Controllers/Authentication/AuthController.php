@@ -83,23 +83,35 @@ class AuthController extends Controller
 
     public function resendActivationMail(Request $request)
     {
-        $account = User::where('email', $request->input('email'))->get();
-        if(count($account)) {
-            if($account[0]->activated) {
-                return Redirect::to('/auth')
-                    ->with('activateAccountSuccess', 'Your account is already activated, now you can login');
-            } else {
-                $link = $request->root() .'/activate/' . $account[0]->registration_token;
-                Mail::send('emails.activate-account', ['link' => $link], function ($message) use ($account) {
-                    $message->from('dzp@dzp.com', 'Activate Account');
-                    $message->to('claudiu.vasile13@yahoo.com')->subject('Activate account for ' . $account[0]->username);
-                });
-                return Redirect::to('/auth')
-                    ->with('activateAccountMessage', 'We sent you an email to activate your account.');
-            }
+        $rules = [
+            'email' => 'required|email',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
         } else {
-            return Redirect::to('/auth')
-                ->with('AccountNotFound', 'The account you are trying to activate does not exist');
+            $account = User::where('email', $request->input('email'))->get();
+            if(count($account)) {
+                if($account[0]->activated) {
+                    return Redirect::to('/auth')
+                        ->with('activateAccountSuccess', 'Your account is already activated, now you can login');
+                } else {
+                    $link = $request->root() .'/activate/' . $account[0]->registration_token;
+                    Mail::send('emails.activate-account', ['link' => $link], function ($message) use ($account) {
+                        $message->from('dzp@dzp.com', 'Activate Account');
+                        $message->to('claudiu.vasile13@yahoo.com')->subject('Activate account for ' . $account[0]->username);
+                    });
+                    return Redirect::to('/auth')
+                        ->with('activateAccountMessage', 'We sent you an email to activate your account.');
+                }
+            } else {
+                return Redirect::to('/auth')
+                    ->with('AccountNotFound', 'The account you are trying to activate does not exist');
+            }
         }
     }
 
@@ -184,23 +196,35 @@ class AuthController extends Controller
 
     public function resetPassword(Request $request)
     {
-        $user = User::where('email', $request->input('email'))->get();
-        if(count($user)) {
-            $passwordResetToken = hash('sha256', str_random(10));
-            //check if registrationToken is unique
-            $passwordResetToken = $this->validateToken($passwordResetToken, 'password_reset_token');
-            $user[0]->password_reset_token = $passwordResetToken;
-            $user[0]->save();
-            $link = $request->root() .'/new-password/' . $passwordResetToken;
-            Mail::send('emails.reset-password', ['link' => $link], function ($message) use ($user) {
-                $message->from('dzp@dzp.com', 'Reset Password');
-                $message->to('claudiu.vasile13@yahoo.com')->subject('Reset password for ' . $user[0]->username);
-            });
-            return Redirect::to('/reset-password')
-                ->with('ResetPasswordEmail', 'We sent you an email to reset your password!');
+        $rules = [
+            'email' => 'required|email',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
         } else {
-            return Redirect::to('/reset-password')
-                ->with('WrongEmail', 'There is no user with this email!');
+            $user = User::where('email', $request->input('email'))->get();
+            if(count($user)) {
+                $passwordResetToken = hash('sha256', str_random(10));
+                //check if registrationToken is unique
+                $passwordResetToken = $this->validateToken($passwordResetToken, 'password_reset_token');
+                $user[0]->password_reset_token = $passwordResetToken;
+                $user[0]->save();
+                $link = $request->root() .'/new-password/' . $passwordResetToken;
+                Mail::send('emails.reset-password', ['link' => $link], function ($message) use ($user) {
+                    $message->from('dzp@dzp.com', 'Reset Password');
+                    $message->to('claudiu.vasile13@yahoo.com')->subject('Reset password for ' . $user[0]->username);
+                });
+                return Redirect::to('/reset-password')
+                    ->with('ResetPasswordEmail', 'We sent you an email to reset your password!');
+            } else {
+                return Redirect::to('/auth')
+                    ->with('AccountNotFound', 'There is no user with this email!');
+            }
         }
     }
 

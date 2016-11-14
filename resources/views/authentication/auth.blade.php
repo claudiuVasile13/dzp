@@ -149,7 +149,7 @@
                         <i class="fa fa-globe" aria-hidden="true"></i>
                         <label class="dropdown-label" for="register_country">Select country</label>
                         <select class="form-control" id="register_country" name="country">
-                            <option value="0">Select a country ...</option>
+                            <option value="">Select a country ...</option>
                             @if(count($countries))
                                 @foreach($countries as $country)
                                     <option value="{{ $country->country_id }}">{{ $country->country_name  }}</option>
@@ -161,7 +161,7 @@
                         <i class="fa fa-venus-mars" aria-hidden="true"></i>
                         <label class="dropdown-label" for="register_gender">Select gender</label>
                         <select class="form-control" id="register_gender" name="gender">
-                            <option value="0">Select a gender ...</option>
+                            <option value="">Select a gender ...</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
