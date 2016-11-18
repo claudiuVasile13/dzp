@@ -1,5 +1,165 @@
-#profile-container {
-    margin: 30px;
-    width: 100%;
-    border: 1px solid red;
+#account-container {
+    margin: 70px auto;
+    width: 90%;
+    /*border: 1px solid red;*/
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /*-webkit-align-items: center;*/
+    /*align-items: center;*/
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* You can set flex-wrap and flex-direction individually */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
+    background-color: #fff;
 }
+
+#profile-picture-section {
+    width: 20%;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
+}
+
+#profile-picture {
+    width: 200px;
+    margin: 0 0 5px 0;
+}
+
+#account-details-section {
+    width: 80%;
+    /*border: 1px solid blue;*/
+    box-sizing: border-box;
+    padding: 20px;
+    background: #fff;
+}
+
+#profile-div {
+    /*border: 1px solid red;*/
+    margin: 20px 0 0 0;
+}
+
+.info-list {
+    list-style-type: none;
+    width: 100%;
+    /*border: 1px solid green;*/
+    margin: 0;
+    padding: 0;
+}
+
+.info-list > li {
+    width: 100%;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px dashed silver;
+    padding: 5px;
+}
+
+.info-list > li:last-child {
+    border: none;
+}
+
+.info-list > li > p {
+    display: inline-block;
+}
+
+.field-name {
+    width: 160px;
+    font-family: 'Coming Soon';
+    /*font-weight: bold;*/
+    color: #0288D1;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    /*border: 1px solid blue;*/
+}
+
+.field-value {
+    font-family: 'Roboto Condensed';
+    font-size: 17px;
+    color: #666666;
+    /*border: 1px solid red;*/
+    margin: 0;
+    padding: 0;
+}
+
+/* Friends */
+#friends-div {
+    /*border: 1px solid red;*/
+}
+
+#flex-friends {
+    /*border: 1px solid red;*/
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /*-webkit-align-items: center;*/
+    /*align-items: center;*/
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* You can set flex-wrap and flex-direction individually */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.friends-picture-div {
+    flex: 0 0 100px;
+    /*border: 1px solid red;*/
+    margin: 10px;
+    box-shadow: 0 1px 4px 2px rgba(0, 0, 0, .35);
+}
+
+.friends-picture-div > img {
+    width: 100%;
+}
+
+/* Contact */
+.facebook-twitter {
+    height: 30px;
+    margin: 5px 0 0 0;
+}
+
+#skype {
+    height: 30px;
+    border: 1px solid red;
+    margin: 5px 0 0 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    #cover {
+        height: 150px;
+    }
+
+    #profile-picture {
+        top: 80px;
+    }
+}
+

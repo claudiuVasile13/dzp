@@ -11,6 +11,8 @@
               href="https://fonts.googleapis.com/css?family=Roboto Condensed">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Courgette">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Coming Soon">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
