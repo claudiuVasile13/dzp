@@ -9,8 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'groupID', 'countryID', 'admin', 'email', 'username', 'password', 'activated', 'registration_token', 'password_reset_token', 'status', 'gameranger_id',
-        'gender', 'skype', 'facebook', 'twitter', 'picture', 'signature', 'user_ip'
+        'countryID', 'admin', 'member', 'email', 'username', 'password', 'activated', 'registration_token', 'password_reset_token',
+        'rank', 'status', 'reputation', 'birthday', 'job_hobbies', 'description', 'gameranger_id',
+        'gender', 'skype', 'facebook', 'twitter', 'picture', 'signature', 'user_ip',
     ];
     protected $hidden = [
         'password', 'remember_token',
@@ -18,9 +19,9 @@ class User extends Authenticatable
     public $table = 'users';
     protected $primaryKey = 'user_id';
 
-    public function group()
+    public function groups()
     {
-        return $this->belongsTo('App\Group', 'groupID');
+        return $this->belongsToMany('App\Group', 'group_user', 'userID', 'groupID');
     }
 
     public function topics()

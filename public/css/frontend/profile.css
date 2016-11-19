@@ -25,6 +25,10 @@
     -moz-box-sizing: border-box;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
     background-color: #fff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 #profile-picture-section {
@@ -33,6 +37,25 @@
     box-sizing: border-box;
     text-align: center;
     padding: 20px;
+}
+
+#rank-image {
+    margin: 0 0 10px 0;
+}
+
+#change-profile-picture {
+    border-radius: 2px;
+    color: #fff;
+    background: #0288D1;
+    padding: 10px;
+    margin: 0 0 0 0;
+    border: 1px solid #0288D1;
+    width: 200px;
+}
+
+#change-profile-picture:hover {
+    background: #fff;
+    color: #0288D1;
 }
 
 #profile-picture {
@@ -44,9 +67,35 @@
     width: 80%;
     /*border: 1px solid blue;*/
     box-sizing: border-box;
-    padding: 20px;
+    padding: 0 0 20px 0;
     background: #fff;
 }
+
+#username-div {
+    width: 100%;
+    height: auto;
+    /*border: 1px solid red;*/
+    margin: 0 0 15px 0;
+    padding: 10px;
+    background: #0288D1;
+}
+
+#username {
+    margin: 4px 0 0 0;
+    font-family: 'Days One';
+    color: #fff;
+    display: inline-block;
+    /*border: 1px solid blue;*/
+}
+
+#edit-profile-button {
+    padding: 5px;
+    background: #fff;
+    color: #0288D1;
+    border: none;
+    border-radius: 2px;
+}
+
 
 #profile-div {
     /*border: 1px solid red;*/
@@ -81,8 +130,7 @@
 
 .field-name {
     width: 160px;
-    font-family: 'Coming Soon';
-    /*font-weight: bold;*/
+    font-weight: bold;
     color: #0288D1;
     font-size: 18px;
     padding: 0;
@@ -91,7 +139,7 @@
 }
 
 .field-value {
-    font-family: 'Roboto Condensed';
+    /*font-family: 'Roboto Condensed';*/
     font-size: 17px;
     color: #666666;
     /*border: 1px solid red;*/
@@ -141,18 +189,42 @@
 }
 
 /* Contact */
+#contact-div {
+    margin: 20px 0 0 0;
+}
+
 .facebook-twitter {
     height: 30px;
     margin: 5px 0 0 0;
 }
 
-#skype {
+.media-logos {
     height: 30px;
-    border: 1px solid red;
-    margin: 5px 0 0 0;
+    /*border: 1px solid red;*/
+    margin: 0 20px 0 0;
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1240px) {
+    #profile-picture-section {
+        width: 30%;
+    }
+
+    #account-details-section {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #profile-picture-section {
+        width: 100%;
+    }
+
+    #account-details-section {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 600px) {
     #cover {
         height: 150px;

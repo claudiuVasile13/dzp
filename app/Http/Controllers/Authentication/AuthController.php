@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authentication;
 
 use App\Country;
 use App\Group;
+use App\GroupUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,28 +45,31 @@ class AuthController extends Controller
                 ->withErrors($validator)
                 ->withInput(Input::except('password', 'password_confirmation'));
         } else {
-            $group = Group::where('group_name', 'users')->select('group_id')->get();
+            $group = Group::where('group_name', 'Guest')->get();
             $group = $group[0];
 
             $registrationToken = hash('sha256', str_random(10));
             //check if registrationToken is unique
             $registrationToken = $this->validateToken($registrationToken, 'registration_token');
             $passwordHash = Hash::make($request->input('password'));
-            $user = [
-                'groupID' => $group->group_id,
+            $userData = [
                 'email' => $request->input('email'),
                 'countryID' => $request->input('country'),
                 'admin' => 0,
+                'member' => 0,
                 'username' => $request->input('username'),
                 'password' => $passwordHash,
                 'activated' => 0,
+                'rank' => $group->group_logo,
                 'registration_token' => $registrationToken,
                 'status' => 1,
+                'reputation' => 0,
                 'gender' => $request->input('gender'),
                 'picture' => 'default.png',
                 'user_ip' => $request->ip()
             ];
-            User::create($user);
+            $user = User::create($userData);
+            GroupUser::create(['userID' => $user->user_id, 'groupID' => $group->group_id]);
             $link = $request->root() .'/activate/' . $registrationToken;
             Mail::send('emails.activate-account', ['link' => $link], function ($message) use ($user) {
                 $message->from('dzp@dzp.com', 'Activate Account');

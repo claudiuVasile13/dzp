@@ -162,8 +162,8 @@
                         <label class="dropdown-label" for="register_gender">Select gender</label>
                         <select class="form-control" id="register_gender" name="gender">
                             <option value="">Select a gender ...</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
                     <div class="form-group">
