@@ -6,83 +6,84 @@
 @stop
 
 @section('content')
-    @if(count($errors))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li class="alert alert-danger">{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('activateAccountMessage'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-success">{{ session()->get('activateAccountMessage') }}</li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('activateAccountSuccess'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-success">{{ session()->get('activateAccountSuccess') }}</li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('activateAccountError'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-danger">{{ session()->get('activateAccountError') }}</li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('WrongCredentials'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-danger">{{ session()->get('WrongCredentials') }}</li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('ActivationRequired'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-danger">{{ session()->get('ActivationRequired') }} <a href="/resend-activation">Resend Activation Email</a></li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('AccountNotFound'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-danger">{{ session()->get('AccountNotFound') }}</li>
-            </ul>
-        </div>
-    @endif
-
-    @if(session()->has('newPasswordSuccess'))
-        <br><br>
-        <div class="div-alert">
-            <ul>
-                <li class="alert alert-success">{{ session()->get('newPasswordSuccess') }}</li>
-            </ul>
-        </div>
-    @endif
-
     <div id="auth-div">
         <h2>Join our community</h2>
         <img id="dzp-logo" src="/img/dzp.png" alt="Logo">
+
+        @if(count($errors))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="alert alert-danger">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('activateAccountMessage'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('activateAccountMessage') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('activateAccountSuccess'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('activateAccountSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('activateAccountError'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('activateAccountError') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('WrongCredentials'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('WrongCredentials') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('ActivationRequired'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('ActivationRequired') }} <a href="/resend-activation">Resend Activation Email</a></li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('AccountNotFound'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('AccountNotFound') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('newPasswordSuccess'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('newPasswordSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#login">Login</a></li>
             <li><a data-toggle="tab" href="#register">Register</a></li>

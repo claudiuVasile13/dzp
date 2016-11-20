@@ -10,6 +10,27 @@ html, body {
     height: 100%;
 }
 
+/* Error Messages Box */
+.div-alert {
+    margin: 20px auto;
+    width: 100%;
+}
+
+.div-alert > ul {
+    list-style-type: none;
+}
+
+.div-alert > ul > li {
+    margin: 10px;
+}
+
+.div-alert > ul > li > a {
+    color: #2e3436;
+}
+
+.div-alert > ul > li > a:hover {
+    text-decoration: underline;
+}
 
 a, a:visited, a:hover, a:active {
     color: inherit;
@@ -100,15 +121,14 @@ a, a:visited, a:hover, a:active {
     border: 5px solid #fff;
 }
 
-#avatar > img {
-    height: 100%;
+#user-picture {
+    width: 50px;
+    margin: 10px 0 0 0;
 }
 
-#side-bar-div > p {
-    font-family: 'Roboto Condensed';
+#username-side-menu {
     color: #fff;
-    font-size: 15px;
-    margin: 0;
+    margin: 5px 0 0 0;
 }
 
 .profile-login {

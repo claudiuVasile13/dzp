@@ -1,24 +1,3 @@
-.div-alert {
-    margin: 20px auto;
-    width: 100%;
-}
-
-.div-alert > ul {
-    list-style-type: none;
-}
-
-.div-alert > ul > li {
-    margin: 10px;
-}
-
-.div-alert > ul > li > a {
-    color: #2e3436;
-}
-
-.div-alert > ul > li > a:hover {
-    text-decoration: underline;
-}
-
 #auth-div {
     width: 500px;
     display: block;

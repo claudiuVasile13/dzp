@@ -31,4 +31,5 @@ Route::group(['namespace' => 'Authentication'], function() {
 Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/', 'HomeController@index');
     Route::get('/profile/{username}', 'ProfileController@profilePage');
+    Route::post('/changePassword', 'ProfileController@changePassword');
 });

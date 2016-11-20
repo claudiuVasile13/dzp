@@ -31,6 +31,7 @@
     transition: all 0.3s;
 }
 
+/* Picture Section */
 #profile-picture-section {
     width: 20%;
     /*border: 1px solid red;*/
@@ -53,7 +54,7 @@
     width: 200px;
 }
 
-#change-profile-picture:hover {
+#change-profile-picture:hover, #edit-profile-button:hover {
     background: #fff;
     color: #0288D1;
 }
@@ -63,6 +64,7 @@
     margin: 0 0 5px 0;
 }
 
+/* Account Details Section */
 #account-details-section {
     width: 80%;
     /*border: 1px solid blue;*/
@@ -71,32 +73,42 @@
     background: #fff;
 }
 
+/* Tab Menu */
+.tab-name {
+    display: inline-block;
+}
+
+.tab-icon {
+    display: none;
+}
+
+/* Username and Edit Button Section */
 #username-div {
     width: 100%;
     height: auto;
     /*border: 1px solid red;*/
     margin: 0 0 15px 0;
     padding: 10px;
-    background: #0288D1;
+    background: #fff;
 }
 
 #username {
     margin: 4px 0 0 0;
     font-family: 'Days One';
-    color: #fff;
+    color: #0288D1;
     display: inline-block;
     /*border: 1px solid blue;*/
 }
 
 #edit-profile-button {
     padding: 5px;
-    background: #fff;
-    color: #0288D1;
-    border: none;
+    background: #0288D1;
+    color: #fff;
     border-radius: 2px;
+    border: 1px solid #0288D1;
 }
 
-
+/* Profile Tab */
 #profile-div {
     /*border: 1px solid red;*/
     margin: 20px 0 0 0;
@@ -114,7 +126,6 @@
     width: 100%;
     /*border: 1px solid red;*/
     box-sizing: border-box;
-    padding: 0;
     margin: 0;
     border-bottom: 1px dashed silver;
     padding: 5px;
@@ -131,7 +142,7 @@
 .field-name {
     width: 160px;
     font-weight: bold;
-    color: #0288D1;
+    color: #000;
     font-size: 18px;
     padding: 0;
     margin: 0;
@@ -141,13 +152,13 @@
 .field-value {
     /*font-family: 'Roboto Condensed';*/
     font-size: 17px;
-    color: #666666;
+    color: #000;
     /*border: 1px solid red;*/
     margin: 0;
     padding: 0;
 }
 
-/* Friends */
+/* Friends Tab */
 #friends-div {
     /*border: 1px solid red;*/
 }
@@ -188,7 +199,7 @@
     width: 100%;
 }
 
-/* Contact */
+/* Contact Tab */
 #contact-div {
     margin: 20px 0 0 0;
 }
@@ -215,6 +226,47 @@
     }
 }
 
+/* Change Password Tab */
+#change-password-div {
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+
+#change-password-form {
+    width: 100%;
+    padding: 10px;
+    /*border: 1px solid blue;*/
+}
+
+#change-password-title {
+    color: #0288D1;
+}
+
+.change-password-label {
+    display: block;
+}
+
+.change-password-input {
+    /*display: block;*/
+    border: 1px solid #0288D1;
+    width: 200px;
+    height: 30px;
+}
+
+#change-password-submit {
+    width: 200px;
+    background: #0288D1;
+    color: #fff;
+    padding: 5px;
+    border: 1px solid #0288D1;
+}
+
+#change-password-submit:hover {
+    background: #fff;
+    color: #0288D1;
+}
+
+/* Responsive Design */
 @media screen and (max-width: 800px) {
     #profile-picture-section {
         width: 100%;
@@ -232,6 +284,23 @@
 
     #profile-picture {
         top: 80px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #account-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tab-name {
+        display: none;
+    }
+
+    .tab-icon {
+        display: inline-block;
+        font-size: 20px;
     }
 }
 

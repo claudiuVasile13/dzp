@@ -31,10 +31,8 @@
         {{-- Side Menu Bar --}}
         <div id="side-bar-div" class="hide-side-bar">
             @if(Auth::check())
-                <div id="avatar">
-                    <img src="/img/users/{{ Auth::user()->picture }}" alt="Logo">
-                </div>
-                <p>{{ Auth::user()->username }}</p>
+                <img id="user-picture" src="/img/users/{{ Auth::user()->picture }}" alt="Logo">
+                <h3 id="username-side-menu">{{ Auth::user()->username }}</h3>
                 <a href="/profile/{{ Auth::user()->username }}" class="profile-login" id="profile-btn">Profile</a>
                 <a href="/logout" class="profile-login" id="logout-btn">Logout</a>
             @else
@@ -55,7 +53,9 @@
                 @if(Auth::check())
                     <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
                     {{-- Membership Required --}}
-                    <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
+                    @if(Auth::user()->member)
+                        <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
+                    @endif
                 @endif
             </ul>
         </div>
