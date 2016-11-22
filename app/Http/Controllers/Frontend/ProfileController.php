@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,28 +18,30 @@ class ProfileController extends Controller
     {
         $isLoggedIn = Auth::check();
         $isAccountOwner = false;
+        $countries = [];
         if ($isLoggedIn) {
             $loggedUser = Auth::user();
             $user = User::where('username', $username)->get()[0];
             if ($loggedUser->user_id === $user->user_id) {
                 $isAccountOwner = true;
+                $countries = Country::all();
             }
         } else {
             $user = User::where('username', $username)->get()[0];
         }
         $user->country;
         $user->groups;
-        return view('frontend.profile', compact('user', 'isAccountOwner'));
+        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner'));
     }
 
-    public function editProfile($username)
+    public function editProfile(Request $request)
     {
-
+        return $request->all();
     }
 
-    public function changeImage($username)
+    public function changeImage(Request $request)
     {
-
+        return $request->all();
     }
 
     public function changePassword(Request $request)

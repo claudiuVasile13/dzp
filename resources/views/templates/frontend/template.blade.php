@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
     <body>
+        @yield('modal')
+
         {{-- Top Menu Bar --}}
         <div id="top-bar-div">
             <div id="menu-button">

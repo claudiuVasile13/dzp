@@ -5,6 +5,64 @@
     <link rel="stylesheet" href="/css/frontend/profile.css">
 @stop
 
+@section('modal')
+    {{-- Edit Profile Modal --}}
+    <div id="editProfileModal" class="modal fade modal-fix" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-profile-form" action="" method="post">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="edit-profile-label"><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+                            <input class="edit-profile-field" type="text" name="email" id="edit_email">
+                        </div>
+                        <div class="form-group">
+                            <label class="edit-profile-label"><i class="fa fa-user-circle" aria-hidden="true"></i> Username</label>
+                            <input class="edit-profile-field" type="text" name="username" id="edit_username">
+                        </div>
+                        <div class="form-group">
+                            <label class="edit-profile-label"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+                            <input class="edit-profile-field" type="password" name="password" id="edit_password">
+                        </div>
+                        <div class="form-group">
+                            <label class="edit-profile-label"><i class="fa fa-key" aria-hidden="true"></i> Password Confirmation</label>
+                            <input class="edit-profile-field" type="password" name="password_confirmation" id="edit_password_confirmation">
+                        </div>
+                        <div class="form-group">
+                            <label class="edit-profile-label" for="register_country"><i class="fa fa-globe" aria-hidden="true"></i> Select country</label>
+                            <select class="form-control" id="register_country" name="country">
+                                <option value="">Select a country ...</option>
+                                @if(count($countries))
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->country_id }}">{{ $country->country_name  }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="edit-profile-label" for="register_gender"><i class="fa fa-venus-mars" aria-hidden="true"></i> Select gender</label>
+                            <select class="form-control" id="register_gender" name="gender">
+                                <option value="">Select a gender ...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input id="edit-profile-submit" type="submit" value="Save Changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
 @section('content')
     {{-- User's Account Details --}}
     <div id="account-container">
@@ -51,7 +109,7 @@
             <div id="username-div">
                 <h3 id="username">{{ $user->username }}</h3>
                 @if($isAccountOwner)
-                    <button class="pull-right" id="edit-profile-button">Edit Profile</button>
+                    <button class="pull-right" id="edit-profile-button" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
                 @endif
                 <div style="clear: both"></div>
             </div>
