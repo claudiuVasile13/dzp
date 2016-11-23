@@ -37,6 +37,24 @@ class ProfileController extends Controller
     public function editProfile(Request $request)
     {
         return $request->all();
+        $isLoggedIn = Auth::check();
+        if ($isLoggedIn) {
+            $rules = [
+                'email' => 'required|unique:users|email',
+                'username' => 'required|unique:users|min:4|max:20',
+                'country' => 'required',
+                'gender' => 'required'
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return Redirect::back()
+                    ->withErrors($validator);
+            } else {
+
+            }
+        } else {
+            return Redirect::to('/auth');
+        }
     }
 
     public function changeImage(Request $request)

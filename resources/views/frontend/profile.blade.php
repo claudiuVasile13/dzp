@@ -18,41 +18,102 @@
                 <div class="modal-body">
                     <form id="edit-profile-form" action="" method="post">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="edit-profile-label"><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
-                            <input class="edit-profile-field" type="text" name="email" id="edit_email">
-                        </div>
-                        <div class="form-group">
-                            <label class="edit-profile-label"><i class="fa fa-user-circle" aria-hidden="true"></i> Username</label>
-                            <input class="edit-profile-field" type="text" name="username" id="edit_username">
-                        </div>
-                        <div class="form-group">
-                            <label class="edit-profile-label"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
-                            <input class="edit-profile-field" type="password" name="password" id="edit_password">
-                        </div>
-                        <div class="form-group">
-                            <label class="edit-profile-label"><i class="fa fa-key" aria-hidden="true"></i> Password Confirmation</label>
-                            <input class="edit-profile-field" type="password" name="password_confirmation" id="edit_password_confirmation">
-                        </div>
-                        <div class="form-group">
-                            <label class="edit-profile-label" for="register_country"><i class="fa fa-globe" aria-hidden="true"></i> Select country</label>
-                            <select class="form-control" id="register_country" name="country">
-                                <option value="">Select a country ...</option>
-                                @if(count($countries))
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country->country_id }}">{{ $country->country_name  }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="edit-profile-label" for="register_gender"><i class="fa fa-venus-mars" aria-hidden="true"></i> Select gender</label>
-                            <select class="form-control" id="register_gender" name="gender">
-                                <option value="">Select a gender ...</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
+                        <fieldset>
+                            <legend>Profile</legend>
+                            <div class="form-group">
+                                <label class="edit-profile-label" for="edit_country"><i class="fa fa-globe" aria-hidden="true"></i> Select country</label>
+                                <select class="form-control" id="edit_country" name="country">
+                                    <option value="">Select a country ...</option>
+                                    @if(count($countries))
+                                        @foreach($countries as $country)
+                                            <option value="{{ $country->country_id }}"
+                                                    @if($user->country->country_name === $country->country_name)
+                                                    selected="selected"
+                                                    @endif>
+                                                {{ $country->country_name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label" for="edit_gender"><i class="fa fa-venus-mars" aria-hidden="true"></i> Select gender</label>
+                                <select class="form-control" id="edit_gender" name="gender">
+                                    <option value="">Select a gender ...</option>
+                                    <option value="Male"
+                                            @if($user->gender === 'Male')
+                                            selected="selected"
+                                            @endif>
+                                        Male
+                                    </option>
+                                    <option value="Female"
+                                            @if($user->gender === 'Female')
+                                            selected="selected"
+                                            @endif>
+                                        Female
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-user-circle" aria-hidden="true"></i> Username</label>
+                                <input class="edit-profile-field" type="text" name="username" id="edit_username" value="{{ $user->username }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</label>
+                                <input class="edit-profile-field" type="text" name="birthday" id="edit_birthday" value="{{ $user->birthday }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-list-alt" aria-hidden="true"></i> Job/Hobbies</label>
+                                <textarea class="edit-profile-field" type="text" name="job_hobbies" id="edit_job_hobbies">{{ $user->job_hobbies }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-gamepad" aria-hidden="true"></i> Gameranger ID</label>
+                                <input class="edit-profile-field" type="text" name="gameranger_id" id="edit_gameranger_id" value="{{ $user->gameranger_id }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-cog" aria-hidden="true"></i> Status</label>
+                                <select class="form-control" id="edit_status" name="status">
+                                    <option value="">Select a status ...</option>
+                                    <option value="1"
+                                            @if($user->status === 1)
+                                            selected="selected"
+                                            @endif>
+                                        Active
+                                    </option>
+                                    <option value="0"
+                                            @if($user->status === '0')
+                                            selected="selected"
+                                            @endif>
+                                        Inactive
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-commenting" aria-hidden="true"></i> Description</label>
+                                <textarea class="edit-profile-field" type="text" name="description" id="edit_description">{{ $user->description }}</textarea>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Contact</legend>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+                                <input class="edit-profile-field" type="text" name="email" id="edit_email" value="{{ $user->email }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-skype" aria-hidden="true"></i> Skype</label>
+                                <input class="edit-profile-field" type="text" name="skype" id="edit_skype" value="{{ $user->skype }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</label>
+                                <input class="edit-profile-field" type="text" name="facebook" id="edit_facebook" value="{{ $user->facebook }}" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-label"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</label>
+                                <input class="edit-profile-field" type="text" name="twitter" id="edit_twitter" value="{{ $user->twitter }}" />
+                            </div>
+                        </fieldset>
+
                         <div class="form-group">
                             <input id="edit-profile-submit" type="submit" value="Save Changes">
                         </div>
@@ -234,15 +295,17 @@
                 <div id="change-password-div" class="tab-pane fade">
                     <form id="change-password-form" action="/changePassword" method="post">
                         {{ csrf_field() }}
-                        <h3 id="change-password-title">Change your password</h3>
-                        <label for="current-password" class="change-password-label">Current Password</label>
-                        <input type="password" id="current-password" class="change-password-input" name="current_password" /><br /><br />
-                        <label for="new-password" class="change-password-label">New Password</label>
-                        <input type="password" id="new-password" class="change-password-input" name="password" /><br /><br />
-                        <label for="new-password-confirmation" class="change-password-label">New Password Confirmation</label>
-                        <input type="password" id="new-password-confirmation" class="change-password-input" name="password_confirmation" />
-                        <br /><br />
-                        <input type="submit" value="Save" id="change-password-submit" />
+                        <fieldset>
+                            <legend>Change your password</legend>
+                            <label for="current-password" class="change-password-label">Current Password</label>
+                            <input type="password" id="current-password" class="change-password-input" name="current_password" /><br /><br />
+                            <label for="new-password" class="change-password-label">New Password</label>
+                            <input type="password" id="new-password" class="change-password-input" name="password" /><br /><br />
+                            <label for="new-password-confirmation" class="change-password-label">New Password Confirmation</label>
+                            <input type="password" id="new-password-confirmation" class="change-password-input" name="password_confirmation" />
+                            <br /><br />
+                            <input type="submit" value="Save" id="change-password-submit" />
+                        </fieldset>
                     </form>
                 </div>
             </div>
