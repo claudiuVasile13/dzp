@@ -6,6 +6,32 @@
 @stop
 
 @section('modal')
+    {{-- Chane Image Modal --}}
+    <div id="changeImageeModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><i class="fa fa-picture-o" aria-hidden="true"></i> Change Image</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="change-image-form" action="/change-image" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="edit-profile-field"><i class="fa fa-picture-o" aria-hidden="true"></i> Upload Image</label>
+                            <input type="file" name="image" id="change_image" />
+                        </div>
+                        <div class="form-group">
+                            <input id="change-image-submit" type="submit" value="Save Image">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     {{-- Edit Profile Modal --}}
     <div id="editProfileModal" class="modal fade modal-fix" role="dialog">
         <div class="modal-dialog">
@@ -16,7 +42,7 @@
                     <h3 class="modal-title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</h3>
                 </div>
                 <div class="modal-body">
-                    <form id="edit-profile-form" action="" method="post">
+                    <form id="edit-profile-form" action="/edit-profile" method="post">
                         {{ csrf_field() }}
                         <fieldset>
                             <legend>Profile</legend>
@@ -60,7 +86,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="edit-profile-label"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</label>
-                                <input class="edit-profile-field" type="text" name="birthday" id="edit_birthday" value="{{ $user->birthday }}" />
+                                <input class="edit-profile-field" type="date" name="birthday" id="edit_birthday" value="{{ $user->birthday }}" />
                             </div>
                             <div class="form-group">
                                 <label class="edit-profile-label"><i class="fa fa-list-alt" aria-hidden="true"></i> Job/Hobbies</label>
@@ -156,12 +182,30 @@
                 </div>
             @endif
 
+            @if(session()->has('EditProfileSuccess'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-success">{{ session()->get('EditProfileSuccess') }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('ChangeImageSuccess'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-success">{{ session()->get('ChangeImageSuccess') }}</li>
+                    </ul>
+                </div>
+            @endif
+
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">
             <img id="rank-image" src="/img/ranks/{{ $user->rank }}" alt="Group Image"><br>
             <img id="profile-picture" src="/img/users/{{ $user->picture }}" alt="Profile Picture"><br>
             @if($isAccountOwner)
-                <button id="change-profile-picture">Change Image</button>
+                <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageeModal">Change Image</button>
             @endif
         </div>
 
@@ -206,6 +250,7 @@
             <div class="tab-content">
                 {{-- Profile Tab --}}
                 <div id="profile-div" class="tab-pane fade in active">
+                    <a id="delete-account-button" href="/delete-account">Delete Account</a>
                     <ul class="info-list">
                         <li>
                             <p class="field-name">Location :</p>
@@ -273,7 +318,7 @@
                         <li>
                             <img class="media-logos" src="/img/social-media/skype.png" alt="Skype" title="Skype">
                             @if($user->skype)
-                                <p>{{ $user->skype }}</p>
+                                <p class="field-value">{{ $user->skype }}</p>
                             @endif
                         </li>
                         <li>
@@ -314,4 +359,5 @@
 @stop
 
 @section('footer')
+    <script src="/js/frontend/confirm.js"></script>
 @stop

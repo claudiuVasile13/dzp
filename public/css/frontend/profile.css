@@ -54,7 +54,7 @@ fieldset {
     padding: 5px;
 }
 
-#edit-profile-submit {
+#edit-profile-submit, #change-image-submit {
     padding: 10px;
     color: #fff;
     height: auto !important;
@@ -62,9 +62,14 @@ fieldset {
     background: #0288D1;
 }
 
-#edit-profile-submit:hover {
+#edit-profile-submit:hover, #change-image-submit:hover {
     background: #fff;
     color: #0288D1;
+}
+
+/* Change Image Modal */
+#change-image-form > .form-group > input[type=file] {
+    border: none;
 }
 
 /* Profile(Account) Container */
@@ -182,6 +187,22 @@ fieldset {
 #profile-div {
     /*border: 1px solid red;*/
     margin: 20px 0 0 0;
+}
+
+#delete-account-button {
+    text-decoration: none;
+    display: inline-block;
+    background: red;
+    border: 1px solid red;
+    color: #fff;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 2px;
+}
+
+#delete-account-button:hover {
+    background: #fff;
+    color: red;
 }
 
 .info-list {
