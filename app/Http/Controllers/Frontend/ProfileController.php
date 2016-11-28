@@ -16,20 +16,20 @@ class ProfileController extends Controller
 {
 
     // Load the profile page
-    public function profilePage($username)
+    public function profilePage($profile_url_key)
     {
         $isLoggedIn = Auth::check();
         $isAccountOwner = false;
         $countries = [];
         if ($isLoggedIn) {
             $loggedUser = Auth::user();
-            $user = User::where('username', $username)->get()[0];
+            $user = User::where('profile_url_key', $profile_url_key)->get()[0];
             if ($loggedUser->user_id === $user->user_id) {
                 $isAccountOwner = true;
                 $countries = Country::all();
             }
         } else {
-            $user = User::where('username', $username)->get()[0];
+            $user = User::where('profile_url_key', $profile_url_key)->get()[0];
         }
         $user->country;
         $user->groups;
@@ -52,11 +52,24 @@ class ProfileController extends Controller
                 return Redirect::back()
                     ->withErrors($validator);
             } else {
+                // Trim the input data
+                $request->merge(array_map('trim', $request->all()));
+
+                if($request->input('brithday')) {
+                    $profileData['birthday'] = $request->input('birthday');
+                } else {
+                    $profileData['birthday'] = null;
+                }
+
+                // Create profile_url
+                $usernameArray = explode(' ', $request->input('username'));
+                $profile_url_key = implode('-', $usernameArray);
+
                 $profileData = [
                     'country' => $request->input('country'),
                     'gender' => $request->input('gender'),
                     'username' => $request->input('username'),
-                    'birthday' => $request->input('birthday'),
+                    'profile_url_key' => $profile_url_key,
                     'job_hobbies' => $request->input('job_hobbies'),
                     'gameranger_id' => $request->input('gameranger_id'),
                     'status' => $request->input('status'),
@@ -68,7 +81,8 @@ class ProfileController extends Controller
                 ];
                 $user = Auth::user();
                 $user->update($profileData);
-                return Redirect::back()
+//                return 'profile/' . $user->profile_url_key;
+                return Redirect::to('profile/' . $user->profile_url_key)
                     ->with('EditProfileSuccess', 'Your profile has been successfully edited');
             }
         } else {
@@ -109,7 +123,6 @@ class ProfileController extends Controller
     // Change User's Password
     public function changePassword(Request $request)
     {
-//        return $request->all();
         $isLoggedIn = Auth::check();
         if ($isLoggedIn) {
             $rules = [
@@ -138,6 +151,7 @@ class ProfileController extends Controller
         }
     }
 
+    //  Delete Account
     public function deleteAccount()
     {
         $isLoggedIn = Auth::check();

@@ -48,16 +48,25 @@ class AuthController extends Controller
             $group = Group::where('group_name', 'Guest')->get();
             $group = $group[0];
 
+            // Trim the input data
+            $request->merge(array_map('trim', $request->all()));
+
             $registrationToken = hash('sha256', str_random(10));
             //check if registrationToken is unique
             $registrationToken = $this->validateToken($registrationToken, 'registration_token');
             $passwordHash = Hash::make($request->input('password'));
+
+            // Create profile_url
+            $usernameArray = explode(' ', $request->input('username'));
+            $profile_url_key = implode('-', $usernameArray);
+
             $userData = [
                 'email' => $request->input('email'),
                 'countryID' => $request->input('country'),
                 'admin' => 0,
                 'member' => 0,
                 'username' => $request->input('username'),
+                'profile_url_key' => $profile_url_key,
                 'password' => $passwordHash,
                 'activated' => 0,
                 'rank' => $group->group_logo,

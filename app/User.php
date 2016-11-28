@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'countryID', 'admin', 'member', 'email', 'username', 'password', 'activated', 'registration_token', 'password_reset_token',
+        'countryID', 'admin', 'member', 'email', 'username', 'profile_url_key', 'password', 'activated', 'registration_token', 'password_reset_token',
         'rank', 'status', 'reputation', 'birthday', 'job_hobbies', 'description', 'gameranger_id',
         'gender', 'skype', 'facebook', 'twitter', 'picture', 'signature', 'user_ip',
     ];

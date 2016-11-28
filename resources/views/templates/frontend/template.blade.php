@@ -35,7 +35,7 @@
             @if(Auth::check())
                 <img id="user-picture" src="/img/users/{{ Auth::user()->picture }}" alt="Logo">
                 <h3 id="username-side-menu">{{ Auth::user()->username }}</h3>
-                <a href="/profile/{{ Auth::user()->username }}" class="profile-login" id="profile-btn">Profile</a>
+                <a href="/profile/{{ Auth::user()->profile_url_key }}" class="profile-login" id="profile-btn">Profile</a>
                 <a href="/logout" class="profile-login" id="logout-btn">Logout</a>
             @else
                 <a href="/auth" class="profile-login" id="login-btn">Login / Register</a>

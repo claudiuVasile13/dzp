@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('member');
             $table->string('email')->unique();
             $table->string('username')->unique();
+            $table->string('profile_url_key');
             $table->text('password');
             $table->string('picture');
             $table->tinyInteger('activated');
