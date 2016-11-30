@@ -119,19 +119,44 @@ fieldset {
     margin: 0 0 10px 0;
 }
 
-#change-profile-picture {
+#change-profile-picture, #friend-request-button, #cancel-friend-request-button, #friendship-notification {
     border-radius: 2px;
     color: #fff;
     background: #0288D1;
     padding: 10px;
-    margin: 0 0 0 0;
+    margin: 0;
     border: 1px solid #0288D1;
     width: 200px;
 }
 
-#change-profile-picture:hover, #edit-profile-button:hover {
+#cancel-friend-request-button {
+    background: red;
+    border: 1px solid red;
+}
+
+#cancel-friend-request-button:hover {
+    background: #fff;
+    color: red;
+}
+
+#change-profile-picture:hover, #edit-profile-button:hover, #friend-request-button:hover, #friendship-notification:hover {
     background: #fff;
     color: #0288D1;
+}
+
+#friend-div {
+    width: 200px;
+    padding: 10px;
+    color: #fff;
+    background: #0288D1;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+#friends-div > i {
+    font-size: 18px;
 }
 
 #profile-picture {
@@ -198,6 +223,7 @@ fieldset {
     padding: 10px;
     margin: 0 0 10px 0;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 #delete-account-button:hover {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Country;
+use App\Friendship;
+use App\FriendshipRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,20 +22,43 @@ class ProfileController extends Controller
     {
         $isLoggedIn = Auth::check();
         $isAccountOwner = false;
+        $friendshipStatus = 'none';
         $countries = [];
         if ($isLoggedIn) {
             $loggedUser = Auth::user();
+            $friendshipNotifications = FriendshipRequest::where('receiverID', $loggedUser->user_id)->get();
+            $friendshipNotifications = count($friendshipNotifications);
             $user = User::where('profile_url_key', $profile_url_key)->get()[0];
             if ($loggedUser->user_id === $user->user_id) {
                 $isAccountOwner = true;
                 $countries = Country::all();
+            } else {
+                $friendshipRequestSender = FriendshipRequest::where('senderID', $loggedUser->user_id)
+                                                            ->where('receiverID', $user->user_id)
+                                                            ->get();
+                $friendshipRequestReceiver = FriendshipRequest::where('senderID', $user->user_id)
+                                                              ->where('receiverID', $loggedUser->user_id)
+                                                              ->get();
+                $friendshipLoggedUser = Friendship::where('userID', $user->user_id)
+                                                  ->where('friendID', $loggedUser->user_id)
+                                                  ->get();
+                $friendshipUser = Friendship::where('userID', $loggedUser->user_id)
+                                            ->where('friendID', $user->user_id)
+                                            ->get();
+                if(count($friendshipRequestSender)) {
+                    $friendshipStatus = 'request_sender';
+                } else if(count($friendshipRequestReceiver)) {
+                    $friendshipStatus = 'request_receiver';
+                } else if(count($friendshipLoggedUser) || count($friendshipUser)) {
+                    $friendshipStatus = 'friends';
+                }
             }
         } else {
             $user = User::where('profile_url_key', $profile_url_key)->get()[0];
         }
         $user->country;
         $user->groups;
-        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner'));
+        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications'));
     }
 
     // Edit Users's Profile
@@ -82,7 +107,7 @@ class ProfileController extends Controller
                 $user = Auth::user();
                 $user->update($profileData);
 //                return 'profile/' . $user->profile_url_key;
-                return Redirect::to('profile/' . $user->profile_url_key)
+                return Redirect::to('/profile/' . $user->profile_url_key)
                     ->with('EditProfileSuccess', 'Your profile has been successfully edited');
             }
         } else {
@@ -106,7 +131,6 @@ class ProfileController extends Controller
                 $user = Auth::user();
                 $imagePath = $_SERVER['DOCUMENT_ROOT'] . "/img/users/";
                 $imageName = $user->username . '.' . $request->file('image')->getClientOriginalExtension();
-//                $request->file('image')->move($imagePath, $imageName);
                 $image = Image::make($request->file('image'))->resize(300, null, function($constraint) {
                     $constraint->aspectRatio();
                 })->save($imagePath . $imageName);
@@ -163,5 +187,70 @@ class ProfileController extends Controller
             return Redirect::to('/auth');
         }
     }
-    
+
+    // Send a friend request
+    public function sendFriendRequest(Request $request)
+    {
+        $isLoggedIn = Auth::check();
+        if ($isLoggedIn) {
+            $sender = Auth::user();
+            $receiver = User::where('profile_url_key', $request->input('receiver'))->get();
+            if(count($receiver)) {
+                $receiver = $receiver[0];
+                if($receiver->user_id === $sender->user_id) {
+                    return Redirect::back()
+                        ->with('FriendRequestHimself', 'Your can not send yourself a friend request');
+                } else {
+                    $friendRequestData = [
+                        'senderID' => $sender->user_id,
+                        'receiverID' => $receiver->user_id
+                    ];
+                    FriendshipRequest::create($friendRequestData);
+                    return Redirect::back()
+                        ->with('FriendRequestSuccess', 'Your friend request has been sent');
+                }
+            } else {
+                return Redirect::to('/profile/' . $sender->profile_url_key)
+                    ->with('UserDoesNotExist', 'The user that you want to send a friend request does not exist');
+            }
+        } else {
+            return Redirect::to('/auth');
+        }
+    }
+
+    // Cancel a friend request
+    public function cancelFriendRequest(Request $request)
+    {
+        $isLoggedIn = Auth::check();
+        if ($isLoggedIn) {
+            $sender = Auth::user();
+            $receiver = User::where('profile_url_key', $request->input('receiver'))->get();
+            if(count($receiver)) {
+                $receiver = $receiver[0];
+                $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
+                                                      ->where('receiverID', $receiver->user_id)
+                                                      ->get();
+                if(count($friendshipRequest)) {
+                    $friendshipRequest[0]->delete();
+                    return Redirect::back()
+                        ->with('FriendRequestSuccess', 'Your friend request has been canceled');
+                } else {
+                    return Redirect::back()
+                        ->with('FriendRequestDoesNotExist', 'The friend request does not exist');
+                }
+            } else {
+                return Redirect::to('/profile/' . $sender->profile_url_key)
+                    ->with('UserDoesNotExist', 'The user that you want to cancel the friend request does not exist');
+            }
+        } else {
+            return Redirect::to('/auth');
+        }
+    }
+
+    // Send friend request notification the the receiver user
+    public function friendshipNotificationsPage()
+    {
+
+    }
+
 }

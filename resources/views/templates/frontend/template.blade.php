@@ -54,6 +54,12 @@
                 {{-- Login Required --}}
                 @if(Auth::check())
                     <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications
+                            <div id="notifications-number">{{ $friendshipNotifications }}</div>
+                        </a>
+                    </li>
                     {{-- Membership Required --}}
                     @if(Auth::user()->member)
                         <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>

@@ -200,12 +200,68 @@
                 </div>
             @endif
 
+            @if(session()->has('UserDoesNotExist'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-danger">{{ session()->get('UserDoesNotExist') }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('FriendRequestSuccess'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-success">{{ session()->get('FriendRequestSuccess') }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('FriendRequestHimself'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-danger">{{ session()->get('FriendRequestHimself') }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('FriendRequestDoesNotExist'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-danger">{{ session()->get('FriendRequestDoesNotExist') }}</li>
+                    </ul>
+                </div>
+            @endif
+
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">
             <img id="rank-image" src="/img/ranks/{{ $user->rank }}" alt="Group Image"><br>
             <img id="profile-picture" src="/img/users/{{ $user->picture }}" alt="Profile Picture"><br>
             @if($isAccountOwner)
                 <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageeModal">Change Image</button>
+            @else
+                @if($isLoggedIn)
+                    @if($friendshipStatus === 'none')
+                        <form action="/send-friend-request" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="receiver" value="{{ $user->profile_url_key }}" />
+                            <input type="submit" id="friend-request-button" value="Send Friend Request" />
+                        </form>
+                    @elseif($friendshipStatus === 'request_sender')
+                        <form action="/cancel-friend-request" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="receiver" value="{{ $user->profile_url_key }}" />
+                            <input type="submit" id="cancel-friend-request-button" value="Cancel Friend Request" />
+                        </form>
+                    @elseif($friendshipStatus === 'request_receiver')
+                        <button id="friendship-notification"><a href="">Accept/Decline Friendship</a></button>
+                    @elseif($friendshipStatus === 'friends')
+                        <div id="friend-div"><i class="fa fa-user" aria-hidden="true"></i> Friend</div>
+                    @endif
+                @endif
             @endif
         </div>
 
@@ -250,7 +306,9 @@
             <div class="tab-content">
                 {{-- Profile Tab --}}
                 <div id="profile-div" class="tab-pane fade in active">
-                    <a id="delete-account-button" href="/delete-account">Delete Account</a>
+                    @if($isAccountOwner)
+                        <a id="delete-account-button">Delete Account</a>
+                    @endif
                     <ul class="info-list">
                         <li>
                             <p class="field-name">Location :</p>

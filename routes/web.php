@@ -35,4 +35,7 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::post('/edit-profile', 'ProfileController@editProfile');
     Route::post('/change-image', 'ProfileController@changeImage');
     Route::get('/delete-account', 'ProfileController@deleteAccount');
+    Route::post('/send-friend-request', 'ProfileController@sendFriendRequest');
+    Route::post('/cancel-friend-request', 'ProfileController@cancelFriendRequest');
+    Route::get('/friendship-notifications', 'ProfileController@friendshipNotificationsPage');
 });
