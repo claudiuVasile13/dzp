@@ -1,0 +1,49 @@
+#notifications-box {
+    /*border: 1px solid red;*/
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
+    width: 95%;
+    background: #fff;
+    padding: 20px;
+}
+
+#notifications-box > h3 {
+    margin: 0 0 20px 0;
+}
+
+/*#notifications-list > li > a {*/
+    /*border: 3px solid #0288D1;*/
+    /*border-radius: 2px;*/
+/*}*/
+
+#notifications-list > li > a > img {
+    width: 50px;
+}
+
+#notification-response-box {
+    float: right;
+}
+
+.notification-response-button {
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    width: 80px;
+}
+#accept-button {
+    margin-bottom: 10px;
+    background: #4CAF50;
+}
+
+#accept-button:hover {
+    background: green;
+}
+
+#decline-button {
+    background: #F44336;
+}
+
+#decline-button:hover {
+    background: red;
+}

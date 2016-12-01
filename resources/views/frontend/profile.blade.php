@@ -236,6 +236,26 @@
                 </div>
             @endif
 
+            @if(session()->has('FriendRequestSender'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-danger">{{ session()->get('FriendRequestSender') }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('FriendRequestReceiver'))
+                <br><br>
+                <div class="div-alert">
+                    <ul>
+                        <li class="alert alert-danger">{{ session()->get('FriendRequestReceiver') }}
+                            <a href="/friendship-notifications">Check your Friendship Notifications</a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">
             <img id="rank-image" src="/img/ranks/{{ $user->rank }}" alt="Group Image"><br>
@@ -257,7 +277,7 @@
                             <input type="submit" id="cancel-friend-request-button" value="Cancel Friend Request" />
                         </form>
                     @elseif($friendshipStatus === 'request_receiver')
-                        <button id="friendship-notification"><a href="">Accept/Decline Friendship</a></button>
+                        <button id="friendship-notification"><a href="/friendship-notifications">Accept/Decline Friendship</a></button>
                     @elseif($friendshipStatus === 'friends')
                         <div id="friend-div"><i class="fa fa-user" aria-hidden="true"></i> Friend</div>
                     @endif

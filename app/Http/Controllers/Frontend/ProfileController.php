@@ -197,9 +197,21 @@ class ProfileController extends Controller
             $receiver = User::where('profile_url_key', $request->input('receiver'))->get();
             if(count($receiver)) {
                 $receiver = $receiver[0];
+                $friendRequestSender = FriendshipRequest::where('senderID', $sender->user_id)
+                                                        ->where('receiverID', $receiver->user_id)
+                                                        ->get();
+                $friendRequestReceiver = FriendshipRequest::where('senderID', $receiver->user_id)
+                                                        ->where('receiverID', $sender->user_id)
+                                                        ->get();
                 if($receiver->user_id === $sender->user_id) {
                     return Redirect::back()
                         ->with('FriendRequestHimself', 'Your can not send yourself a friend request');
+                } else if(count($friendRequestSender)) {
+                    return Redirect::back()
+                        ->with('FriendRequestSender', 'You have already sent a friend request to this user');
+                } else if(count($friendRequestReceiver)) {
+                    return Redirect::back()
+                        ->with('FriendRequestReceiver', 'This user sent you a friend request.');
                 } else {
                     $friendRequestData = [
                         'senderID' => $sender->user_id,
@@ -250,7 +262,15 @@ class ProfileController extends Controller
     // Send friend request notification the the receiver user
     public function friendshipNotificationsPage()
     {
-
+        $isLoggedIn = Auth::check();
+        if ($isLoggedIn) {
+            $loggedUser = Auth::user();
+            $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
+            $friendshipNotifications = count($friendshipNotificationsSenders);
+            return view('frontend.friendship-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications'));
+        } else {
+            return Redirect::to('/auth');
+        }
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class FriendshipRequest extends Model
 {
@@ -12,5 +13,16 @@ class FriendshipRequest extends Model
     protected $fillable = [
         'senderID', 'receiverID'
     ];
+
+    // Get all the users who sent friendship request to a specific user
+    public static function senders($receiverID)
+    {
+        $friendshipNotificationsSenders = DB::table('friendship_requests')
+                                            ->join('users', 'friendship_requests.senderID', '=', 'users.user_id')
+                                            ->where('receiverID', $receiverID)
+                                            ->select('users.username', 'users.user_id', 'users.profile_url_key', 'users.picture')
+                                            ->get();
+        return $friendshipNotificationsSenders;
+    }
 
 }

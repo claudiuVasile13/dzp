@@ -55,7 +55,7 @@
                 @if(Auth::check())
                     <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
                     <li>
-                        <a href="">
+                        <a href="/friendship-notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications
                             <div id="notifications-number">{{ $friendshipNotifications }}</div>
                         </a>
