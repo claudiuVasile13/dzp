@@ -164,7 +164,7 @@
             </div>
         @endif
 
-            @if(session()->has('IncorrectPassword'))
+        @if(session()->has('IncorrectPassword'))
                 <br><br>
                 <div class="div-alert">
                     <ul>
@@ -173,88 +173,106 @@
                 </div>
             @endif
 
-            @if(session()->has('NewPassword'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-success">{{ session()->get('NewPassword') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('NewPassword'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('NewPassword') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('EditProfileSuccess'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-success">{{ session()->get('EditProfileSuccess') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('EditProfileSuccess'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('EditProfileSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('ChangeImageSuccess'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-success">{{ session()->get('ChangeImageSuccess') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('ChangeImageSuccess'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('ChangeImageSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('UserDoesNotExist'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-danger">{{ session()->get('UserDoesNotExist') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('UserDoesNotExist'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('UserDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('FriendRequestSuccess'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-success">{{ session()->get('FriendRequestSuccess') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('FriendRequestSuccess'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('FriendRequestSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('FriendRequestHimself'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-danger">{{ session()->get('FriendRequestHimself') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('FriendRequestHimself'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendRequestHimself') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('FriendRequestDoesNotExist'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-danger">{{ session()->get('FriendRequestDoesNotExist') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('FriendRequestDoesNotExist'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendRequestDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('FriendRequestSender'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-danger">{{ session()->get('FriendRequestSender') }}</li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('FriendRequestSender'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendRequestSender') }}</li>
+                </ul>
+            </div>
+        @endif
 
-            @if(session()->has('FriendRequestReceiver'))
-                <br><br>
-                <div class="div-alert">
-                    <ul>
-                        <li class="alert alert-danger">{{ session()->get('FriendRequestReceiver') }}
-                            <a href="/friendship-notifications">Check your Friendship Notifications</a>
-                        </li>
-                    </ul>
-                </div>
-            @endif
+        @if(session()->has('FriendRequestReceiver'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendRequestReceiver') }}
+                        <a href="/friendship-notifications">Check your Friendship Notifications</a>
+                    </li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('FriendshipAccepted'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-info">{{ session()->get('FriendshipAccepted') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('FriendshipDeclined'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-info">{{ session()->get('FriendshipDeclined') }}</li>
+                </ul>
+            </div>
+        @endif
 
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">

@@ -241,11 +241,13 @@ class AuthController extends Controller
         }
     }
 
+    // Load new password page
     public function newPasswordPage($token)
     {
         return view('authentication.new-password', compact('token'));
     }
 
+    // Save the new password
     public function newPassword(Request $request) {
         $rules = [
             'password' => 'required|min:6|max:40|confirmed',
@@ -274,6 +276,7 @@ class AuthController extends Controller
         }
     }
 
+    // Logout the user
     public function logout()
     {
         Auth::logout();
