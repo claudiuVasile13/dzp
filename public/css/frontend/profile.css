@@ -280,40 +280,42 @@ fieldset {
     /*border: 1px solid red;*/
 }
 
-#flex-friends {
-    /*border: 1px solid red;*/
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    /*-webkit-align-items: center;*/
-    /*align-items: center;*/
-    -webkit-justify-content: center;
-    justify-content: center;
-    /* You can set flex-wrap and flex-direction individually */
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    /* Or do it all in one line with flex flow */
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    /*border: 1px solid red;*/
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-
-.friends-picture-div {
-    flex: 0 0 100px;
-    /*border: 1px solid red;*/
-    margin: 10px;
-    box-shadow: 0 1px 4px 2px rgba(0, 0, 0, .35);
-}
-
-.friends-picture-div > img {
+#friends-list {
+    list-style-type: none;
     width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#friends-list > li {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px dashed silver;
+}
+
+#friends-list > li:last-child {
+    border: none;
+}
+
+#friends-list > li > a >img {
+    width: 100px;
+}
+
+#buttons-container > img{
+    margin-bottom: 5px;
+}
+
+#remove-friend-button {
+    border: none;
+    border-radius: 2px;
+    width: 150px;
+    padding: 5px;
+    color: #fff;
+    background: #F44336;
+}
+
+#remove-friend-button:hover {
+    background: red;
 }
 
 /* Contact Tab */

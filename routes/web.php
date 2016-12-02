@@ -43,6 +43,7 @@ Route::group(['namespace' => 'Frontend'], function() {
         Route::get('/friendship-notifications', 'ProfileController@friendshipNotificationsPage');
         Route::get('/accept-friendship/{profile_url_key}', 'ProfileController@acceptFriendship');
         Route::get('/decline-friendship/{profile_url_key}', 'ProfileController@declineFriendship');
+        Route::get('/remove-friend/{profile_url_key}', 'ProfileController@removeFriend');
     });
 
     Route::get('/', 'HomeController@index');

@@ -58,7 +58,8 @@ class ProfileController extends Controller
         }
         $user->country;
         $user->groups;
-        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications'));
+        $friends = Friendship::friends($user->user_id);
+        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications', 'friends'));
     }
 
     // Edit Users's Profile
@@ -246,8 +247,8 @@ class ProfileController extends Controller
         if(count($sender)) {
             $sender = $sender[0];
             $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
-                ->where('receiverID', $loggedUser->user_id)
-                ->get();
+                                                  ->where('receiverID', $loggedUser->user_id)
+                                                  ->get();
             if (count($friendshipRequest)) {
                 Friendship::create([
                     'userID' => $sender->user_id,
@@ -274,8 +275,8 @@ class ProfileController extends Controller
         if(count($sender)) {
             $sender = $sender[0];
             $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
-                ->where('receiverID', $loggedUser->user_id)
-                ->get();
+                                                  ->where('receiverID', $loggedUser->user_id)
+                                                  ->get();
             if (count($friendshipRequest)) {
                 $friendshipRequest[0]->delete();
                 return Redirect::to('/profile/' . $sender->profile_url_key)
@@ -287,6 +288,37 @@ class ProfileController extends Controller
         } else {
             return Redirect::to('/friendship-notifications')
                 ->with('SenderDoesNotExist', 'The user that you want to decline the friend request does not exist');
+        }
+    }
+
+    // Remove a friend
+    public function removeFriend($profile_url_key)
+    {
+        $loggedUser = Auth::user();
+        $friend = User::where('profile_url_key', $profile_url_key)->get();
+        if(count($friend)) {
+            $friend = $friend[0];
+            $friendshipSender = Friendship::where('userID', $friend->user_id)
+                                           ->where('friendID', $loggedUser->user_id)
+                                           ->get();
+            $friendshipReceiver = Friendship::where('userID', $loggedUser->user_id)
+                                            ->where('friendID', $friend->user_id)
+                                            ->get();
+            if (count($friendshipSender)) {
+                $friendshipSender[0]->delete();
+                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                    ->with('FriendshipRemoved', 'You removed ' . $friend->username . ' from your friends list');
+            } else if(count($friendshipReceiver)) {
+                $friendshipReceiver[0]->delete();
+                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                    ->with('FriendshipRemoved', 'You removed ' . $friend->username . ' from your friends list');
+            } else {
+                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                    ->with('FriendshipDoesNotExist', 'The friendship that you want to remove does not exist');
+            }
+        } else {
+            return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                ->with('FriendDoesNotExist', 'The user that you want to remove from your friends list does not exist');
         }
     }
 

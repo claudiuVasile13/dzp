@@ -274,6 +274,33 @@
             </div>
         @endif
 
+        @if(session()->has('FriendDoesNotExist'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('FriendshipDoesNotExist'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('FriendshipDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('FriendshipRemoved'))
+            <br><br>
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('FriendshipRemoved') }}</li>
+                </ul>
+            </div>
+        @endif
+
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">
             <img id="rank-image" src="/img/ranks/{{ $user->rank }}" alt="Group Image"><br>
@@ -399,9 +426,28 @@
 
                 {{-- Friends Tab --}}
                 <div id="friends-div" class="tab-pane fade">
-                    <div id="flex-friends">
-                        <h3>0 Friends</h3>
-                    </div>
+                    <h3>Friends ({{ count($friends) }})</h3>
+                    @if(count($friends))
+                        <ul id="friends-list">
+                           @foreach($friends as $friend)
+                               <li>
+                                   <a class="pull-left" href="/profile/{{ $friend->profile_url_key }}" title="{{ $friend->username }}">
+                                       <img src="/img/users/{{ $friend->picture }}" alt="Friend's Image" />
+                                   </a>
+                                   <div class="pull-right" id="buttons-container">
+                                       <img id="friend-rank" src="/img/ranks/{{ $friend->rank }}" alt="Friend's Rank">
+                                       <br />
+                                       <button id="remove-friend-button">
+                                           <a href="/remove-friend/{{ $friend->profile_url_key }}">Remove Friend</a>
+                                       </button>
+                                   </div>
+                                   <div style="clear:both;"></div>
+                               </li>
+                           @endforeach
+                        </ul>
+                    @else
+
+                    @endif
                 </div>
 
                 {{-- Contact Tab --}}
