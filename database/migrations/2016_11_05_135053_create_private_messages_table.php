@@ -19,6 +19,7 @@ class CreatePrivateMessagesTable extends Migration
             $table->integer('pm_receiver');
             $table->string('pm_title');
             $table->text('pm_body');
+            $table->string('status');
             $table->timestamps();
         });
 

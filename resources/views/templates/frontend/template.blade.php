@@ -53,7 +53,7 @@
                 <li><a href=""><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></li>
                 {{-- Login Required --}}
                 @if(Auth::check())
-                    <li><a href=""><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
+                    <li><a href="/pm"><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
                     <li>
                         <a href="/friendship-notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications

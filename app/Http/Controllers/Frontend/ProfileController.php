@@ -322,4 +322,13 @@ class ProfileController extends Controller
         }
     }
 
+    // Load the Private Messages Page
+    public function pmPage()
+    {
+        $loggedUser = Auth::user();
+        $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
+        $friendshipNotifications = count($friendshipNotificationsSenders);
+        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications'));
+    }
+
 }
