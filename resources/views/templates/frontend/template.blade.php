@@ -13,6 +13,8 @@
               href="https://fonts.googleapis.com/css?family=Courgette">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Days One">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Chewy">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
@@ -44,7 +46,7 @@
             <ul id="menu-ul">
                 <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                 <li><a href=""><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>
-                <li><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> About Us</a></li>
+                <li><a href="/about-us"><i class="fa fa-info-circle" aria-hidden="true"></i> About Us</a></li>
                 <li><a href=""><i class="fa fa-list" aria-hidden="true"></i> Roster</a></li>
                 <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> Rules</a></li>
                 <li><a href=""><i class="fa fa-server" aria-hidden="true"></i> Servers</a></li>
@@ -73,18 +75,23 @@
         </div>
 
         <div id="footer-div">
-            <div class="social-media flex-item" id="facebook">
+            <div id="social-media" class="footer-flex">
                 <a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-            </div>
-            <div class="social-media flex-item" id="youtube">
                 <a href=""><i class="fa fa-youtube-square" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-twitch" id="twitch" aria-hidden="true"></i></a>
             </div>
-            <div class="social-media flex-item" id="twitch">
-                <a href=""><i class="fa fa-twitch" aria-hidden="true"></i></a>
+
+            <div id="footer-menu" class="footer-flex">
+                <a href="#">About</a>
+                <a href="#">Cookies</a>
+                <a href="#">Privacy</a>
+                <a href="#">Policy</a>
+                <a href="#">Help</a>
             </div>
-        </div>
-        <div id="copyright-div">
-            <p>&copy; 2016 dZp. All rights reserved</p>
+            <div id="copyright-div">
+                <hr />
+                <p>&copy; 2016 dZp. All rights reserved</p>
+            </div>
         </div>
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/app.js"></script>

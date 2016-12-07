@@ -1,0 +1,10 @@
+#pm-box {
+    width: 95%;
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
+    padding: 20px;
+}
+
+#pm-box > h3 {
+    margin: 0 0 10px 0;
+}

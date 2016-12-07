@@ -75,7 +75,7 @@ fieldset {
 /* Profile(Account) Container */
 #account-container {
     margin: 70px auto;
-    width: 90%;
+    width: 95%;
     /*border: 1px solid red;*/
     display: -webkit-box;
     display: -moz-box;
@@ -98,7 +98,7 @@ fieldset {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
     background-color: #fff;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;

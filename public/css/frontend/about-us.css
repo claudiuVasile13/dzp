@@ -1,0 +1,18 @@
+#about-us-box {
+    width: 95%;
+    background: #fff;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .35);
+    padding: 20px;
+    text-align: center;
+}
+
+#about-us-box > img {
+    width: 200px;
+}
+
+#about-us-box > h3 {
+    margin: 0;
+    font-family: 'Chewy';
+    font-weight: bold;
+    color: #0288D1;
+}
