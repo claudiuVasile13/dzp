@@ -50,48 +50,19 @@ a, a:visited, a:hover, a:active {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 9;
-    height: 35px;
+    z-index: 5;
+    height: 50px;
     padding: 0;
     background: #fff;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .35);
 }
 
 #menu-button {
-    height: 100%;
-    /*padding: 1px 0px 0px 0px;*/
-    /*border: 1px solid red;*/
-    display: inline-block;
-    padding: 0;
-    /*color: #0288D1;*/
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-family: 'Roboto Condensed';
-    font-weight: bold;
-    font-size: 22px;
-    margin-left: 10px;
+    font-size: 30px;
+    margin: 9px 0 0 10px;
     cursor: pointer;
-}
-
-#toggle-menu-button {
-    width: 35px;
-    /*height: 10px;*/
-    /*background: red;*/
-    /*float: right;*/
-    margin-top: 5px;
-}
-
-#toggle-menu-button > div {
-    width: 100%;
-    height: 5px;
-    border-radius: 5px;
-    background: #0288D1;
-    margin: 0px 0px 4px 0px;
-}
-
-#toggle-menu-button > div:last-child {
-    margin: 0px;
+    float: left;
+    color: #2e333b;
 }
 
 /* Side Menu Bar */
@@ -99,9 +70,10 @@ a, a:visited, a:hover, a:active {
     width: 250px;
     height: 100%;
     position: fixed;
-    top: 0;
+    /*padding-top: 50px;*/
+    top: 50px;
     bottom: 0px;
-    background: #2e3436;
+    background: #2e333b;
     text-align: center;
     overflow: auto;
     -webkit-transition: all 0.3s;
@@ -121,63 +93,98 @@ a, a:visited, a:hover, a:active {
     /*display: none;*/
 }
 
-#avatar {
-    display: inline-block;
-    margin: 10px 0 5px 0;
-    border-radius: 50%;
-    height: 100px;
-    border: 5px solid #fff;
+#user-box {
+    /*border: 1px solid red;*/
+    height: 100%;
+    float: right;
+    padding: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+    cursor: pointer;
 }
 
-#user-picture {
-    width: 50px;
-    margin: 10px 0 0 0;
-}
-
-#username-side-menu {
-    color: #fff;
-    margin: 5px 0 0 0;
-}
-
-.profile-login {
-    display: inline-block;
-    font-family: 'Courgette';
+#user-box > p {
     font-size: 20px;
-    box-sizing: border-box;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    border-radius: 4px;
-    margin: 13px 0 10px 0;
+    margin: 8px 20px;
+    display: inline-block;
+
 }
 
-#login-btn, #profile-btn {
-    background: #fff;
-    width: 200px;
-    color: #0288D1;
-    padding: 10px;
+#user-box > i {
+    font-size: 25px;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    padding: 0;
 }
 
-#profile-btn, #logout-btn {
-    width: 110px;
+/* User's options box */
+#user-options-box {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    text-align: center;
+}
+
+#user-options-box > i {
+    /*border: 1px solid red;*/
+    font-size: 30px;
+    color: #2e333b;
+    position: absolute;
+    top: 0px;
+    right: calc(50% - 10px);
+}
+
+#user-options-box > a {
+    display: block;
+    background: #2e333b;
+    color: #fff;
+    /*border: 1px solid red;*/
+    padding: 5px 15px 5px 15px;
+    text-align: left;
+}
+
+#user-options-box > a > i {
+    margin-right: 10px;
+}
+
+#profile-link{
+    margin-top: 13px;
+    border-bottom: 1px solid #fff;
+}
+
+#user-options-box > a:hover {
+    background: #292e30;
+}
+
+.show-user-options-box {
+    display: inline-block !important;
+}
+
+.hide-user-options-box {
+    display: none;
+}
+
+/* Top Menu Login Button */
+#login-btn {
+    background: #2e333b;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    float: right;
+    margin: 8px 10px 0 0;
+    /*z-index: 15;*/
+    /*position: relative;*/
+}
+
+#login-btn:hover {
+    background: #292e30;
+}
+
+#login-btn > a {
+    display: block;
     padding: 5px;
-}
-
-#login-btn:hover, #profile-btn:hover {
-    box-shadow: inset 0 0 0 5px #0288D1;
-    color: #0288D1;
-}
-
-#logout-btn {
-    margin-left: 5px;
-    color: #fff;
-    background: #0288D1;
-}
-
-#logout-btn:hover {
-    box-shadow: inset 0 0 0 5px #fff;
-    color: #fff;
 }
 
 hr {

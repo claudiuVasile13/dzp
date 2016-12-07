@@ -23,26 +23,27 @@
 
         {{-- Top Menu Bar --}}
         <div id="top-bar-div">
-            <div id="menu-button">
-                <div id="toggle-menu-button">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+            <i class="fa fa-bars" aria-hidden="true" id="menu-button"></i>
+            @if(Auth::check())
+                <div id="user-box">
+                    <p>{{ Auth::user()->username }}</p>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </div>
-            </div>
+                <div id="user-options-box">
+                    <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                    <a href="/profile/{{ Auth::user()->profile_url_key }}" id="profile-link"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                    <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                </div>
+            @else
+                <div id="login-btn">
+                    <a href="/auth" class="profile-login">Login</a>
+                </div>
+            @endif
+            <div style="clear: both"></div>
         </div>
 
         {{-- Side Menu Bar --}}
         <div id="side-bar-div" class="hide-side-bar">
-            @if(Auth::check())
-                <img id="user-picture" src="/img/users/{{ Auth::user()->picture }}" alt="Logo">
-                <h3 id="username-side-menu">{{ Auth::user()->username }}</h3>
-                <a href="/profile/{{ Auth::user()->profile_url_key }}" class="profile-login" id="profile-btn">Profile</a>
-                <a href="/logout" class="profile-login" id="logout-btn">Logout</a>
-            @else
-                <a href="/auth" class="profile-login" id="login-btn">Login / Register</a>
-            @endif
-            <hr>
             <ul id="menu-ul">
                 <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                 <li><a href=""><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>
