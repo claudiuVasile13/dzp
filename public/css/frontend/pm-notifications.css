@@ -20,3 +20,42 @@
     border-radius: 2px;
     padding: 10px;
 }
+
+#sent-list {
+    margin: 20px 0 0 0;
+}
+
+#sent-list > li {
+    padding: 10px 10px 3px 10px;
+}
+
+#sent-list > li > p {
+    display: inline-block;
+    width: 35%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+#sent-list > li > a {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+#sent-list > li > a > i {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+#view {
+    color: #0288D1;
+}
+
+#delete {
+    color: red
+}

@@ -329,10 +329,9 @@ class ProfileController extends Controller
         $loggedUser = Auth::user();
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
-        $sentPM = PrivateMessage::where('pm_author', $loggedUser->user_id)->get();
-        $receivedPM = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->get();
-        return $receivedPM;
-        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications'));
+        $sentPM = PrivateMessage::sentPM($loggedUser->user_id);
+        $receivedPM = PrivateMessage::receivedPM($loggedUser->user_id);
+        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'sentPM', 'receivedPM'));
     }
 
     // Load the Send PM Page
@@ -344,11 +343,12 @@ class ProfileController extends Controller
         return view('frontend.send-pm', compact('username', 'friendshipNotifications', 'friendshipNotificationsSenders'));
     }
 
+    // Send PM to a user
     public function sendPM(Request $request)
     {
         $rules = [
             'username' => 'required',
-            'subject' => 'required',
+            'subject' => 'required|max:20',
             'message' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -380,6 +380,11 @@ class ProfileController extends Controller
                     ->with('UserDoesNotExist', 'The user that you want to send a message to does not exist.');
             }
         }
+    }
+
+    public function deletePM($message_id)
+    {
+
     }
 
 }

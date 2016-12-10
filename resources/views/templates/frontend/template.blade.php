@@ -15,6 +15,8 @@
               href="https://fonts.googleapis.com/css?family=Days One">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Chewy">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Bangers">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
@@ -60,7 +62,7 @@
                     <li>
                         <a href="/friendship-notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications
-                            <div id="notifications-number">{{ $friendshipNotifications }}</div>
+                            <span id="notifications-number">{{ $friendshipNotifications }}</span>
                         </a>
                     </li>
                     {{-- Membership Required --}}

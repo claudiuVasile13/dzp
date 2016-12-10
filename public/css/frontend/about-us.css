@@ -1,18 +1,50 @@
 #about-us-box {
     width: 95%;
-    background: #fff;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .35);
+    margin: 70px auto;
+}
+
+#about-us-header {
+    width: 100%;
+    background: #2e333b;
+    color: #fff;
+    position: relative;
     padding: 20px;
-    text-align: center;
+    height: 150px;
+    display: inline-block;
 }
 
-#about-us-box > img {
-    width: 200px;
-}
-
-#about-us-box > h3 {
-    margin: 0;
-    font-family: 'Chewy';
+#about-us-header > h1 {
     font-weight: bold;
-    color: #0288D1;
+    font-family: 'Bangers';
+    margin: 0;
+}
+
+#about-us-header > img {
+    position: absolute;
+    height: 140px;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+}
+
+#about-us-content {
+    display: inline-block;
+    background: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+#what-we-offer-you-h3, #who-we-are-h3 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#what-we-offer-you-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#what-we-offer-you-list > li {
+    padding: 5px 0 5px 0;
 }
