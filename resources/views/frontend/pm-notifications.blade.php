@@ -7,7 +7,16 @@
 
 @section('content')
     <div id="pm-box">
+        @if(session()->has('PrivateMessageSent'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('PrivateMessageSent') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <h3>Private Messages</h3>
+        <a href="/send-pm" id="send-pm-button">Send PM</a>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#new-list">New</a></li>
             <li><a data-toggle="tab" href="#sent-list">Sent</a></li>

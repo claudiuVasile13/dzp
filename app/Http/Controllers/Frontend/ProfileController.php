@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Country;
 use App\Friendship;
 use App\FriendshipRequest;
+use App\PrivateMessage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -328,7 +329,57 @@ class ProfileController extends Controller
         $loggedUser = Auth::user();
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
+        $sentPM = PrivateMessage::where('pm_author', $loggedUser->user_id)->get();
+        $receivedPM = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->get();
+        return $receivedPM;
         return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications'));
+    }
+
+    // Load the Send PM Page
+    public function sendPMPage($username = null)
+    {
+        $loggedUser = Auth::user();
+        $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
+        $friendshipNotifications = count($friendshipNotificationsSenders);
+        return view('frontend.send-pm', compact('username', 'friendshipNotifications', 'friendshipNotificationsSenders'));
+    }
+
+    public function sendPM(Request $request)
+    {
+        $rules = [
+            'username' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator);
+        } else {
+            $pm_receiver = User::where('username', $request->input('username'))->select('user_id', 'username')->get();
+            if(count($pm_receiver)) {
+                $pm_receiver = $pm_receiver[0];
+                $pm_author = Auth::user();
+                if($pm_receiver->user_id === $pm_author->user_id) {
+                    return Redirect::back()
+                        ->with('CantSendMessageToYourself', 'You can not send a private message to yourself');
+                } else {
+                    $pm = [
+                        'pm_author' => $pm_author->user_id,
+                        'pm_receiver' => $pm_receiver->user_id,
+                        'pm_title' => $request->input('subject'),
+                        'pm_body' => $request->input('message'),
+                        'status' => 'not read'
+                    ];
+                    PrivateMessage::create($pm);
+                    return Redirect::to('/pm/')
+                        ->with('PrivateMessageSent', 'The private message to ' . $pm_receiver->username . ' was successfully sent.');
+                }
+            } else {
+                return Redirect::back()
+                    ->with('UserDoesNotExist', 'The user that you want to send a message to does not exist.');
+            }
+        }
     }
 
 }

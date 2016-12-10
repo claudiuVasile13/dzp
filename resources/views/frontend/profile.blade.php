@@ -154,7 +154,6 @@
     {{-- User's Account Details --}}
     <div id="account-container">
         @if(count($errors))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -165,16 +164,14 @@
         @endif
 
         @if(session()->has('IncorrectPassword'))
-                <br><br>
                 <div class="div-alert">
                     <ul>
                         <li class="alert alert-danger">{{ session()->get('IncorrectPassword') }}</li>
                     </ul>
                 </div>
-            @endif
+        @endif
 
         @if(session()->has('NewPassword'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-success">{{ session()->get('NewPassword') }}</li>
@@ -183,7 +180,6 @@
         @endif
 
         @if(session()->has('EditProfileSuccess'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-success">{{ session()->get('EditProfileSuccess') }}</li>
@@ -192,7 +188,6 @@
         @endif
 
         @if(session()->has('ChangeImageSuccess'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-success">{{ session()->get('ChangeImageSuccess') }}</li>
@@ -201,7 +196,6 @@
         @endif
 
         @if(session()->has('UserDoesNotExist'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('UserDoesNotExist') }}</li>
@@ -210,7 +204,6 @@
         @endif
 
         @if(session()->has('FriendRequestSuccess'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-success">{{ session()->get('FriendRequestSuccess') }}</li>
@@ -219,7 +212,6 @@
         @endif
 
         @if(session()->has('FriendRequestHimself'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendRequestHimself') }}</li>
@@ -228,7 +220,6 @@
         @endif
 
         @if(session()->has('FriendRequestDoesNotExist'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendRequestDoesNotExist') }}</li>
@@ -237,7 +228,6 @@
         @endif
 
         @if(session()->has('FriendRequestSender'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendRequestSender') }}</li>
@@ -246,7 +236,6 @@
         @endif
 
         @if(session()->has('FriendRequestReceiver'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendRequestReceiver') }}
@@ -257,7 +246,6 @@
         @endif
 
         @if(session()->has('FriendshipAccepted'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-info">{{ session()->get('FriendshipAccepted') }}</li>
@@ -266,7 +254,6 @@
         @endif
 
         @if(session()->has('FriendshipDeclined'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-info">{{ session()->get('FriendshipDeclined') }}</li>
@@ -275,7 +262,6 @@
         @endif
 
         @if(session()->has('FriendDoesNotExist'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendDoesNotExist') }}</li>
@@ -284,7 +270,6 @@
         @endif
 
         @if(session()->has('FriendshipDoesNotExist'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-danger">{{ session()->get('FriendshipDoesNotExist') }}</li>
@@ -293,7 +278,6 @@
         @endif
 
         @if(session()->has('FriendshipRemoved'))
-            <br><br>
             <div class="div-alert">
                 <ul>
                     <li class="alert alert-success">{{ session()->get('FriendshipRemoved') }}</li>
@@ -473,6 +457,12 @@
                             <img class="media-logos" src="/img/social-media/tw.png" alt="Twitter" title="Twitter">
                             @if($user->twitter)
                                 <img class="facebook-twitter" src="/img/social-media/twitter.jpg" alt="Twitter">
+                            @endif
+                        </li>
+                        <li>
+                            @if($isLoggedIn && !$isAccountOwner)
+                                <img class="media-logos" src="/img/social-media/pm.png" alt="Twitter" title="Twitter">
+                                <a href="/send-pm/{{ $user->username }}" class="field-value">Send PM to {{ $user->username }}</a>
                             @endif
                         </li>
                     </ul>

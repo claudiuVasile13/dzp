@@ -3,8 +3,20 @@
     background: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .35);
     padding: 20px;
+    margin: 70px auto;
+    position: relative;
 }
 
 #pm-box > h3 {
     margin: 0 0 10px 0;
+}
+
+#send-pm-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #0288D1;
+    color: #fff;
+    border-radius: 2px;
+    padding: 10px;
 }

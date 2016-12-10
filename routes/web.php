@@ -45,6 +45,8 @@ Route::group(['namespace' => 'Frontend'], function() {
         Route::get('/decline-friendship/{profile_url_key}', 'ProfileController@declineFriendship');
         Route::get('/remove-friend/{profile_url_key}', 'ProfileController@removeFriend');
         Route::get('/pm', 'ProfileController@pmPage');
+        Route::get('/send-pm/{username?}', ['uses' => 'ProfileController@sendPMPage']);
+        Route::post('/send-pm', 'ProfileController@sendPM');
     });
 
     Route::get('/', 'HomeController@index');
