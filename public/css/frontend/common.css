@@ -1,0 +1,99 @@
+/* Common */
+.page-container {
+    width: 95%;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .35);
+    margin: 70px auto;
+}
+
+.page-content {
+    background: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-container > img {
+    height: 150px;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.list > li {
+    padding: 5px 0 5px 0;
+}
+
+/* Rules */
+.nested-list {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.rank-name, .information-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0 0 0;
+}
+
+#leader {
+    color: rgb(173, 7, 7);
+}
+
+#co-leader {
+    color: rgb(255, 89, 0);
+}
+
+#master-admin {
+    color: rgb(72, 119, 240);
+}
+
+#server-admin {
+    color: rgb(0, 51, 255);
+}
+
+#member {
+    color: rgb(0, 153, 0);
+}
+
+/* Servers */
+.ban {
+    color: red;
+    font-weight: bold;
+}
+
+#ban-appeal {
+    color: #0288D1;
+    font-weight: bold;
+}
+#ban-appeal:hover {
+    text-decoration: underline;
+}
+
+/* Join Us */
+#recruitment-status {
+    margin: 0;
+    background: forestgreen;
+    color: #fff;
+    padding: 10px;
+    font-family: 'Roboto Condensed';
+}
+
+.information-title {
+    color: red;
+}
+
+/* Conduct Code */
+.important-rule {
+    color: red;
+}

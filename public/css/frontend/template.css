@@ -67,7 +67,7 @@ a, a:visited, a:hover, a:active {
 
 /* Side Menu Bar */
 #side-bar-div {
-    width: 250px;
+    width: 200px;
     height: 100%;
     position: fixed;
     top: 50px;
@@ -83,16 +83,58 @@ a, a:visited, a:hover, a:active {
 }
 
 .show-side-bar {
-    right: 0;
+    left: 0;
 }
 
 .hide-side-bar {
-    right: -300px;
-    /*display: none;*/
+    left: -300px;
 }
 
-#user-box {
+#menu-ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: left;
+}
+
+#menu-ul > li {
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #292e30;
+    font-family: 'Roboto Condensed';
+    color: #fff;
+}
+
+#menu-ul > li:last-child {
+    border: none;
+}
+
+#menu-ul > li > a {
     /*border: 1px solid red;*/
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 10px;
+}
+
+#menu-ul > li > a > i {
+    color: #0288D1;
+    margin: 0px 3px 0px 0px;
+    /*border: 1px solid red;*/
+    width: 20px;
+}
+
+#menu-ul > li:hover {
+    background: #262626;
+}
+
+/* User's options box */
+#user-box {
     height: 100%;
     float: right;
     padding: 0;
@@ -116,7 +158,6 @@ a, a:visited, a:hover, a:active {
     padding: 0;
 }
 
-/* User's options box */
 #user-options-box {
     display: none;
     position: absolute;
@@ -194,50 +235,6 @@ hr {
     background: -o-linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
     background: linear-gradient(left, rgba(255, 255, 255, 0), #fff, rgba(255, 255, 255, 0));
     border: 0;
-}
-
-#menu-ul {
-    list-style-type: none;
-    /*border: 1px solid red;*/
-    width: 100%;
-    padding: 0;
-    margin: 15px 0px 0px 0px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    text-align: left;
-}
-
-#menu-ul > li {
-    width: 100%;
-    box-sizing: border-box;
-    border-bottom: 1px solid #292e30;
-    font-family: 'Roboto Condensed';
-    color: #fff;
-}
-
-#menu-ul > li:last-child {
-    border: none;
-}
-
-#menu-ul > li > a {
-    /*border: 1px solid red;*/
-    display: block;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    padding: 10px;
-}
-
-#menu-ul > li > a > i {
-    color: #0288D1;
-    margin: 0px 3px 0px 0px;
-    /*border: 1px solid red;*/
-    width: 20px;
-}
-
-#menu-ul > li:hover {
-    background: #262626;
 }
 
 /* Notifications Number */

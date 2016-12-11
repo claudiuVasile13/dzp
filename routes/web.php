@@ -52,4 +52,8 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/', 'HomeController@index');
     Route::get('/profile/{profile_url_key}', 'ProfileController@profilePage');
     Route::get('/about-us', 'AboutUsController@aboutUsPage');
+    Route::get('/rules', 'RulesController@rulesPage');
+    Route::get('/servers', 'ServersController@serversPage');
+    Route::get('/join-us', 'JoinUsController@joinUsPage');
+    Route::get('/conduct-code', 'ConductCodeController@conductCodePage');
 });

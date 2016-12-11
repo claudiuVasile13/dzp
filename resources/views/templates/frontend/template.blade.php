@@ -10,13 +10,9 @@
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Roboto Condensed">
         <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Courgette">
-        <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Days One">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Chewy">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Bangers">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
@@ -48,14 +44,14 @@
         <div id="side-bar-div" class="hide-side-bar">
             <ul id="menu-ul">
                 <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                <li><a href=""><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>
+                <li><a href="/forum"><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>
                 <li><a href="/about-us"><i class="fa fa-info-circle" aria-hidden="true"></i> About Us</a></li>
-                <li><a href=""><i class="fa fa-list" aria-hidden="true"></i> Roster</a></li>
-                <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> Rules</a></li>
-                <li><a href=""><i class="fa fa-server" aria-hidden="true"></i> Servers</a></li>
-                <li><a href=""><i class="fa fa-trophy" aria-hidden="true"></i> Matches</a></li>
-                <li><a href=""><i class="fa fa-hand-o-right" aria-hidden="true"></i> Join Us</a></li>
-                <li><a href=""><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></li>
+                <li><a href="/roster"><i class="fa fa-list" aria-hidden="true"></i> Roster</a></li>
+                <li><a href="/rules"><i class="fa fa-ban" aria-hidden="true"></i> Rules</a></li>
+                <li><a href="/servers"><i class="fa fa-server" aria-hidden="true"></i> Servers</a></li>
+                <li><a href="/matches"><i class="fa fa-trophy" aria-hidden="true"></i> Matches</a></li>
+                <li><a href="/join-us"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Join Us</a></li>
+                <li><a href="/contact"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></li>
                 {{-- Login Required --}}
                 @if(Auth::check())
                     <li><a href="/pm"><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
@@ -67,7 +63,7 @@
                     </li>
                     {{-- Membership Required --}}
                     @if(Auth::user()->member)
-                        <li><a href=""><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
+                        <li><a href="/conduct-code"><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
                     @endif
                 @endif
             </ul>
