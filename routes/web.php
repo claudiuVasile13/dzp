@@ -56,4 +56,5 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/servers', 'ServersController@serversPage');
     Route::get('/join-us', 'JoinUsController@joinUsPage');
     Route::get('/conduct-code', 'ConductCodeController@conductCodePage');
+    Route::get('/roster', 'RosterController@rosterPage');
 });

@@ -250,12 +250,14 @@ hr {
 
 /* Content */
 #frontend-container {
-    display: inline-block;
+    display: block;
+    /*border: 1px solid #fff;*/
     padding: 0;
     width: 100%;
     min-height: calc(100% - 95px);
     height: auto;
     margin: 0;
+    overflow: hidden;
     background-image: url('../../img/frontend50.png');
     background-size: cover;
     background-position: center center;

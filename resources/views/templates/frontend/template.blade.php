@@ -13,6 +13,8 @@
               href="https://fonts.googleapis.com/css?family=Days One">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Chewy">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Josefin Sans">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
