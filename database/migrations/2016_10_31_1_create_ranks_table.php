@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupsTable extends Migration
+class CreateRanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('group_id');
-            $table->string('group_name')->unique();
+        Schema::create('ranks', function (Blueprint $table) {
+            $table->increments('rank_id');
+            $table->string('rank_name');
+            $table->text('rank_image');
+            $table->string('rank_color');
             $table->timestamps();
         });
     }
@@ -28,8 +29,6 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('ranks');
     }
 }

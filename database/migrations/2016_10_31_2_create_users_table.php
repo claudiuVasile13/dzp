@@ -17,17 +17,14 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('user_id');
             $table->integer('countryID')->unsigned();
-            $table->tinyInteger('admin');
-            $table->tinyInteger('member');
+            $table->integer('groupID')->unsigned();
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->string('profile_url_key');
             $table->text('password');
-            $table->string('picture');
+            $table->string('image');
             $table->tinyInteger('activated');
             $table->text('registration_token');
             $table->text('password_reset_token')->nullable();
-            $table->string('rank');
             $table->tinyInteger('status');
             $table->integer('reputation');
             $table->date('birthday')->nullable();
@@ -46,7 +43,9 @@ class CreateUsersTable extends Migration
 
         Schema::table('users', function(Blueprint $table) {
             $table->foreign('countryID')->references('country_id')->on('countries');
+            $table->foreign('groupID')->references('group_id')->on('groups');
         });
+
     }
 
     /**
