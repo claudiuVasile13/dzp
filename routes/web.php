@@ -41,20 +41,23 @@ Route::group(['namespace' => 'Frontend'], function() {
         Route::post('/send-friend-request', 'ProfileController@sendFriendRequest');
         Route::post('/cancel-friend-request', 'ProfileController@cancelFriendRequest');
         Route::get('/friendship-notifications', 'ProfileController@friendshipNotificationsPage');
-        Route::get('/accept-friendship/{profile_url_key}', 'ProfileController@acceptFriendship');
-        Route::get('/decline-friendship/{profile_url_key}', 'ProfileController@declineFriendship');
-        Route::get('/remove-friend/{profile_url_key}', 'ProfileController@removeFriend');
+        Route::get('/accept-friendship/{username}', 'ProfileController@acceptFriendship');
+        Route::get('/decline-friendship/{username}', 'ProfileController@declineFriendship');
+        Route::get('/remove-friend/{username}', 'ProfileController@removeFriend');
         Route::get('/pm', 'ProfileController@pmPage');
         Route::get('/send-pm/{username?}', ['uses' => 'ProfileController@sendPMPage']);
         Route::post('/send-pm', 'ProfileController@sendPM');
+
+        Route::group(['middleware' => 'groupVerification'], function() {
+            Route::get('/conduct-code', 'ConductCodeController@conductCodePage');
+        });
     });
 
     Route::get('/', 'HomeController@index');
-    Route::get('/profile/{profile_url_key}', 'ProfileController@profilePage');
+    Route::get('/profile/{username}', 'ProfileController@profilePage');
     Route::get('/about-us', 'AboutUsController@aboutUsPage');
     Route::get('/rules', 'RulesController@rulesPage');
     Route::get('/servers', 'ServersController@serversPage');
     Route::get('/join-us', 'JoinUsController@joinUsPage');
-    Route::get('/conduct-code', 'ConductCodeController@conductCodePage');
     Route::get('/roster', 'RosterController@rosterPage');
 });

@@ -9,11 +9,11 @@ class Group extends Model
     public $table = 'groups';
     protected $primaryKey = 'group_id';
     protected $fillable = [
-        'group_name', 'group_logo'
+        'group_name'
     ];
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'group_user', 'userID', 'groupID');
+        return $this->hasMany('App\User', 'groupID');
     }
 }

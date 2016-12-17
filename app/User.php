@@ -9,9 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $fillable = [
-        'countryID', 'admin', 'member', 'email', 'username', 'profile_url_key', 'password', 'activated', 'registration_token', 'password_reset_token',
-        'rank', 'status', 'reputation', 'birthday', 'job_hobbies', 'description', 'gameranger_id',
-        'gender', 'skype', 'facebook', 'twitter', 'picture', 'signature', 'user_ip',
+        'countryID', 'groupID', 'email', 'username', 'password', 'user_image', 'activated', 'registration_token', 'password_reset_token',
+        'status', 'reputation', 'birthday', 'job_hobbies', 'description', 'gameranger_id',
+        'gender', 'skype', 'facebook', 'twitter', 'signature', 'user_ip', 'remember_token'
     ];
     protected $hidden = [
         'password', 'remember_token',
@@ -19,9 +19,19 @@ class User extends Authenticatable
     public $table = 'users';
     protected $primaryKey = 'user_id';
 
-    public function groups()
+    public function ranks()
     {
-        return $this->belongsToMany('App\Group', 'group_user', 'userID', 'groupID');
+        return $this->belongsToMany('App\Rank', 'rank_user', 'userID', 'rankID');
+    }
+
+    public function mainRank()
+    {
+        return $this->belongsToMany('App\Rank', 'rank_user', 'userID', 'rankID')->wherePivot('main_rank', 1);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Group', 'groupID');
     }
 
     public function topics()

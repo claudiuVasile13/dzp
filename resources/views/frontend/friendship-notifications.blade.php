@@ -30,16 +30,16 @@
             @if(count($friendshipNotifications))
                 @foreach($friendshipNotificationsSenders as $friendshipNotificationSender)
                     <li class="list-group-item">
-                        <a href="/profile/{{ $friendshipNotificationSender->profile_url_key }}" class="pull-left" title="{{ $friendshipNotificationSender->username }}">
-                            <img src="/img/users/{{ $friendshipNotificationSender->picture }}" alt="User's Photo" />
+                        <a href="/profile/{{ $friendshipNotificationSender->username }}" class="pull-left" title="{{ $friendshipNotificationSender->username }}">
+                            <img src="/img/users/{{ $friendshipNotificationSender->user_image }}" alt="User's Photo" />
                         </a>
                         <div id="notification-response-box">
                             <button class="notification-response-button" id="accept-button">
-                                <a href="/accept-friendship/{{ $friendshipNotificationSender->profile_url_key }}">Accept</a>
+                                <a href="/accept-friendship/{{ $friendshipNotificationSender->username }}">Accept</a>
                             </button>
                             <br />
                             <button class="notification-response-button" id="decline-button">
-                                <a href="/decline-friendship/{{ $friendshipNotificationSender->profile_url_key }}">Decline</a>
+                                <a href="/decline-friendship/{{ $friendshipNotificationSender->username }}">Decline</a>
                             </button>
                         </div>
                         <div style="clear: both"></div>

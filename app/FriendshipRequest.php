@@ -20,7 +20,7 @@ class FriendshipRequest extends Model
         $friendshipNotificationsSenders = DB::table('friendship_requests')
                                             ->join('users', 'friendship_requests.senderID', '=', 'users.user_id')
                                             ->where('receiverID', $receiverID)
-                                            ->select('users.username', 'users.user_id', 'users.profile_url_key', 'users.picture')
+                                            ->select('users.username', 'users.user_id', 'users.user_image')
                                             ->get();
         return $friendshipNotificationsSenders;
     }

@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Rank;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -19,7 +21,7 @@ class ProfileController extends Controller
 {
 
     // Load the profile page
-    public function profilePage($profile_url_key)
+    public function profilePage($username)
     {
         $isLoggedIn = Auth::check();
         $isAccountOwner = false;
@@ -29,7 +31,7 @@ class ProfileController extends Controller
             $loggedUser = Auth::user();
             $friendshipNotifications = FriendshipRequest::where('receiverID', $loggedUser->user_id)->get();
             $friendshipNotifications = count($friendshipNotifications);
-            $user = User::where('profile_url_key', $profile_url_key)->get()[0];
+            $user = User::where('username', $username)->get()[0];
             if ($loggedUser->user_id === $user->user_id) {
                 $isAccountOwner = true;
                 $countries = Country::all();
@@ -55,10 +57,11 @@ class ProfileController extends Controller
                 }
             }
         } else {
-            $user = User::where('profile_url_key', $profile_url_key)->get()[0];
+            $user = User::where('username', $username)->get()[0];
         }
         $user->country;
-        $user->groups;
+        $user->ranks;
+        $user->mainRank;
         $friends = Friendship::friends($user->user_id);
         return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications', 'friends'));
     }
@@ -86,15 +89,10 @@ class ProfileController extends Controller
                 $profileData['birthday'] = null;
             }
 
-            // Create profile_url
-            $usernameArray = explode(' ', $request->input('username'));
-            $profile_url_key = implode('-', $usernameArray);
-
             $profileData = [
                 'country' => $request->input('country'),
                 'gender' => $request->input('gender'),
                 'username' => $request->input('username'),
-                'profile_url_key' => $profile_url_key,
                 'job_hobbies' => $request->input('job_hobbies'),
                 'gameranger_id' => $request->input('gameranger_id'),
                 'status' => $request->input('status'),
@@ -106,8 +104,7 @@ class ProfileController extends Controller
             ];
             $user = Auth::user();
             $user->update($profileData);
-//                return 'profile/' . $user->profile_url_key;
-            return Redirect::to('/profile/' . $user->profile_url_key)
+            return Redirect::to('/profile/' . $user->username)
                 ->with('EditProfileSuccess', 'Your profile has been successfully edited');
         }
     }
@@ -129,7 +126,7 @@ class ProfileController extends Controller
             $image = Image::make($request->file('image'))->resize(300, null, function($constraint) {
                 $constraint->aspectRatio();
             })->save($imagePath . $imageName);
-            $user->picture = $imageName;
+            $user->user_image = $imageName;
             $user->save();
             return Redirect::back()
                 ->with('ChangeImageSuccess', 'Your profile\'s image has been successfully changed');
@@ -174,7 +171,7 @@ class ProfileController extends Controller
     public function sendFriendRequest(Request $request)
     {
         $sender = Auth::user();
-        $receiver = User::where('profile_url_key', $request->input('receiver'))->get();
+        $receiver = User::where('username', $request->input('receiver'))->get();
         if(count($receiver)) {
             $receiver = $receiver[0];
             $friendRequestSender = FriendshipRequest::where('senderID', $sender->user_id)
@@ -202,7 +199,7 @@ class ProfileController extends Controller
                     ->with('FriendRequestSuccess', 'Your friend request has been sent');
             }
         } else {
-            return Redirect::to('/profile/' . $sender->profile_url_key)
+            return Redirect::to('/profile/' . $sender->username)
                 ->with('UserDoesNotExist', 'The user that you want to send a friend request does not exist');
         }
     }
@@ -211,7 +208,7 @@ class ProfileController extends Controller
     public function cancelFriendRequest(Request $request)
     {
         $sender = Auth::user();
-        $receiver = User::where('profile_url_key', $request->input('receiver'))->get();
+        $receiver = User::where('username', $request->input('receiver'))->get();
         if(count($receiver)) {
             $receiver = $receiver[0];
             $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
@@ -226,7 +223,7 @@ class ProfileController extends Controller
                     ->with('FriendRequestDoesNotExist', 'The friend request does not exist');
             }
         } else {
-            return Redirect::to('/profile/' . $sender->profile_url_key)
+            return Redirect::to('/profile/' . $sender->username)
                 ->with('UserDoesNotExist', 'The user that you want to cancel the friend request does not exist');
         }
     }
@@ -241,10 +238,10 @@ class ProfileController extends Controller
     }
     
     // Accept Friendship
-    public function acceptFriendship($profile_url_key)
+    public function acceptFriendship($username)
     {
         $loggedUser = Auth::user();
-        $sender = User::where('profile_url_key', $profile_url_key)->get();
+        $sender = User::where('username', $username)->get();
         if(count($sender)) {
             $sender = $sender[0];
             $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
@@ -256,7 +253,7 @@ class ProfileController extends Controller
                     'friendID' => $loggedUser->user_id
                 ]);
                 $friendshipRequest[0]->delete();
-                return Redirect::to('/profile/' . $sender->profile_url_key)
+                return Redirect::to('/profile/' . $sender->username)
                     ->with('FriendshipAccepted', 'You are now friend with ' . $sender->username);
             } else {
                 return Redirect::to('/friendship-notifications')
@@ -269,10 +266,10 @@ class ProfileController extends Controller
     }
     
     // Decline Friendship
-    public function declineFriendship($profile_url_key)
+    public function declineFriendship($username)
     {
         $loggedUser = Auth::user();
-        $sender = User::where('profile_url_key', $profile_url_key)->get();
+        $sender = User::where('username', $username)->get();
         if(count($sender)) {
             $sender = $sender[0];
             $friendshipRequest = FriendshipRequest::where('senderID', $sender->user_id)
@@ -280,7 +277,7 @@ class ProfileController extends Controller
                                                   ->get();
             if (count($friendshipRequest)) {
                 $friendshipRequest[0]->delete();
-                return Redirect::to('/profile/' . $sender->profile_url_key)
+                return Redirect::to('/profile/' . $sender->username)
                     ->with('FriendshipDeclined', 'You declined the friendship request from ' . $sender->username);
             } else {
                 return Redirect::to('/friendship-notifications')
@@ -293,10 +290,10 @@ class ProfileController extends Controller
     }
 
     // Remove a friend
-    public function removeFriend($profile_url_key)
+    public function removeFriend($username)
     {
         $loggedUser = Auth::user();
-        $friend = User::where('profile_url_key', $profile_url_key)->get();
+        $friend = User::where('username', $username)->get();
         if(count($friend)) {
             $friend = $friend[0];
             $friendshipSender = Friendship::where('userID', $friend->user_id)
@@ -307,18 +304,18 @@ class ProfileController extends Controller
                                             ->get();
             if (count($friendshipSender)) {
                 $friendshipSender[0]->delete();
-                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                return Redirect::to('/profile/' . $loggedUser->username)
                     ->with('FriendshipRemoved', 'You removed ' . $friend->username . ' from your friends list');
             } else if(count($friendshipReceiver)) {
                 $friendshipReceiver[0]->delete();
-                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                return Redirect::to('/profile/' . $loggedUser->username)
                     ->with('FriendshipRemoved', 'You removed ' . $friend->username . ' from your friends list');
             } else {
-                return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+                return Redirect::to('/profile/' . $loggedUser->username)
                     ->with('FriendshipDoesNotExist', 'The friendship that you want to remove does not exist');
             }
         } else {
-            return Redirect::to('/profile/' . $loggedUser->profile_url_key)
+            return Redirect::to('/profile/' . $loggedUser->username)
                 ->with('FriendDoesNotExist', 'The user that you want to remove from your friends list does not exist');
         }
     }

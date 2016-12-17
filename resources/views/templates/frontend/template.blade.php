@@ -31,7 +31,7 @@
                 </div>
                 <div id="user-options-box">
                     <i class="fa fa-sort-asc" aria-hidden="true"></i>
-                    <a href="/profile/{{ Auth::user()->profile_url_key }}" id="profile-link"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                    <a href="/profile/{{ Auth::user()->username }}" id="profile-link"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                 </div>
             @else
@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     {{-- Membership Required --}}
-                    @if(Auth::user()->member)
+                    @if(session()->has('group') && (session('group') === 'member' || session('group') === "admin" || session('group') === "developer"))
                         <li><a href="/conduct-code"><i class="fa fa-university" aria-hidden="true"></i> Conduct Code</a></li>
                     @endif
                 @endif

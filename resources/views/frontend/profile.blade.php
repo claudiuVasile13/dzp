@@ -287,8 +287,8 @@
 
         {{-- User's Avatar Section --}}
         <div id="profile-picture-section">
-            <img id="rank-image" src="/img/ranks/{{ $user->rank }}" alt="Group Image"><br>
-            <img id="profile-picture" src="/img/users/{{ $user->picture }}" alt="Profile Picture"><br>
+            <img id="rank-image" src="/img/ranks/{{ $user->mainRank[0]->rank_image }}" alt="Rank Image"><br>
+            <img id="profile-picture" src="/img/users/{{ $user->user_image }}" alt="Profile Picture"><br>
             @if($isAccountOwner)
                 <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageeModal">Change Image</button>
             @else
@@ -296,13 +296,13 @@
                     @if($friendshipStatus === 'none')
                         <form action="/send-friend-request" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="receiver" value="{{ $user->profile_url_key }}" />
+                            <input type="hidden" name="receiver" value="{{ $user->username }}" />
                             <input type="submit" id="friend-request-button" value="Send Friend Request" />
                         </form>
                     @elseif($friendshipStatus === 'request_sender')
                         <form action="/cancel-friend-request" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="receiver" value="{{ $user->profile_url_key }}" />
+                            <input type="hidden" name="receiver" value="{{ $user->username }}" />
                             <input type="submit" id="cancel-friend-request-button" value="Cancel Friend Request" />
                         </form>
                     @elseif($friendshipStatus === 'request_receiver')
@@ -415,14 +415,14 @@
                         <ul id="friends-list">
                            @foreach($friends as $friend)
                                <li>
-                                   <a class="pull-left" href="/profile/{{ $friend->profile_url_key }}" title="{{ $friend->username }}">
-                                       <img src="/img/users/{{ $friend->picture }}" alt="Friend's Image" />
+                                   <a class="pull-left" href="/profile/{{ $friend->username }}" title="{{ $friend->username }}">
+                                       <img src="/img/users/{{ $friend->user_image }}" alt="Friend's Image" />
                                    </a>
                                    <div class="pull-right" id="buttons-container">
-                                       <img id="friend-rank" src="/img/ranks/{{ $friend->rank }}" alt="Friend's Rank">
+                                       <img id="friend-rank" src="/img/ranks/{{ $friend->rank_image }}" alt="Friend's Rank">
                                        <br />
                                        <button id="remove-friend-button">
-                                           <a href="/remove-friend/{{ $friend->profile_url_key }}">Remove Friend</a>
+                                           <a href="/remove-friend/{{ $friend->username }}">Remove Friend</a>
                                        </button>
                                    </div>
                                    <div style="clear:both;"></div>
@@ -461,7 +461,7 @@
                         </li>
                         <li>
                             @if($isLoggedIn && !$isAccountOwner)
-                                <img class="media-logos" src="/img/social-media/pm.png" alt="Twitter" title="Twitter">
+                                <img class="media-logos" src="/img/social-media/pm.png" alt="Twitter" title="Private Message">
                                 <a href="/send-pm/{{ $user->username }}" class="field-value">Send PM to {{ $user->username }}</a>
                             @endif
                         </li>

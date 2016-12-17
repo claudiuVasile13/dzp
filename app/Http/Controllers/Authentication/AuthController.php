@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Authentication;
 use App\Country;
 use App\Group;
 use App\GroupUser;
+use App\Rank;
 use App\User;
+use App\RankUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -45,8 +47,7 @@ class AuthController extends Controller
                 ->withErrors($validator)
                 ->withInput(Input::except('password', 'password_confirmation'));
         } else {
-            $group = Group::where('group_name', 'Guest')->get();
-            $group = $group[0];
+            $group = Group::where('group_name', 'user')->get()[0];
 
             // Trim the input data
             $request->merge(array_map('trim', $request->all()));
@@ -56,29 +57,23 @@ class AuthController extends Controller
             $registrationToken = $this->validateToken($registrationToken, 'registration_token');
             $passwordHash = Hash::make($request->input('password'));
 
-            // Create profile_url
-            $usernameArray = explode(' ', $request->input('username'));
-            $profile_url_key = implode('-', $usernameArray);
-
             $userData = [
                 'email' => $request->input('email'),
                 'countryID' => $request->input('country'),
-                'admin' => 0,
-                'member' => 0,
+                'groupID' => $group->group_id,
                 'username' => $request->input('username'),
-                'profile_url_key' => $profile_url_key,
                 'password' => $passwordHash,
+                'user_image' => 'default.png',
                 'activated' => 0,
-                'rank' => $group->group_logo,
                 'registration_token' => $registrationToken,
                 'status' => 1,
                 'reputation' => 0,
                 'gender' => $request->input('gender'),
-                'picture' => 'default.png',
                 'user_ip' => $request->ip()
             ];
             $user = User::create($userData);
-            GroupUser::create(['userID' => $user->user_id, 'groupID' => $group->group_id]);
+            $rank = Rank::where('rank_name', 'guest')->get()[0];
+            RankUser::create(['userID' => $user->user_id, 'rankID' => $rank->rank_id, 'main_rank' => 1]);
             $link = $request->root() .'/activate/' . $registrationToken;
             Mail::send('emails.activate-account', ['link' => $link], function ($message) use ($user) {
                 $message->from('dzp@dzp.com', 'Activate Account');
@@ -186,10 +181,18 @@ class AuthController extends Controller
                 'password' => $request->input('password')
             ];
             $auth = auth()->guard('web');
-            if($auth->attempt($userCredentials)) {
-                $user = User::find($auth->user()->user_id);
+            $user = User::where('username', $request->input('username'))->get();
+            if(count($user)) {
+                $user = $user[0];
                 if($user->activated) {
-                    return Redirect::to('/');
+                    if($auth->attempt($userCredentials)) {
+                        $user->group;
+                        $request->session()->put('group', $user->group->group_name);
+                        return Redirect::to('/');
+                    } else {
+                        return Redirect::to('/auth')
+                            ->with('WrongCredentials', 'Wrong username or password');
+                    }
                 } else {
                     return Redirect::to('/auth')
                         ->with('ActivationRequired', 'You need to activate your account. We sent you an email for activation.');

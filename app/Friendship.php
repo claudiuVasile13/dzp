@@ -20,14 +20,20 @@ class Friendship extends Model
     {
         $senderFriends = DB::table('friendship')
             ->join('users', 'friendship.userID', '=', 'users.user_id')
-            ->where('friendID', $userID)
-            ->select('users.username', 'users.user_id', 'users.profile_url_key', 'users.picture', 'users.rank')
+            ->join('rank_user', 'users.user_id', '=', 'rank_user.userID')
+            ->join('ranks', 'ranks.rank_id', 'rank_user.rankID')
+            ->where('friendship.friendID', $userID)
+            ->where('rank_user.main_rank', '=', 1)
+            ->select('users.username', 'users.user_id', 'users.user_image', 'ranks.rank_image', 'ranks.rank_color')
             ->get();
 
         $receiverFriends = DB::table('friendship')
             ->join('users', 'friendship.friendID', '=', 'users.user_id')
-            ->where('userID', $userID)
-            ->select('users.username', 'users.user_id', 'users.profile_url_key', 'users.picture', 'users.rank')
+            ->join('rank_user', 'users.user_id', '=', 'rank_user.userID')
+            ->join('ranks', 'ranks.rank_id', 'rank_user.rankID')
+            ->where('friendship.userID', $userID)
+            ->where('rank_user.main_rank', '=', 1)
+            ->select('users.username', 'users.user_id', 'users.user_image', 'ranks.rank_image', 'ranks.rank_color')
             ->get();
 
         self::createFriendsArray($senderFriends);
