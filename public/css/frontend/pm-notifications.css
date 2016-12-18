@@ -21,15 +21,15 @@
     padding: 10px;
 }
 
-#sent-list {
+#sent-list, #new-list, #received-list {
     margin: 20px 0 0 0;
 }
 
-#sent-list > li {
+#sent-list > li, #new-list > li, #received-list > li {
     padding: 10px 10px 3px 10px;
 }
 
-#sent-list > li > p {
+#sent-list > li > p, #new-list > li > p, #received-list > li > p {
     display: inline-block;
     width: 35%;
     overflow: hidden;
@@ -39,7 +39,7 @@
     /*border: 1px solid red;*/
 }
 
-#sent-list > li > a {
+#sent-list > li > a, #new-list > li > a, #received-list > li > a {
     /*border: 1px solid red;*/
     display: inline-block;
     margin: 0;
@@ -47,15 +47,15 @@
     float: right;
 }
 
-#sent-list > li > a > i {
+#sent-list > li > a > i, #new-list > li > a > i, #received-list > li > a > i {
     font-size: 20px;
     margin-left: 10px;
 }
 
-#view {
+.view {
     color: #0288D1;
 }
 
-#delete {
+.delete {
     color: red
 }

@@ -23,7 +23,8 @@ class PrivateMessage extends Model
         $receivedPM = DB::table('private_messages')
                         ->join('users', 'private_messages.pm_author', '=', 'users.user_id')
                         ->where('private_messages.pm_receiver' ,'=', $user_id)
-                        ->select('users.username', 'users.profile_url_key', 'private_messages.*')
+                        ->where('private_messages.status', '=', 'read')
+                        ->select('users.username', 'private_messages.*')
                         ->get();
         return $receivedPM;
     }
@@ -33,7 +34,18 @@ class PrivateMessage extends Model
         $sentPM = DB::table('private_messages')
             ->join('users', 'private_messages.pm_receiver', '=', 'users.user_id')
             ->where('private_messages.pm_author' ,'=', $user_id)
-            ->select('users.username', 'users.profile_url_key', 'private_messages.*')
+            ->select('users.username', 'private_messages.*')
+            ->get();
+        return $sentPM;
+    }
+
+    public static function newPM($user_id)
+    {
+        $sentPM = DB::table('private_messages')
+            ->join('users', 'private_messages.pm_receiver', '=', 'users.user_id')
+            ->where('private_messages.pm_receiver' ,'=', $user_id)
+            ->where('private_messages.status', '=', 'not read')
+            ->select('users.username', 'private_messages.*')
             ->get();
         return $sentPM;
     }

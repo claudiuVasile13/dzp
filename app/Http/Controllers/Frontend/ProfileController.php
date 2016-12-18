@@ -328,7 +328,8 @@ class ProfileController extends Controller
         $friendshipNotifications = count($friendshipNotificationsSenders);
         $sentPM = PrivateMessage::sentPM($loggedUser->user_id);
         $receivedPM = PrivateMessage::receivedPM($loggedUser->user_id);
-        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'sentPM', 'receivedPM'));
+        $newPM = PrivateMessage::newPM($loggedUser->user_id);
+        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'sentPM', 'receivedPM', 'newPM'));
     }
 
     // Load the Send PM Page
