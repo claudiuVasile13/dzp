@@ -29,8 +29,12 @@ class ProfileController extends Controller
         $countries = [];
         if ($isLoggedIn) {
             $loggedUser = Auth::user();
+            // The number of Friendship Notifications
             $friendshipNotifications = FriendshipRequest::where('receiverID', $loggedUser->user_id)->get();
             $friendshipNotifications = count($friendshipNotifications);
+            // The number of new pm received
+            $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+            $pmNotifications = count($pmNotifications);
             $user = User::where('username', $username)->get()[0];
             if ($loggedUser->user_id === $user->user_id) {
                 $isAccountOwner = true;
@@ -63,7 +67,7 @@ class ProfileController extends Controller
         $user->ranks;
         $user->mainRank;
         $friends = Friendship::friends($user->user_id);
-        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications', 'friends'));
+        return view('frontend.profile', compact('user', 'countries', 'isAccountOwner', 'isLoggedIn', 'friendshipStatus', 'friendshipNotifications', 'friends', 'pmNotifications'));
     }
 
     // Edit Users's Profile
@@ -232,9 +236,13 @@ class ProfileController extends Controller
     public function friendshipNotificationsPage()
     {
         $loggedUser = Auth::user();
+        // The number of Friendship Notifications
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
-        return view('frontend.friendship-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications'));
+        // The number of new pm received
+        $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+        $pmNotifications = count($pmNotifications);
+        return view('frontend.friendship-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'pmNotifications'));
     }
     
     // Accept Friendship
@@ -324,21 +332,29 @@ class ProfileController extends Controller
     public function pmPage()
     {
         $loggedUser = Auth::user();
+        // The number of Friendship Notifications
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
+        // The number of new pm received
+        $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+        $pmNotifications = count($pmNotifications);
         $sentPM = PrivateMessage::sentPM($loggedUser->user_id);
         $receivedPM = PrivateMessage::receivedPM($loggedUser->user_id);
         $newPM = PrivateMessage::newPM($loggedUser->user_id);
-        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'sentPM', 'receivedPM', 'newPM'));
+        return view('frontend.pm-notifications', compact('friendshipNotificationsSenders', 'friendshipNotifications', 'pmNotifications', 'sentPM', 'receivedPM', 'newPM'));
     }
 
     // Load the Send PM Page
     public function sendPMPage($username = null)
     {
         $loggedUser = Auth::user();
+        // The number of Friendship Notifications
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
-        return view('frontend.send-pm', compact('username', 'friendshipNotifications', 'friendshipNotificationsSenders'));
+        // The number of new pm received
+        $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+        $pmNotifications = count($pmNotifications);
+        return view('frontend.send-pm', compact('username', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
     }
 
     // Send PM to a user
@@ -380,9 +396,46 @@ class ProfileController extends Controller
         }
     }
 
-    public function deletePM($message_id)
+    public function viewPM($pm_id)
     {
+        $loggedUser = Auth::user();
+        $pm = PrivateMessage::where('pm_id', $pm_id)->get();
+        if(count($pm)) {
+            $pm = $pm[0];
+            if($pm->pm_author === $loggedUser->user_id || $pm->pm_receiver === $loggedUser->user_id) {
+                if($pm->pm_author === $loggedUser->user_id) {
+                    $isAuthor = true;
+                    $pm_author = $loggedUser;
+                    $pm_author->mainRank;
+                    $pm_receiver = User::find($pm->pm_receiver);
+                    $pm_receiver->mainRank;
+                } else {
+                    $isAuthor = false;
+                    $pm_author = User::find($pm->pm_author);
+                    $pm_author->mainRank;
+                    $pm_receiver = $loggedUser;
+                    $pm_receiver->mainRank;
+                }
+                // The number of Friendship Notifications
+                $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
+                $friendshipNotifications = count($friendshipNotificationsSenders);
+                // The number of new pm received
+                $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+                $pmNotifications = count($pmNotifications);
+                return view('frontend.view-pm', compact('pm', 'isAuthor', 'pm_author', 'pm_receiver', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
+            } else {
+                return Redirect::to('/pm')
+                    ->with('PMItIsNotYours', 'The private message you want to see does not belong to you.');
+            }
+        } else {
+            return Redirect::to('/pm')
+                ->with('PMDoesNotExist', 'The private message you want to see does not exist.');
+        }
+    }
 
+    public function deletePM($pm_id)
+    {
+        return $pm_id;
     }
 
 }

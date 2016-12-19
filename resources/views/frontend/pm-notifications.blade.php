@@ -15,6 +15,22 @@
             </div>
         @endif
 
+        @if(session()->has('PMItIsNotYours'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('PMItIsNotYours') }}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if(session()->has('PMDoesNotExist'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('PMDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <h3>Private Messages</h3>
         <a href="/send-pm" id="send-pm-button">Send PM</a>
         <ul class="nav nav-tabs">
@@ -25,14 +41,14 @@
 
         <div class="tab-content">
            {{-- New PM Received List --}}
-            <ul id="new-list" class="list-group tab-pane fade">
+            <ul id="new-list" class="list-group tab-pane fade active in">
                 <h4 class="messages-count">New Messages ({{ count($newPM) }})</h4>
                 @if(count($newPM))
                     @foreach($newPM as $message)
                         <li class="list-group-item">
                             <p><strong>To:</strong> {{ $message->username }}</p>
                             <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                            <a href="#"><i class="fa fa-eye view" aria-hidden="true"></i></a>
+                            <a href="/pm/{{ $message->pm_id }}"><i class="fa fa-eye view" aria-hidden="true"></i></a>
                         </li>
                     @endforeach
                 @endif
@@ -46,8 +62,8 @@
                         <li class="list-group-item">
                             <p><strong>To:</strong> {{ $message->username }}</p>
                             <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                            <a href="#"><i class="fa fa-trash-o delete" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-eye view" aria-hidden="true"></i></a>
+                            <a href="/delete-pm/{{ $message->pm_id }}"><i class="fa fa-trash-o delete" aria-hidden="true"></i></a>
+                            <a href="/pm/{{ $message->pm_id }}"><i class="fa fa-eye view" aria-hidden="true"></i></a>
                         </li>
                     @endforeach
                 @endif
@@ -61,7 +77,7 @@
                         <li class="list-group-item">
                             <p><strong>To:</strong> {{ $message->username }}</p>
                             <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                            <a href="#"><i class="fa fa-eye view" aria-hidden="true"></i></a>
+                            <a href="/pm/{{ $message->pm_id }}"><i class="fa fa-eye view" aria-hidden="true"></i></a>
                         </li>
                     @endforeach
                 @endif

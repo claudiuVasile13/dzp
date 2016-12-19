@@ -67,7 +67,7 @@ a, a:visited, a:hover, a:active {
 
 /* Side Menu Bar */
 #side-bar-div {
-    width: 200px;
+    width: 230px;
     height: 100%;
     position: fixed;
     top: 50px;
@@ -238,11 +238,12 @@ hr {
 }
 
 /* Notifications Number */
-#notifications-number {
+.notifications-number {
     display: inline-block;
     padding: 0 5px 0 5px;
     text-align: center;
     background: red;
+    margin-left: 5px;
     color: #fff;
     border-top-left-radius: 50%;
     border-bottom-right-radius: 50%;

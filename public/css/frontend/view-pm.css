@@ -1,0 +1,41 @@
+#view-pm-container {
+    background: #fff;
+    width: 95%;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
+    padding: 0;
+    margin: 70px auto;
+    padding: 20px;
+}
+
+#list-pm-details {
+    list-style-type: none;
+    /*border: 1px solid red;*/
+}
+
+#list-pm-details > li {
+    /*border: 1px solid red;*/
+    font-size: 16px;
+}
+
+#list-pm-details > li > span {
+    display: inline-block;
+    font-weight: bold;
+    width: 50px;
+    /*border: 1px solid black;*/
+}
+
+#list-break-line {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+#delete-pm {
+    background: #0288D1;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-radius: 2px;
+}

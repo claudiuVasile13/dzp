@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\FriendshipRequest;
+use App\PrivateMessage;
 
 class HomeController extends Controller
 {
@@ -16,10 +17,14 @@ class HomeController extends Controller
         $friendshipNotifications = 0;
         if ($isLoggedIn) {
             $loggedUser = Auth::user();
-            $friendshipNotifications = FriendshipRequest::where('receiverID', $loggedUser->user_id)->get();
-            $friendshipNotifications = count($friendshipNotifications);
+            // The number of Friendship Notifications
+            $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
+            $friendshipNotifications = count($friendshipNotificationsSenders);
+            // The number of new pm received
+            $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
+            $pmNotifications = count($pmNotifications);
         }
-        return view('frontend.index', compact('friendshipNotifications'));
+        return view('frontend.index', compact('friendshipNotifications', 'pmNotifications'));
     }
 
 }

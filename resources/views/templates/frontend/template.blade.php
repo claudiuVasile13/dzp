@@ -8,13 +8,7 @@
         <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Roboto Condensed">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Days One">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Chewy">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Josefin Sans">
+              href="https://fonts.googleapis.com/css?family=Roboto Condensed|Days One|Chewy|Josefin Sans">
         @yield('head')
         <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
@@ -56,11 +50,16 @@
                 <li><a href="/contact"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a></li>
                 {{-- Login Required --}}
                 @if(Auth::check())
-                    <li><a href="/pm"><i class="fa fa-comment" aria-hidden="true"></i> PM</a></li>
+                    <li>
+                        <a href="/pm">
+                            <i class="fa fa-comment" aria-hidden="true"></i> PM
+                            <span class="notifications-number">{{ $pmNotifications }}</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="/friendship-notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications
-                            <span id="notifications-number">{{ $friendshipNotifications }}</span>
+                            <span class="notifications-number">{{ $friendshipNotifications }}</span>
                         </a>
                     </li>
                     {{-- Membership Required --}}
