@@ -4,77 +4,77 @@
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
     padding: 0;
     margin: 70px auto;
-    padding: 20px;
+    margin-bottom: 20px;
 }
 
-#list-pm-details {
+#pm-list {
     list-style-type: none;
     /*border: 1px solid red;*/
+    /*padding: 10px*/
 }
 
-#list-pm-details > li {
-    font-size: 16px;
-    padding: 0px;
+#pm-list > li {
+    /*border: 1px solid red;*/
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    /*padding: 5px;*/
+    /*background: #2e333b;*/
+    border-bottom: 1px solid silver;
+    color: #2e333b;
 }
 
-.list-break-line {
-    border: 0;
-    height: 1px;
-    background: #333;
-    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+#pm-list > li:last-child {
+    border: none;
 }
 
-#delete-pm {
-    background: #0288D1;
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 20px;
+.pm-field-name-box {
+    padding: 5px;
     display: inline-block;
-    border-radius: 2px;
-}
-
-/* Fields div and span, Ex: Subject, Date, ... */
-.pm-field-name {
+    width: 90px;
+    /*border: 1px solid red;*/
+    vertical-align: top;
     background: #2e333b;
-    padding: 10px;
-    color: #fff;
 }
 
-.pm-field-name > span {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
+.pm-field-name {
+    /*border: 1px solid red;*/
     font-size: 18px;
-    /*border: 1px solid black;*/
-    margin: 0;
+    font-weight: bold;
+    color: #fff;
     display: inline-block;
+    /*width: 85px;*/
 }
 
-/* User details: image, rank, username */
-.pm-user-info-box, .pm-field-box {
-    padding: 10px;
-    border-left: 1px solid #2e333b;
-    border-right: 1px solid #2e333b;
-    border-bottom: 1px solid #2e333b;
-    margin-bottom: 20px;
+.pm-field-value-box {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    padding: 5px;
+    width: calc(100% - 100px);
+}
+
+.pm-field-value {
+    /*border: 1px solid red;*/
+    margin-top: 2px;
+    display: inline-block;
+    font-size: 16px;
 }
 
 .pm-user-image {
-    width: 100px;
-    display: inline-block;
+    width: 150px;
 }
 
-.user-info-inner-box {
+.pm-user-info-box {
     display: inline-block;
-    margin: 0;
+    /*border: 1px solid red;*/
     vertical-align: top;
-    padding: 0;
 }
 
 .pm-username {
-    margin: 5px;
-    font-weight: bold;
-}
-
-.pm-fields-content {
-    margin: 0;
+    display: block;
+    /*border: 1px solid red;*/
+    margin-left: 5px;
+    font-size: 16px;
 }

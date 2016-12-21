@@ -53,7 +53,7 @@ a, a:visited, a:hover, a:active {
     z-index: 5;
     height: 50px;
     padding: 0;
-    background: #fff;
+    background: #2e333b;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .35);
 }
 
@@ -62,7 +62,7 @@ a, a:visited, a:hover, a:active {
     margin: 9px 0 0 10px;
     cursor: pointer;
     float: left;
-    color: #2e333b;
+    color: #fff;
 }
 
 /* Side Menu Bar */
@@ -207,8 +207,8 @@ a, a:visited, a:hover, a:active {
 
 /* Top Menu Login Button */
 #login-btn {
-    background: #2e333b;
-    color: #fff;
+    background: #fff;
+    color: #2e333b;
     width: 100px;
     text-align: center;
     float: right;
@@ -218,7 +218,7 @@ a, a:visited, a:hover, a:active {
 }
 
 #login-btn:hover {
-    background: #292e30;
+    background: #F1F1F1;
 }
 
 #login-btn > a {
@@ -259,11 +259,12 @@ hr {
     height: auto;
     margin: 0;
     overflow: hidden;
-    background-image: url('../../img/frontend50.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /*background-image: url('../../img/frontend50.png');*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    background: #F1F1F1;
 }
 
 /* Footer */

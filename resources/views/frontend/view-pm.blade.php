@@ -7,58 +7,87 @@
 
 @section('content')
     <div id="view-pm-container">
-        {{--@if($isAuthor)--}}
+        @if($isAuthor)
             {{--<a href="/delete-pm/{{ $pm->pm_id }}" id="delete-pm">Delete this PM</a>--}}
-        {{--@endif--}}
-        <ul id="list-pm-details">
-                <div class="pm-field-name">
-                    <span><i class="fa fa-text-width" aria-hidden="true"></i> Subject</span>
-                </div>
-                <div class="pm-field-box">
-                    <p class="pm-fields-content">{{ $pm->pm_title }}</p>
-                </div>
-            </li>
-            <li>
-                <div class="pm-field-name">
-                    <span><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
-                </div>
-                <div class="pm-field-box">
-                    <p class="pm-fields-content">{{ $pm->created_at }}</p>
-                </div>
-            </li>
-            <li>
-                <div class="pm-field-name">
-                    <span><i class="fa fa-plane" aria-hidden="true"></i> To</span>
-                </div>
-                <div class="pm-user-info-box">
-                    <img src="/img/users/{{ $pm_receiver->user_image }}" alt="Receiver User's Image" class="pm-user-image" />
-                    <div class="user-info-inner-box">
-                        <img src="/img/ranks/{{ $pm_receiver->mainRank[0]->rank_image }}" alt="Receiver User's Rank" class="pm-user-rank" />
-                        <p class="pm-username" style="color: #{{ $pm_receiver->mainRank[0]->rank_color }}">{{ $pm_receiver->username }}</p>
+            <ul id="pm-list">
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Subject</span>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="pm-field-name">
-                    <span><i class="fa fa-user" aria-hidden="true"></i> From</span>
-                </div>
-                <div class="pm-user-info-box">
-                    <img src="/img/users/{{ $pm_author->user_image }}" alt="Receiver User's Image" class="pm-user-image" />
-                    <div class="user-info-inner-box">
-                        <img src="/img/ranks/{{ $pm_author->mainRank[0]->rank_image }}" alt="Receiver User's Rank" class="pm-user-rank" />
-                        <p class="pm-username" style="color: #{{ $pm_author->mainRank[0]->rank_color }}">{{ $pm_author->username }}</p>
+                    <div class="pm-field-value-box">
+                        <span class="pm-field-value">{{ $pm->pm_title }}</span>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="pm-field-name">
-                    <span><i class="fa fa-commenting" aria-hidden="true"></i> Message</span>
-                </div>
-                <div class="pm-field-box">
-                    <p class="pm-fields-content">{{ $pm->pm_body }}</p>
-                </div>
-            </li>
-        </ul>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Date</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <span class="pm-field-value">{{ $pm->created_at }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">To</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <img class="pm-user-image" src="/img/users/{{ $pm_receiver->user_image }}" alt="User's Image" />
+                        <div class="pm-user-info-box">
+                            <img class="pm-user-rank" src="/img/ranks/{{ $pm_receiver->mainRank[0]->rank_image }}" alt="User's Rank" />
+                            <span class="pm-username">{{ $pm_receiver->username }}</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Message</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <span class="pm-body">{{ $pm->pm_body }}</span>
+                    </div>
+                </li>
+            </ul>
+        @else
+            <ul id="pm-list">
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Subject</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <span class="pm-field-value">{{ $pm->pm_title }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Date</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <span class="pm-field-value">{{ $pm->created_at }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">From</span>
+                    </div>
+                    <div class="pm-field-content-box">
+                        <img class="pm-user-image" src="/img/users/{{ $pm_author->user_image }}" alt="User's Image" />
+                        <div class="pm-user-info-box">
+                            <img class="pm-user-rank" src="/img/ranks/{{ $pm_author->mainRank[0]->rank_image }}" alt="User's Rank" />
+                            <span class="pm-username">{{ $pm_author->username }}</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pm-field-name-box">
+                        <span class="pm-field-name">Message</span>
+                    </div>
+                    <div class="pm-field-value-box">
+                        <span class="pm-field-value">{{ $pm->pm_body }}</span>
+                    </div>
+                </li>
+            </ul>
+        @endif
+
     </div>
 @stop
 
