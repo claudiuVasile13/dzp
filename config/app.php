@@ -21,7 +21,7 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services your application utilizes. Set this in your ".env" file.
+    | services your application utilizes. Set this in your ".env.example" file.
     |
     */
 
@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-        ntervention\Image\ImageServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         //
 
         /*
