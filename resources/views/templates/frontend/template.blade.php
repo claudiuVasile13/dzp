@@ -53,12 +53,14 @@
                     <li>
                         <a href="/pm">
                             <i class="fa fa-comment" aria-hidden="true"></i> PM
+                            <i class="fa fa-bell notification-bell" aria-hidden="true"></i>
                             <span class="notifications-number">{{ $pmNotifications }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="/friendship-notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i> Friendship Notifications
+                            <i class="fa fa-bell notification-bell" aria-hidden="true"></i>
                             <span class="notifications-number">{{ $friendshipNotifications }}</span>
                         </a>
                     </li>

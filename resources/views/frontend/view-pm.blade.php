@@ -69,7 +69,7 @@
                     <div class="pm-field-name-box">
                         <span class="pm-field-name">From</span>
                     </div>
-                    <div class="pm-field-content-box">
+                    <div class="pm-field-value-box">
                         <img class="pm-user-image" src="/img/users/{{ $pm_author->user_image }}" alt="User's Image" />
                         <div class="pm-user-info-box">
                             <img class="pm-user-rank" src="/img/ranks/{{ $pm_author->mainRank[0]->rank_image }}" alt="User's Rank" />

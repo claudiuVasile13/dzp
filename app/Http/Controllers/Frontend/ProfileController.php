@@ -99,6 +99,7 @@ class ProfileController extends Controller
                 'username' => $request->input('username'),
                 'job_hobbies' => $request->input('job_hobbies'),
                 'gameranger_id' => $request->input('gameranger_id'),
+                'birthday' => $request->input('birthday'),
                 'status' => $request->input('status'),
                 'description' => $request->input('description'),
                 'email' => $request->input('email'),
