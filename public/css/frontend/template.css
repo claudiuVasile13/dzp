@@ -62,7 +62,7 @@ a, a:visited, a:hover, a:active {
     margin: 9px 0 0 10px;
     cursor: pointer;
     float: left;
-    color: #fff;
+    color: #aaa;
 }
 
 /* Side Menu Bar */
@@ -88,6 +88,21 @@ a, a:visited, a:hover, a:active {
 
 .hide-side-bar {
     left: -300px;
+}
+
+#admin-panel-button {
+    background: #0288D1;
+    color: #fff;
+    padding: 5px 20px 5px 20px;
+    margin: 10px;
+    width: 90%;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+#admin-panel-button:hover {
+    background: #0277BD;
 }
 
 #menu-ul {
@@ -142,6 +157,7 @@ a, a:visited, a:hover, a:active {
     margin: 0 10px 0 0;
     position: relative;
     cursor: pointer;
+    color: #aaa;
 }
 
 #user-box > p {
@@ -165,10 +181,10 @@ a, a:visited, a:hover, a:active {
     top: 50px;
     right: 10px;
     text-align: center;
+    color: #aaa;
 }
 
 #user-options-box > i {
-    /*border: 1px solid red;*/
     font-size: 30px;
     color: #2e333b;
     position: absolute;
@@ -179,7 +195,6 @@ a, a:visited, a:hover, a:active {
 #user-options-box > a {
     display: block;
     background: #2e333b;
-    color: #fff;
     /*border: 1px solid red;*/
     padding: 5px 15px 5px 15px;
     text-align: left;
@@ -187,6 +202,7 @@ a, a:visited, a:hover, a:active {
 
 #user-options-box > a > i {
     margin-right: 10px;
+    color: #fff;
 }
 
 #profile-link{

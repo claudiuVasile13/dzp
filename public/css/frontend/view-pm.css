@@ -78,3 +78,27 @@
     margin-left: 5px;
     font-size: 16px;
 }
+
+/* Send Reply */
+#send-reply-box, #delete-pm-box {
+    /*border: 1px solid red;*/
+    background: #2e333b;
+    padding: 10px;
+    position: relative;
+    height: 50px;
+}
+
+#send-reply-button, #delete-pm-button {
+    display: inline-block;
+    color: #fff;
+    background: #0288D1;
+    padding: 5px 20px 5px 20px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+
+#send-reply-button:hover, #delete-pm-button:hover {
+    background: #0277BD;
+}

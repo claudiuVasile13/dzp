@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="subject">Subject</label>
-                <input id="subject" type="text" name="subject" />
+                <input id="subject" type="text" name="subject" value="{{ $subject }}" />
             </div>
             <div class="form-group">
                 <label for="message">Message</label>

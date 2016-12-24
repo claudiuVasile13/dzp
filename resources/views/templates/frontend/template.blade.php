@@ -38,6 +38,9 @@
 
         {{-- Side Menu Bar --}}
         <div id="side-bar-div" class="hide-side-bar">
+            @if(session()->has('group') && (session('group') === "admin" || session('group') === "developer"))
+                <a href="/admin-panel" id="admin-panel-button">Admin Panel</a>
+            @endif
             <ul id="menu-ul">
                 <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                 <li><a href="/forum"><i class="fa fa-comments" aria-hidden="true"></i> Forum</a></li>

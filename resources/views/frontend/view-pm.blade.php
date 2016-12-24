@@ -8,7 +8,9 @@
 @section('content')
     <div id="view-pm-container">
         @if($isAuthor)
-            {{--<a href="/delete-pm/{{ $pm->pm_id }}" id="delete-pm">Delete this PM</a>--}}
+            <div id="delete-pm-box">
+                <a href="/delete-pm/{{ $pm->pm_id }}" id="delete-pm-button">Delete this PM</a>
+            </div>
             <ul id="pm-list">
                 <li>
                     <div class="pm-field-name-box">
@@ -48,6 +50,9 @@
                 </li>
             </ul>
         @else
+            <div id="send-reply-box">
+                <a id="send-reply-button" href="/send-pm/{{ $pm_author->username }}/Re: {{ $pm->pm_title }}">Send Reply</a>
+            </div>
             <ul id="pm-list">
                 <li>
                     <div class="pm-field-name-box">

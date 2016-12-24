@@ -346,7 +346,7 @@ class ProfileController extends Controller
     }
 
     // Load the Send PM Page
-    public function sendPMPage($username = null)
+    public function sendPMPage($username = null, $subject = null)
     {
         $loggedUser = Auth::user();
         // The number of Friendship Notifications
@@ -355,7 +355,7 @@ class ProfileController extends Controller
         // The number of new pm received
         $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
         $pmNotifications = count($pmNotifications);
-        return view('frontend.send-pm', compact('username', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
+        return view('frontend.send-pm', compact('username', 'subject', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
     }
 
     // Send PM to a user
@@ -411,6 +411,10 @@ class ProfileController extends Controller
                     $pm_receiver = User::find($pm->pm_receiver);
                     $pm_receiver->mainRank;
                 } else {
+                    if($pm->status === "not read") {
+                        $pm->status = "read";
+                        $pm->save();
+                    }
                     $isAuthor = false;
                     $pm_author = User::find($pm->pm_author);
                     $pm_author->mainRank;
@@ -436,7 +440,22 @@ class ProfileController extends Controller
 
     public function deletePM($pm_id)
     {
-        return $pm_id;
+        $loggedUser = Auth::user();
+        $pm = PrivateMessage::where('pm_id', $pm_id)->get();
+        if(count($pm)) {
+            $pm = $pm[0];
+            if ($pm->pm_author === $loggedUser->user_id) {
+                $pm->delete();
+                return Redirect::to('/pm')
+                    ->with('PMDeleted', 'The private message was successfully deleted.');
+            } else {
+                return Redirect::to('/pm')
+                    ->with('PMItIsNotYours', 'You can only delete the messages that you have sent.');
+            }
+        } else {
+            return Redirect::to('/pm')
+                ->with('PMDoesNotExist', 'The private message you want to see does not exist.');
+        }
     }
 
 }

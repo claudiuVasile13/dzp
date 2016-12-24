@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Frontend'], function() {
         Route::get('/decline-friendship/{username}', 'ProfileController@declineFriendship');
         Route::get('/remove-friend/{username}', 'ProfileController@removeFriend');
         Route::get('/pm', 'ProfileController@pmPage');
-        Route::get('/send-pm/{username?}', ['uses' => 'ProfileController@sendPMPage']);
+        Route::get('/send-pm/{username?}/{subject?}', ['uses' => 'ProfileController@sendPMPage']);
         Route::post('/send-pm', 'ProfileController@sendPM');
         Route::get('/pm/{pm_id}', 'ProfileController@viewPM');
         Route::get('/delete-pm/{pm_id}', 'ProfileController@deletePM');

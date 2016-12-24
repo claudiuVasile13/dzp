@@ -31,6 +31,14 @@
             </div>
         @endif
 
+        @if(session()->has('PMDeleted'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('PMDeleted') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <h3>Private Messages</h3>
         <a href="/send-pm" id="send-pm-button">Send PM</a>
         <ul class="nav nav-tabs">
