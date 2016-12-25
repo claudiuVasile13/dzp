@@ -71,5 +71,6 @@ Route::group(['namespace' => 'Backend'], function() {
     Route::group(['middleware' => 'adminPanelCheck'], function() {
         Route::get('/admin-panel', 'AdminPanelController@dashboardPage');
         Route::get('/admin-panel/users', 'AdminPanelController@usersPage');
+        Route::get('/admin-panel/users/view/{user_id}', 'AdminPanelController@viewUserPage');
     });
 });

@@ -1,0 +1,48 @@
+#view-user-container {
+    /*border: 1px solid red;*/
+    padding: 10px;
+}
+
+/* Profile Tab */
+#profile-data-list {
+    list-style-type: none;
+    width: 100%;
+    /*border: 1px solid green;*/
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+#profile-data-list > li {
+    width: 100%;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    margin: 0;
+    border-bottom: 1px solid silver;
+    padding: 5px;
+}
+
+#profile-data-list > li:last-child {
+    border: none;
+}
+
+#profile-data-list > li > p {
+    display: inline-block;
+}
+
+.field-name {
+    width: 160px;
+    font-weight: bold;
+    color: #2e333b;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    /*border: 1px solid blue;*/
+}
+
+.field-value {
+    /*font-family: 'Roboto Condensed';*/
+    font-size: 17px;
+    color: #000;
+    /*border: 1px solid red;*/
+    margin: 0;
+}

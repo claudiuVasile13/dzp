@@ -11,6 +11,14 @@
             <li class="breadcrumb-item">Users</li>
         </ol>
 
+        @if(session()->has('UserDoesNotExist'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('UserDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table id="users-table" class="table">
                 <thead>
