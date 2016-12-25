@@ -56,5 +56,6 @@ class Kernel extends HttpKernel
         'ifLoggedIn' => \App\Http\Middleware\RedirectIfNotLoggedIn::class,
         'ifGuest' => \App\Http\Middleware\RedirectIfNotGuest::class,
         'groupVerification' => \App\Http\Middleware\GroupVerification::class,
+        'adminPanelCheck' => \App\Http\Middleware\AdminPanelCheck::class,
     ];
 }

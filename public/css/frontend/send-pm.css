@@ -9,17 +9,24 @@
 #send-pm-form {
     /*border: 1px solid red;*/
     width: 100%;
-    padding: 10px;
+    padding: 20px;
 }
 
 .form-group > label {
     display: block;
     font-size: 18px;
+    font-family: 'Josefin Sans';
 }
 
 .form-group > input {
     width: 200px;
     padding: 5px;
+    border: none;
+    border-bottom: 2px solid #2e333b;
+}
+
+.form-group > input:focus {
+    border-bottom: 2px solid #0288D1;
 }
 
 .form-group > textarea {
@@ -27,10 +34,12 @@
     height: 100px;
     resize: none;
     padding: 5px;
+    border: 2px solid #2e333b;
 }
 
-.form-group > textarea:focus , .form-group > input:focus {
-    outline: #0288D1 solid thin;
+.form-group > textarea:focus {
+    outline: none;
+    border: 2px solid #0288D1;
 }
 
 #send-pm {
@@ -46,4 +55,8 @@
 
 #send-pm:focus {
     outline: none;
+}
+
+#username {
+    width: 200px;
 }

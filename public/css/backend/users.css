@@ -1,0 +1,28 @@
+#users-container {
+    padding: 10px;
+}
+
+#users-table > tbody > tr:hover {
+    background: #EEEEEE;
+}
+
+.action-button {
+    /*border: 1px solid red;*/
+    margin-left: 10px;
+}
+
+.action-button:first-child {
+    margin: 0;
+}
+
+.view-user {
+    color: #0288D1;
+}
+
+.edit-user {
+    color: #2ca02c;
+}
+
+.delete-user {
+    color: red;
+}

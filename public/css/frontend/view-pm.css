@@ -97,6 +97,7 @@
     position: absolute;
     right: 10px;
     top: 9px;
+    cursor: pointer;
 }
 
 #send-reply-button:hover, #delete-pm-button:hover {

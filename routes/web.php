@@ -28,7 +28,9 @@ Route::group(['namespace' => 'Authentication'], function() {
         Route::post('/new-password', 'AuthController@newPassword');
     });
 
-    Route::get('/logout', 'AuthController@logout');
+    Route::group(['middleware' => 'ifLoggedIn'], function() {
+        Route::get('/logout', 'AuthController@logout');
+    });
 });
 
 Route::group(['namespace' => 'Frontend'], function() {
@@ -63,4 +65,11 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/servers', 'ServersController@serversPage');
     Route::get('/join-us', 'JoinUsController@joinUsPage');
     Route::get('/roster', 'RosterController@rosterPage');
+});
+
+Route::group(['namespace' => 'Backend'], function() {
+    Route::group(['middleware' => 'adminPanelCheck'], function() {
+        Route::get('/admin-panel', 'AdminPanelController@dashboardPage');
+        Route::get('/admin-panel/users', 'AdminPanelController@usersPage');
+    });
 });

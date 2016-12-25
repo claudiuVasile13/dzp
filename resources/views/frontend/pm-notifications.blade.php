@@ -70,7 +70,7 @@
                         <li class="list-group-item">
                             <p><strong>To:</strong> {{ $message->username }}</p>
                             <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                            <a href="/delete-pm/{{ $message->pm_id }}"><i class="fa fa-trash-o delete" aria-hidden="true"></i></a>
+                            <a pm-id="{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete" aria-hidden="true"></i></a>
                             <a href="/pm/{{ $message->pm_id }}"><i class="fa fa-eye view" aria-hidden="true"></i></a>
                         </li>
                     @endforeach
@@ -95,4 +95,5 @@
 @stop
 
 @section('footer')
+    <script src="/js/frontend/confirm.js"></script>
 @stop

@@ -37,7 +37,20 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="username">User</label>
-                <input id="username" type="text" name="username" value="{{ $username }}" />
+                <select class="form-control" name="username" id="username" >
+                    <option value="">Select a user ...</option>
+                    @if(count($allUsers))
+                        @foreach($allUsers as $user)
+                            <option value="{{ $user->username }}"
+                                    @if($username === $user->username)
+                                        selected="selected"
+                                    @endif
+                            >
+                                {{ $user->username }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
             </div>
             <div class="form-group">
                 <label for="subject">Subject</label>

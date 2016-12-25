@@ -349,13 +349,14 @@ class ProfileController extends Controller
     public function sendPMPage($username = null, $subject = null)
     {
         $loggedUser = Auth::user();
+        $allUsers = User::all();
         // The number of Friendship Notifications
         $friendshipNotificationsSenders = FriendshipRequest::senders($loggedUser->user_id);
         $friendshipNotifications = count($friendshipNotificationsSenders);
         // The number of new pm received
         $pmNotifications = PrivateMessage::where('pm_receiver', $loggedUser->user_id)->where('status', 'not read')->get();
         $pmNotifications = count($pmNotifications);
-        return view('frontend.send-pm', compact('username', 'subject', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
+        return view('frontend.send-pm', compact('username', 'subject', 'allUsers', 'friendshipNotifications', 'friendshipNotificationsSenders', 'pmNotifications'));
     }
 
     // Send PM to a user

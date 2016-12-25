@@ -56,6 +56,10 @@
     color: #0288D1;
 }
 
+#delete-pm-button {
+    cursor: pointer;
+}
+
 .delete {
     color: red
 }

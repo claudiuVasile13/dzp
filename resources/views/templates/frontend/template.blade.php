@@ -4,14 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
         <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/frontend/template.css">
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Roboto Condensed|Days One|Chewy|Josefin Sans">
         @yield('head')
-        <link rel="stylesheet" href="/css/frontend/template.css">
     </head>
+
     <body>
         @yield('modal')
 

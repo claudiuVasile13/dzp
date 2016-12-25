@@ -9,7 +9,7 @@
     <div id="view-pm-container">
         @if($isAuthor)
             <div id="delete-pm-box">
-                <a href="/delete-pm/{{ $pm->pm_id }}" id="delete-pm-button">Delete this PM</a>
+                <a pm-id="{{ $pm->pm_id }}" id="delete-pm-button">Delete this PM</a>
             </div>
             <ul id="pm-list">
                 <li>
@@ -97,4 +97,5 @@
 @stop
 
 @section('footer')
+    <script src="/js/frontend/confirm.js"></script>
 @stop
