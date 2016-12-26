@@ -58,6 +58,9 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
+                            <a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li>
                             <a href="/admin-panel"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
                         </li>
                         <li>

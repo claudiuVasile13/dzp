@@ -18,7 +18,8 @@
     box-sizing: border-box;
     margin: 0;
     border-bottom: 1px solid silver;
-    padding: 5px;
+    /*padding: 5px;*/
+    background: #EEEEEE;
 }
 
 #profile-data-list > li:last-child {
@@ -27,22 +28,57 @@
 
 #profile-data-list > li > p {
     display: inline-block;
+    padding: 5px;
+    font-size: 15px;
 }
 
 .field-name {
-    width: 160px;
+    width: 130px;
     font-weight: bold;
-    color: #2e333b;
-    font-size: 18px;
     padding: 0;
     margin: 0;
     /*border: 1px solid blue;*/
+    background: #222;
+    color: #fff;
 }
 
 .field-value {
     /*font-family: 'Roboto Condensed';*/
-    font-size: 17px;
-    color: #000;
+    color: #222;
     /*border: 1px solid red;*/
     margin: 0;
+}
+
+/* Friends Tab */
+#friends-div {
+    /*border: 1px solid red;*/
+}
+
+#friends-list {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+#friends-list > li {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+#friends-list > li:last-child {
+    border: none;
+}
+
+#friends-list > li > a >img {
+    width: 100px;
+}
+
+.user-username {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Josefin Sans';
+    /*border: 1px solid red;*/
 }

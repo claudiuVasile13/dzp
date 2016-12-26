@@ -418,8 +418,8 @@
                                    <a class="pull-left" href="/profile/{{ $friend->username }}" title="{{ $friend->username }}">
                                        <img src="/img/users/{{ $friend->user_image }}" alt="Friend's Image" />
                                    </a>
-                                   <div class="pull-right" id="buttons-container">
-                                       <img id="friend-rank" src="/img/ranks/{{ $friend->rank_image }}" alt="Friend's Rank">
+                                   <div class="pull-right" class="buttons-container">
+                                       <img class="friend-rank" src="/img/ranks/{{ $friend->rank_image }}" alt="Friend's Rank">
                                        <br />
                                        <button id="remove-friend-button">
                                            <a href="/remove-friend/{{ $friend->username }}">Remove Friend</a>
@@ -429,8 +429,6 @@
                                </li>
                            @endforeach
                         </ul>
-                    @else
-
                     @endif
                 </div>
 
