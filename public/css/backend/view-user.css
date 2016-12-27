@@ -82,3 +82,70 @@
     font-family: 'Josefin Sans';
     /*border: 1px solid red;*/
 }
+
+/* PM Tab */
+#pm-list {
+    margin: 10px 0 0 0;
+}
+
+#pm-list > li {
+    padding: 10px 10px 3px 10px;
+}
+
+#pm-list > li > p {
+    display: inline-block;
+    width: 35%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+#pm-list > li > a {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+#pm-list > li > a > i {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.view-pm {
+    color: #0288D1;
+}
+
+#delete-pm-button {
+    cursor: pointer;
+}
+
+.delete-pm {
+    color: red
+}
+
+/* Group Tab */
+#group-container > h4 {
+    margin: 20px 0 0 0;
+    background: #EEEEEE;
+    padding: 10px;
+    color: #222;
+    border-radius: 2px;
+    font-family: 'Josefin Sans';
+}
+
+/* Ranks Tab */
+#ranks-table {
+    margin: 10px 0 0 0;
+}
+
+.main-rank-yes {
+    color: #2ca02c;
+}
+
+.main-rank-no {
+    color: red;
+}

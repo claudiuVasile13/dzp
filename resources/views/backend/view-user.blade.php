@@ -88,15 +88,75 @@
             </div>
 
             <div id="pm-container" class="user-data-container tab-pane fade">
+                <ul id="pm-list" class="list-group">
+                    @if(count($user['sent_pm']))
+                        @foreach($user['sent_pm'] as $message)
+                            <li class="list-group-item">
+                                <p><strong>To:</strong> {{ $message->username }}</p>
+                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
+                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
+                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
+                            </li>
+                        @endforeach
+                    @endif
 
+                    @if(count($user['received_pm']))
+                        @foreach($user['received_pm'] as $message)
+                            <li class="list-group-item">
+                                <p><strong>To:</strong> {{ $message->username }}</p>
+                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
+                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
+                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
+                            </li>
+                        @endforeach
+                    @endif
+
+                    @if(count($user['new_pm']))
+                        @foreach($user['new_pm'] as $message)
+                            <li class="list-group-item">
+                                <p><strong>To:</strong> {{ $message->username }}</p>
+                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
+                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
+                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
+                            </li>
+                        @endforeach
+                    @endif
+                </ul>
             </div>
 
             <div id="group-container" class="user-data-container tab-pane fade">
-
+                <h4>Group: <strong>{{ $user['group']->group_name }}</strong></h4>
             </div>
 
             <div id="ranks-container" class="user-data-container tab-pane fade">
-
+                <div class="table-responsive">
+                    <table class="table" id="ranks-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Main</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(count($user['ranks']))
+                                @foreach($user['ranks'] as $rank)
+                                    <tr>
+                                        <td style="color: {{ $rank->rank_color }}"><strong>{{ $rank->rank_name }}</strong></td>
+                                        <td><img src="/img/ranks/{{ $rank->rank_image }}" alt="Rank's Image" /></td>
+                                        <td>
+                                            @if($rank->rank_id === $user['mainRank'][0]->rank_id)
+                                                <span class="main-rank-yes"><strong>Yes</strong></span>
+                                            @else
+                                                <span class="main-rank-no"><strong>No</strong></span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

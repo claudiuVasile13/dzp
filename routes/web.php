@@ -70,9 +70,14 @@ Route::group(['namespace' => 'Frontend'], function() {
 Route::group(['namespace' => 'Backend'], function() {
     Route::group(['middleware' => 'ifLoggedIn'], function() {
         Route::group(['middleware' => 'adminPanelCheck'], function () {
-            Route::get('/admin-panel', 'AdminPanelController@dashboardPage');
-            Route::get('/admin-panel/users', 'AdminPanelController@usersPage');
-            Route::get('/admin-panel/users/view/{user_id}', 'AdminPanelController@viewUserPage');
+            Route::get('/admin-panel', 'DashboardController@dashboardPage');
+            // Users
+            Route::get('/admin-panel/users', 'UsersController@usersPage');
+            Route::get('/admin-panel/users/view/{user_id}', 'UsersController@viewUserPage');
+            Route::get('/admin-panel/users/edit/{user_id}', 'UsersController@editUserPage');
+            Route::post('/admin-panel/users/edit/{user_id}', 'UsersController@editUser');
+            // PM
+            Route::get('/admin-panel/pm/view/{pm_id}', 'PMController@viewPMPage');
         });
     });
 });

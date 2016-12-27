@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Country;
 use App\Friendship;
+use App\Group;
 use App\PrivateMessage;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 
-class AdminPanelController extends Controller
+class UsersController extends Controller
 {
-
-    public function dashboardPage(Request $request)
-    {
-        return view('backend.dashboard');
-    }
 
     public function usersPage(Request $request)
     {
@@ -28,6 +25,7 @@ class AdminPanelController extends Controller
         $user = User::find($user_id);
         $user->group;
         $user->ranks;
+        $user->mainRank;
         $user['friends'] = Friendship::friends($user_id);
         $user['received_pm'] = PrivateMessage::receivedPM($user_id);
         $user['sent_pm'] = PrivateMessage::sentPM($user_id);
@@ -38,6 +36,31 @@ class AdminPanelController extends Controller
             return Redirect::back()
                 ->with('UserDoesNotExist', 'The user that you want view does not exist.');
         }
+    }
+
+    public function editUserPage(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+        $user->group;
+        $user->ranks;
+        $user->mainRank;
+        $user['friends'] = Friendship::friends($user_id);
+        $user['received_pm'] = PrivateMessage::receivedPM($user_id);
+        $user['sent_pm'] = PrivateMessage::sentPM($user_id);
+        $user['new_pm'] = PrivateMessage::newPM($user_id);
+        $countries = Country::all();
+        $groups = Group::all();
+        if (count($user)) {
+            return view('backend.edit-user', compact('user', 'countries', 'groups'));
+        } else {
+            return Redirect::back()
+                ->with('UserDoesNotExist', 'The user that you want to edit does not exist.');
+        }
+    }
+
+    public function editUser(Request $request, $user_id)
+    {
+        return $request->all();
     }
 
 }

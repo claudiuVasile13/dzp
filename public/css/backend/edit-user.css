@@ -1,0 +1,150 @@
+.user-data-container {
+    /*border: 1px solid red;*/
+    margin: 10px 0 10px 0;
+}
+
+#edit-profile-form {
+    /*border: 1px solid red;*/
+}
+
+#tabs {
+    /*border: 1px solid blue;*/
+    margin: 10px;
+}
+
+.profile-data-box {
+    /*border: 1px solid red;*/
+    padding: 20px;
+    margin: 20px 10px 20px 10px;
+    background: #f9f9f9;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
+}
+
+.profile-data-box-title {
+    margin: 0 0 20px 0;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
+    font-family: 'Josefin Sans';
+}
+
+.form-group {
+    /*border: 1px solid red;*/
+}
+
+#submit-box {
+    margin: 10px;
+    /*border: 1px solid red;*/
+    text-align: right;
+}
+
+#submit-box > input {
+    width: 150px;
+}
+
+.form-group > label {
+    display: block;
+    color: #2e333b;
+    font-family: 'Josefin Sans';
+}
+
+.form-group > label > i {
+    font-size: 15px;
+    color: #0288D1;
+}
+
+.form-group > input {
+    border: none;
+    border-bottom: 2px solid #0288D1;
+    width: 300px;
+    height: 30px;
+    padding: 0 5px 0 5px;
+    background: transparent;
+}
+
+.form-group > input:focus, .form-group > textarea {
+    outline: none;
+}
+
+.form-group > input:focus {
+    border: 2px solid #0288D1;
+}
+
+.form-group > textarea {
+    width: 300px;
+    background: transparent;
+    height: 100px;
+    resize: none;
+    border: 2px solid #0288D1;
+    padding: 5px;
+}
+
+#edit_country, #edit_gender, #edit_status {
+    width: 300px;
+}
+
+#edit-profile-submit, #change-image-submit {
+    padding: 10px;
+    color: #fff;
+    height: auto !important;
+    border: 1px solid #0288D1;
+    background: #0288D1;
+    font-weight: bold;
+
+}
+
+#edit-profile-submit:hover, #change-image-submit:hover {
+    background: #fff;
+    color: #0288D1;
+}
+
+.form-group > input[type=file] {
+    border: none ;
+}
+
+/* Friends Tab */
+#friends-div {
+    /*border: 1px solid red;*/
+}
+
+#friends-list {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+#friends-list > li {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+
+#friends-list > li:last-child {
+    border: none;
+}
+
+#friends-list > li > a >img {
+    width: 100px;
+}
+
+.friend-username {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Josefin Sans';
+    /*border: 1px solid red;*/
+}
+
+
+@media screen and (max-width: 400px) {
+    .form-group > input, .form-group > textarea, #edit_country, #edit_gender, #edit_status  {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #submit-box  {
+        margin-top: 120px;
+    }
+}
