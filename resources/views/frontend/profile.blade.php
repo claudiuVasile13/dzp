@@ -7,7 +7,7 @@
 
 @section('modal')
     {{-- Chane Image Modal --}}
-    <div id="changeImageeModal" class="modal fade" role="dialog">
+    <div id="changeImageModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -28,7 +28,30 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div id="changeSignatureModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><i class="fa fa-picture-o" aria-hidden="true"></i> Change Signature</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="change-image-form" action="/change-signature" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="edit-profile-field"><i class="fa fa-picture-o" aria-hidden="true"></i> Upload Image</label>
+                            <input type="file" name="signature" id="change_signature" />
+                        </div>
+                        <div class="form-group">
+                            <input id="change-image-submit" type="submit" value="Save Signature">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -290,7 +313,8 @@
             <img id="rank-image" src="/img/ranks/{{ $user->mainRank[0]->rank_image }}" alt="Rank Image"><br>
             <img id="profile-picture" src="/img/users/{{ $user->user_image }}" alt="Profile Picture"><br>
             @if($isAccountOwner)
-                <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageeModal">Change Image</button>
+                <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageModal">Change Image</button>
+                <button id="change-signature-picture" data-toggle="modal" data-target="#changeSignatureModal">Change Signature</button>
             @else
                 @if($isLoggedIn)
                     @if($friendshipStatus === 'none')
@@ -404,6 +428,14 @@
                         <li>
                             <p class="field-name">Description :</p>
                             <p class="field-value">{{ $user->description }}</p>
+                        </li>
+                        <li>
+                            <p class="field-name">Signature :</p>
+                            @if($user->signature)
+                                <img src="/img/signatures/{{ $user->signature }}" alt="User's Signature" id="user-signature" />
+                            @else
+                                <p class="field-value"></p>
+                            @endif
                         </li>
                     </ul>
                 </div>

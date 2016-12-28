@@ -118,7 +118,7 @@ class ProfileController extends Controller
     public function changeImage(Request $request)
     {
         $rules = [
-            'image' => 'required|mimes:jpg,jpeg'
+            'image' => 'required|mimes:jpg,jpeg,png'
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
@@ -135,6 +135,27 @@ class ProfileController extends Controller
             $user->save();
             return Redirect::back()
                 ->with('ChangeImageSuccess', 'Your profile\'s image has been successfully changed');
+        }
+    }
+
+    public function changeSignature(Request $request)
+    {
+        $rules = [
+            'signature' => 'required|mimes:jpg,jpeg,png'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator);
+        } else {
+            $user = Auth::user();;
+            $imagePath = $_SERVER['DOCUMENT_ROOT'] . "/img/signatures/";
+            $imageName = $user->username . '.' . $request->file('signature')->getClientOriginalExtension();
+            $image = Image::make($request->file('signature'))->save($imagePath . $imageName);
+            $user->signature = $imageName;
+            $user->save();
+            return Redirect::back()
+                ->with('ChangeImageSuccess', 'Your signature image has been successfully changed');
         }
     }
 
