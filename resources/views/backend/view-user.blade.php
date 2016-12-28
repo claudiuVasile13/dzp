@@ -10,8 +10,6 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#profile-container"><span class="tab-name">Profile</span></a></li>
             <li><a data-toggle="tab" href="#friends-container"><span class="tab-name">Friends</span></a></li>
-            <li><a data-toggle="tab" href="#pm-container"><span class="tab-name">PM</span></a></li>
-            <li><a data-toggle="tab" href="#group-container"><span class="tab-name">Group</span></a></li>
             <li><a data-toggle="tab" href="#ranks-container"><span class="tab-name">Ranks</span></a></li>
         </ul>
 
@@ -64,6 +62,10 @@
                         <p class="field-name">Description</p>
                         <p class="field-value">{{ $user->description }}</p>
                     </li>
+                    <li>
+                        <p class="field-name">Group</p>
+                        <p class="field-value">{{ $user['group']->group_name }}</p>
+                    </li>
                 </ul>
             </div>
 
@@ -85,47 +87,6 @@
                         @endforeach
                     </ul>
                 @endif
-            </div>
-
-            <div id="pm-container" class="user-data-container tab-pane fade">
-                <ul id="pm-list" class="list-group">
-                    @if(count($user['sent_pm']))
-                        @foreach($user['sent_pm'] as $message)
-                            <li class="list-group-item">
-                                <p><strong>To:</strong> {{ $message->username }}</p>
-                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
-                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
-                            </li>
-                        @endforeach
-                    @endif
-
-                    @if(count($user['received_pm']))
-                        @foreach($user['received_pm'] as $message)
-                            <li class="list-group-item">
-                                <p><strong>To:</strong> {{ $message->username }}</p>
-                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
-                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
-                            </li>
-                        @endforeach
-                    @endif
-
-                    @if(count($user['new_pm']))
-                        @foreach($user['new_pm'] as $message)
-                            <li class="list-group-item">
-                                <p><strong>To:</strong> {{ $message->username }}</p>
-                                <p><strong>Subject:</strong> {{ $message->pm_title }}</p>
-                                <a pm-id="/admin-panel/pm/delete/{{ $message->pm_id }}" id="delete-pm-button"><i class="fa fa-times delete-pm" aria-hidden="true"></i></a>
-                                <a href="/admin-panel/pm/view/{{ $message->pm_id }}"><i class="fa fa-eye view-pm" aria-hidden="true"></i></a>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-            </div>
-
-            <div id="group-container" class="user-data-container tab-pane fade">
-                <h4>Group: <strong>{{ $user['group']->group_name }}</strong></h4>
             </div>
 
             <div id="ranks-container" class="user-data-container tab-pane fade">

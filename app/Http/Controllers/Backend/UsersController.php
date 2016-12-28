@@ -23,14 +23,11 @@ class UsersController extends Controller
     public function viewUserPage(Request $request, $user_id)
     {
         $user = User::find($user_id);
-        $user->group;
-        $user->ranks;
-        $user->mainRank;
-        $user['friends'] = Friendship::friends($user_id);
-        $user['received_pm'] = PrivateMessage::receivedPM($user_id);
-        $user['sent_pm'] = PrivateMessage::sentPM($user_id);
-        $user['new_pm'] = PrivateMessage::newPM($user_id);
         if (count($user)) {
+            $user->group;
+            $user->ranks;
+            $user->mainRank;
+            $user['friends'] = Friendship::friends($user_id);
             return view('backend.view-user', compact('user'));
         } else {
             return Redirect::back()
@@ -42,12 +39,9 @@ class UsersController extends Controller
     {
         $user = User::find($user_id);
         $user->group;
-        $user->ranks;
-        $user->mainRank;
+//        $user->ranks;
+//        $user->mainRank;
         $user['friends'] = Friendship::friends($user_id);
-        $user['received_pm'] = PrivateMessage::receivedPM($user_id);
-        $user['sent_pm'] = PrivateMessage::sentPM($user_id);
-        $user['new_pm'] = PrivateMessage::newPM($user_id);
         $countries = Country::all();
         $groups = Group::all();
         if (count($user)) {
