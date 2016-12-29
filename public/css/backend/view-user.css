@@ -13,13 +13,15 @@
 }
 
 #profile-data-list > li {
-    width: 100%;
-    /*border: 1px solid red;*/
-    box-sizing: border-box;
-    margin: 0;
-    border-bottom: 1px solid silver;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     /*padding: 5px;*/
-    background: #EEEEEE;
+    /*background: #2e333b;*/
+    border-bottom: 1px solid silver;
+    color: #2e333b;
 }
 
 #profile-data-list > li:last-child {
@@ -32,14 +34,29 @@
     font-size: 15px;
 }
 
-.field-name {
+.field-name-box {
+    padding: 5px;
+    display: inline-block;
     width: 130px;
+    /*border: 1px solid red;*/
+    vertical-align: top;
+    background: #2e333b;
+}
+
+.field-name {
+    /*width: 130px;*/
     font-weight: bold;
     padding: 0;
     margin: 0;
     /*border: 1px solid blue;*/
-    background: #222;
     color: #fff;
+}
+
+.field-value-box {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    padding: 5px;
+    width: calc(100% - 100px);
 }
 
 .field-value {
@@ -47,6 +64,11 @@
     color: #222;
     /*border: 1px solid red;*/
     margin: 0;
+}
+
+#user-signature {
+    /*border: 1px solid red;*/
+    max-width: 100%;
 }
 
 /* Friends Tab */
@@ -81,60 +103,6 @@
     font-weight: bold;
     font-family: 'Josefin Sans';
     /*border: 1px solid red;*/
-}
-
-/* PM Tab */
-#pm-list {
-    margin: 10px 0 0 0;
-}
-
-#pm-list > li {
-    padding: 10px 10px 3px 10px;
-}
-
-#pm-list > li > p {
-    display: inline-block;
-    width: 35%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: 0;
-    /*border: 1px solid red;*/
-}
-
-#pm-list > li > a {
-    /*border: 1px solid red;*/
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    float: right;
-}
-
-#pm-list > li > a > i {
-    font-size: 20px;
-    margin-left: 10px;
-}
-
-.view-pm {
-    color: #0288D1;
-}
-
-#delete-pm-button {
-    cursor: pointer;
-}
-
-.delete-pm {
-    color: red
-}
-
-/* Group Tab */
-#group-container > h4 {
-    margin: 20px 0 0 0;
-    background: #EEEEEE;
-    padding: 10px;
-    color: #222;
-    border-radius: 2px;
-    font-family: 'Josefin Sans';
 }
 
 /* Ranks Tab */

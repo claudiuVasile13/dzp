@@ -314,7 +314,6 @@
             <img id="profile-picture" src="/img/users/{{ $user->user_image }}" alt="Profile Picture"><br>
             @if($isAccountOwner)
                 <button id="change-profile-picture" data-toggle="modal" data-target="#changeImageModal">Change Image</button>
-                <button id="change-signature-picture" data-toggle="modal" data-target="#changeSignatureModal">Change Signature</button>
             @else
                 @if($isLoggedIn)
                     @if($friendshipStatus === 'none')
@@ -384,58 +383,105 @@
                     @endif
                     <ul class="info-list">
                         <li>
-                            <p class="field-name">Location :</p>
-                            <img src="/img/countries/32/{{ $user->country->country_flag }}" alt="Country Image" title="{{ $user->country->country_name }}">
+                            <div class="field-name-box">
+                                <p class="field-name">Location</p>
+                            </div>
+                            <div class="field-value-box">
+                                <img src="/img/countries/32/{{ $user->country->country_flag }}" alt="Country Image" title="{{ $user->country->country_name }}">
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Gender :</p>
-                            <p class="field-value">{{ $user->gender }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Gender</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->gender }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Reputation :</p>
-                            <p class="field-value">{{ $user->reputation }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Reputation</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->reputation }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Birthday :</p>
-                            <p class="field-value">{{ $user->birthday }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Birthday</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->birthday }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Joined Website :</p>
-                            <p class="field-value">{{ substr($user->created_at, 0, 10) }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Joined Website</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ substr($user->created_at, 0, 10) }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Age :</p>
-                            <p class="field-value">20</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Age</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">20</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Job/Hobbies :</p>
-                            <p class="field-value">{{ $user->job_hobbies }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">Job/Hobbies</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->job_hobbies }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">GamerRanger ID :</p>
-                            <p class="field-value">{{ $user->gameranger_id }}</p>
+                            <div class="field-name-box">
+                                <p class="field-name">GamerRanger ID</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->gameranger_id }}</p>
+                            </div>
                         </li>
                         <li>
-                            <p class="field-name">Status :</p>
-                            <p class="field-value">
-                                @if($user->status)
-                                    Active
-                                @else
-                                    Inactive
+                            <div class="field-name-box">
+                                <p class="field-name">Status</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">
+                                    @if($user->status)
+                                        Active
+                                    @else
+                                        Inactive
+                                    @endif
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field-name-box">
+                                <p class="field-name">Description</p>
+                            </div>
+                            <div class="field-value-box">
+                                <p class="field-value">{{ $user->description }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field-name-box">
+                                <p class="field-name">Signature</p>
+                                @if($isAccountOwner)
+                                    <button id="change-signature-picture" data-toggle="modal" data-target="#changeSignatureModal">Change Signature</button>
                                 @endif
-                            </p>
-                        </li>
-                        <li>
-                            <p class="field-name">Description :</p>
-                            <p class="field-value">{{ $user->description }}</p>
-                        </li>
-                        <li>
-                            <p class="field-name">Signature :</p>
-                            @if($user->signature)
-                                <img src="/img/signatures/{{ $user->signature }}" alt="User's Signature" id="user-signature" />
-                            @else
-                                <p class="field-value"></p>
-                            @endif
+                            </div>
+                            <div class="field-value-box">
+                                @if($user->signature)
+                                    <img src="/img/signatures/{{ $user->signature }}" alt="User's Signature" id="user-signature" />
+                                @else
+                                    <p class="field-value"></p>
+                                @endif
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -466,7 +512,7 @@
 
                 {{-- Contact Tab --}}
                 <div id="contact-div" class="tab-pane fade">
-                    <ul class="info-list">
+                    <ul class="info-list" id="contact-list">
                         <li>
                             <img class="media-logos" src="/img/social-media/email.png" alt="Email" title="Email">
                             <p class="field-value">{{ $user->email }}</p>
@@ -489,12 +535,12 @@
                                 <img class="facebook-twitter" src="/img/social-media/twitter.jpg" alt="Twitter">
                             @endif
                         </li>
-                        <li>
-                            @if($isLoggedIn && !$isAccountOwner)
+                        @if($isLoggedIn && !$isAccountOwner)
+                            <li>
                                 <img class="media-logos" src="/img/social-media/pm.png" alt="Twitter" title="Private Message">
                                 <a href="/send-pm/{{ $user->username }}" class="field-value">Send PM to {{ $user->username }}</a>
-                            @endif
-                        </li>
+                            </li>
+                        @endif
                     </ul>
                 </div>
 

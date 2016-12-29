@@ -150,76 +150,28 @@ a, a:visited, a:hover, a:active {
 }
 
 /* User's options box */
-#user-box {
+.top-nav {
     height: 100%;
-    float: right;
-    padding: 0;
-    margin: 0 10px 0 0;
-    position: relative;
-    cursor: pointer;
+    margin: 0;
+}
+
+.top-nav > .dropdown {
+    height: 100%;
+}
+
+.top-nav > .dropdown > .dropdown-toggle {
+    height: 100%;
+    font-size: 18px;
+    padding: 8px 20px 10px 20px;
     color: #aaa;
 }
 
-#user-box > p {
-    font-size: 20px;
-    margin: 8px 20px;
-    display: inline-block;
-
-}
-
-#user-box > i {
-    font-size: 25px;
-    position: absolute;
-    top: 7px;
-    right: 0;
-    padding: 0;
-}
-
-#user-options-box {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    text-align: center;
-    color: #aaa;
-}
-
-#user-options-box > i {
-    font-size: 30px;
+.top-nav > .dropdown > .dropdown-toggle:hover {
     color: #2e333b;
-    position: absolute;
-    top: 0px;
-    right: calc(50% - 10px);
 }
 
-#user-options-box > a {
-    display: block;
-    background: #2e333b;
-    /*border: 1px solid red;*/
-    padding: 5px 15px 5px 15px;
-    text-align: left;
-}
-
-#user-options-box > a > i {
-    margin-right: 10px;
-    color: #fff;
-}
-
-#profile-link{
-    margin-top: 13px;
-    border-bottom: 1px solid #fff;
-}
-
-#user-options-box > a:hover {
-    background: #292e30;
-}
-
-.show-user-options-box {
-    display: inline-block !important;
-}
-
-.hide-user-options-box {
-    display: none;
+.top-nav > .dropdown > .dropdown-toggle > i {
+    margin-right: 5px;
 }
 
 /* Top Menu Login Button */
@@ -403,6 +355,8 @@ hr {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 560px) {
-
+@media screen and (max-width: 768px) {
+    .top-nav {
+        float: right !important;
+    }
 }

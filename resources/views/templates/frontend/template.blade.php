@@ -23,15 +23,23 @@
         <div id="top-bar-div">
             <i class="fa fa-bars" aria-hidden="true" id="menu-button"></i>
             @if(Auth::check())
-                <div id="user-box">
-                    <p>{{ Auth::user()->username }}</p>
-                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                </div>
-                <div id="user-options-box">
-                    <i class="fa fa-sort-asc" aria-hidden="true"></i>
-                    <a href="/profile/{{ Auth::user()->username }}" id="profile-link"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
-                    <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
-                </div>
+                <ul class="nav navbar-right top-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i> {{ Auth::user()->username }}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/profile/{{ Auth::user()->username }}"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             @else
                 <div id="login-btn">
                     <a href="/auth" class="profile-login">Login</a>
