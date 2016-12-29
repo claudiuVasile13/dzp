@@ -17,6 +17,35 @@ body {
     }
 }
 
+/* Error Messages Box */
+.div-alert {
+    margin: 20px auto;
+    width: 100%;
+}
+
+.div-alert > ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+}
+
+.div-alert > ul > li {
+    width: 100%;
+}
+
+.div-alert > ul > li > a {
+    color: #2e3436;
+}
+
+.div-alert > ul > li > a:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    margin: 0;
+}
+
 #wrapper {
     padding-left: 0;
 }

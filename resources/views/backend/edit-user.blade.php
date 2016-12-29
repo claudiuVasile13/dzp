@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="view-user-container">
-        <form id="edit-profile-form" action="/admin-panel/users/edit/{{ $user->user_id }}" method="post">
+        <form id="edit-profile-form" action="/admin-panel/users/edit/{{ $user->user_id }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group" id="submit-box">
                 <input id="edit-profile-submit" type="submit" value="Save Changes">
@@ -16,6 +16,16 @@
                 <li class="active"><a data-toggle="tab" href="#profile-container"><span class="tab-name">Profile</span></a></li>
                 <li><a data-toggle="tab" href="#friends-container"><span class="tab-name">Friends</span></a></li>
             </ul>
+
+            @if(count($errors))
+                <div class="div-alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="alert alert-danger">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="tab-content">
 
@@ -26,6 +36,10 @@
                             <div class="form-group">
                                 <label class="edit-profile-field"><i class="fa fa-picture-o" aria-hidden="true"></i> Change Image</label>
                                 <input type="file" name="image" id="change_image" />
+                            </div>
+                            <div class="form-group">
+                                <label class="edit-profile-field"><i class="fa fa-picture-o" aria-hidden="true"></i> Change Signature</label>
+                                <input type="file" name="signature" id="change_signature" />
                             </div>
                             <div class="form-group">
                                 <label class="edit-profile-label" for="edit_country"><i class="fa fa-globe" aria-hidden="true"></i> Select country</label>

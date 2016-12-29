@@ -71,6 +71,10 @@
     max-width: 100%;
 }
 
+#user-image {
+    width: 150px;
+}
+
 /* Friends Tab */
 #friends-div {
     /*border: 1px solid red;*/

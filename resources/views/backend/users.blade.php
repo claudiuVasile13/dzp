@@ -19,6 +19,14 @@
             </div>
         @endif
 
+        @if(session()->has('EditProfileSuccess'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-success">{{ session()->get('EditProfileSuccess') }}</li>
+                </ul>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table id="users-table" class="table">
                 <thead>

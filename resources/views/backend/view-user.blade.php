@@ -18,6 +18,14 @@
                 <ul id="profile-data-list">
                     <li>
                         <div class="field-name-box">
+                            <p class="field-name">Image</p>
+                        </div>
+                        <div class="field-value-box">
+                            <img src="/img/users/{{ $user->user_image }}" alt="User's Image" id="user-image" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="field-name-box">
                             <p class="field-name">Username</p>
                         </div>
                         <div class="field-value-box">

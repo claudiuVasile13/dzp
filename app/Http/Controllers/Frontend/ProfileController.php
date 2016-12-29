@@ -94,7 +94,7 @@ class ProfileController extends Controller
             }
 
             $profileData = [
-                'country' => $request->input('country'),
+                'countryID' => $request->input('country'),
                 'gender' => $request->input('gender'),
                 'username' => $request->input('username'),
                 'job_hobbies' => $request->input('job_hobbies'),
@@ -127,8 +127,8 @@ class ProfileController extends Controller
         } else {
             $user = Auth::user();
             $imagePath = $_SERVER['DOCUMENT_ROOT'] . "/img/users/";
-            $imageName = $user->username . '.' . $request->file('image')->getClientOriginalExtension();
-            $image = Image::make($request->file('image'))->resize(300, null, function($constraint) {
+            $imageName = $user->user_id . '.' . $request->file('image')->getClientOriginalExtension();
+            Image::make($request->file('image'))->resize(300, null, function($constraint) {
                 $constraint->aspectRatio();
             })->save($imagePath . $imageName);
             $user->user_image = $imageName;
@@ -150,8 +150,8 @@ class ProfileController extends Controller
         } else {
             $user = Auth::user();;
             $imagePath = $_SERVER['DOCUMENT_ROOT'] . "/img/signatures/";
-            $imageName = $user->username . '.' . $request->file('signature')->getClientOriginalExtension();
-            $image = Image::make($request->file('signature'))->save($imagePath . $imageName);
+            $imageName = $user->user_id . '.' . $request->file('signature')->getClientOriginalExtension();
+            Image::make($request->file('signature'))->save($imagePath . $imageName);
             $user->signature = $imageName;
             $user->save();
             return Redirect::back()
