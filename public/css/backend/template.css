@@ -43,6 +43,10 @@ body {
 }
 
 .alert {
+    margin: 0 0 10px 0;
+}
+
+.alert:last-child {
     margin: 0;
 }
 
