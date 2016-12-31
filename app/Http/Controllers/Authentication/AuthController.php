@@ -33,7 +33,7 @@ class AuthController extends Controller
     {
         $rules = [
             'email' => 'required|unique:users|email',
-            'username' => 'required|unique:users|min:4|max:20',
+            'username' => 'required|unique:users|min:2|max:20',
             'password' => 'required|min:6|max:40|confirmed',
             'password_confirmation' => 'required',
             'country' => 'required',
