@@ -67,7 +67,7 @@
                             <a href="/admin-panel/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Roster</a>
+                            <a href="/admin-panel/roster"><i class="fa fa-list" aria-hidden="true"></i> Roster</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-file-text" aria-hidden="true"></i> Pages Content</a>

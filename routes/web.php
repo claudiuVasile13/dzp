@@ -79,6 +79,8 @@ Route::group(['namespace' => 'Backend'], function() {
             Route::post('/admin-panel/users/edit/{user_id}', 'UsersController@editUser');
             // PM
             Route::get('/admin-panel/pm/view/{pm_id}', 'PMController@viewPMPage');
+            //Roster
+            Route::get('/admin-panel/roster', 'RosterController@rosterPage');
         });
     });
 });
