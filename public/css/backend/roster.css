@@ -1,0 +1,48 @@
+#roster-container {
+    border: 1px solid red;
+    padding: 10px;
+}
+
+#add-member-button {
+    background: #0288D1;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #0288D1;
+    font-weight: bold;
+}
+
+#add-member-button:hover {
+    text-decoration: none;
+    color: #0288D1;
+    background: #fff;
+}
+
+.section-header {
+    color: #0288D1;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Josefin Sans';
+    text-decoration: underline;
+    /*border: 1px solid red;*/
+    margin:  10px 0 20px 0;
+}
+
+.roster-table {
+    /*border: 1px solid red;*/
+    margin: 0 0 50px 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
+}
+
+.roster-table > thead {
+    background: #0288D1;
+    color: #fff;
+    border: none !important;
+}
+
+.roster-table > tbody {
+    background: #EEEEEE;
+    color: #2e333b;
+    font-weight: bold;
+    border: none !important;
+}
+
