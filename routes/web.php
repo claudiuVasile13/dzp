@@ -81,6 +81,8 @@ Route::group(['namespace' => 'Backend'], function() {
             Route::get('/admin-panel/pm/view/{pm_id}', 'PMController@viewPMPage');
             //Roster
             Route::get('/admin-panel/roster', 'RosterController@rosterPage');
+            //Ranks
+            Route::get('/admin-panel/ranks', 'RanksController@ranksPage');
         });
     });
 });

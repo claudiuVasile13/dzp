@@ -67,6 +67,9 @@
                             <a href="/admin-panel/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a>
                         </li>
                         <li>
+                            <a href="/admin-panel/ranks"><i class="fa fa-circle" aria-hidden="true"></i> Ranks</a>
+                        </li>
+                        <li>
                             <a href="/admin-panel/roster"><i class="fa fa-list" aria-hidden="true"></i> Roster</a>
                         </li>
                         <li>

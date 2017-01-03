@@ -1,0 +1,64 @@
+#ranks-container {
+    /*border: 1px solid red;*/
+    padding: 20px 10px 10px 10px;
+}
+
+#add-rank-button {
+    background: #0288D1;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #0288D1;
+    font-weight: bold;
+}
+
+#add-rank-button:hover {
+    text-decoration: none;
+    color: #0288D1;
+    background: #fff;
+}
+
+.table-responsive {
+    border: none;
+}
+
+#ranks-table {
+    /*border: 1px solid red;*/
+    margin: 30px 0 0 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
+}
+
+#ranks-table > thead {
+    background: #0288D1;
+    color: #fff;
+    border: none !important;
+}
+
+#ranks-table > tbody {
+    background: #EEEEEE;
+    color: #2e333b;
+    font-weight: bold;
+    border: none !important;
+}
+
+.action-button {
+    /*border: 1px solid red;*/
+    margin-left: 10px;
+}
+
+.action-button:first-child {
+    margin: 0;
+}
+
+.edit-rank {
+    color: #2ca02c;
+}
+
+.delete-rank {
+    color: red;
+}
+
+@media screen and (max-width: 767px) {
+    #ranks-container {
+        padding: 30px 10px 10px 10px;
+    }
+}
