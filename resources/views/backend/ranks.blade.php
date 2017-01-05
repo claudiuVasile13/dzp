@@ -1,7 +1,7 @@
 @extends ('templates.backend.template')
 
 @section('head')
-    <title>Roster</title>
+    <title>Ranks</title>
     <link rel="stylesheet" href="/css/backend/ranks.css" />
 @stop
 
@@ -10,6 +10,14 @@
         {{--<ol class="breadcrumb">--}}
             {{--<li class="breadcrumb-item">Rank</li>--}}
         {{--</ol>--}}
+
+        @if(session()->has('RankDoesNotExist'))
+            <div class="div-alert">
+                <ul>
+                    <li class="alert alert-danger">{{ session()->get('RankDoesNotExist') }}</li>
+                </ul>
+            </div>
+        @endif
 
         <a href="/admin-panel/ranks/add" id="add-rank-button">Add Rank</a>
 
